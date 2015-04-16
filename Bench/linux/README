@@ -1,0 +1,9 @@
+This folder contains following for *linux*;
+
+A. Bench files for BangDB (C++ and Java)
+B. Perf comparison tests for BangDB, LevelDB and BerkeleyDB (BDB)
+
+All the folders are self sufficient to run the tests or benchmarks
+Just download the folder, build and run the tests
+
+ReadMe's are there for every folder
