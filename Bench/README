@@ -1,4 +1,4 @@
-The BangDB 1.5.2 bench files.
+The Bench files for BangDB Embedded and Server 
 
-This contains sample code to run the bangdb and also see the performance benchmark.
-It may give some idea towards the usage of BangDB as well
+BangDB Embedded - 1.5.2
+BangDB Server - 0.9

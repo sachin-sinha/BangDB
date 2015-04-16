@@ -1,0 +1,22 @@
+To run the bench file do follwoing;
+
+start the server in another shell
+
+>./bangdb-server
+
+> cd bangdb_bench
+
+> bash build.sh
+
+finally just run the bench file
+
+> ./bench
+
+or to put 500000 items using 20 threads (clients) use
+
+> ./bench 20 500000 put
+
+etc...
+
+Note that with 0.9 release, we don't need to use command line tool to 
+create db and table as it can be done programmatically
