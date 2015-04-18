@@ -1,24 +1,2 @@
-
-To run the server
-
->./bangdb-server
-
-open a new terminal and install the client library
-cd client-linux
-
-To test the server with the supplied test/bench files, go the bangdb_bench dir and
-compile the bench using the supplied build.sh file 
-
-> cd bangdb_bench
-> bash build.sh
-
-to run the test file us
-> bash runapp.sh
-
-or to put 1M key val with 20 threads/clients run
-
-> bash runapp.sh 20 1000000 put
-
-etc...
-
-Please see more information on progarmming with server at http://iqlect.com/manual_bangdb_server_development.php
+The server bench files
+Note that as of now only C++ version is avialble, but soon we will be adding java and other langauages as well
