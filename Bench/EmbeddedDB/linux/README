@@ -1,7 +1,6 @@
-This folder contains following for *linux*;
+This folder contains performane benchmark for BangDB 1.5.2 embedded version
 
-A. Bench files for BangDB (C++ and Java)
-B. Perf comparison tests for BangDB, LevelDB and BerkeleyDB (BDB)
+Note that only C++ and Java files are here, but sonn we will add for other languages as well
 
 All the folders are self sufficient to run the tests or benchmarks
 Just download the folder, build and run the tests
