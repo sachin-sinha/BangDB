@@ -1,4 +1,4 @@
-This is the repo for BangDB. Following are include here;
+This is the repo for BangDB. Following are included here;
 
 A. Release - This includes the release files for BangDB 1.5.2 as of now. This includes all necessary headers, libraries, install and unistall files. Currently BangDB is available in C++, JAVA and C# for linux and windows platform
 
