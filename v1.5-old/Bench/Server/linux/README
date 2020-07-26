@@ -1,0 +1,4 @@
+The bangdb server bench files in C++ for linux platform.
+This is self contained folder and has all neecessary items to run the tests.
+
+It doesn't require you to download server and client separately, just download this and run

@@ -1,0 +1,23 @@
+
+***********************************************************************************
+***********************************************************************************
+This is 64 bit version of BangDB
+
+Please ensure that the java is installed and JAVA_HOME is set
+
+build the app
+
+> bash make-app.sh 
+
+run the bench
+
+> bash exapp.sh
+
+to put 1M key values using 2 threads do following;
+
+> bash exapp.sh 2 1000000 put
+
+etc...
+
+***********************************************************************************
+***********************************************************************************
