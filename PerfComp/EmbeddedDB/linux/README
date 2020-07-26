@@ -1,7 +1,0 @@
-The performance comparison program files. 
-
-Please download this folder to see the performance numbers for BangDB, LevelDB and BerkeleyDB.
-
-Note that this folder contains all the necessary files, libs and binaries, hence there is no need to download or install other files, even for LevelDb or BerkeleyDB.
-
-This is in C++ for Linux platform

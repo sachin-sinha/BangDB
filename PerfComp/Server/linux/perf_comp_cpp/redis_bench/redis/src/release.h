@@ -1,3 +1,0 @@
-#define REDIS_GIT_SHA1 "62580952"
-#define REDIS_GIT_DIRTY "9143"
-#define REDIS_BUILD_ID "sachin-linux-1429366797"
