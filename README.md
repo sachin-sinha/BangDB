@@ -1,12 +1,11 @@
 # BangDB
 BangDB - nosql database
 
-
 	 _____________________
-	|                     |		BangDB Server (master) ver:0.9 64 bit
+	|                     |		BangDB Server (master) ver:2.0 64 bit
 	|                     |		IP = 0.0.0.0 : Port = 10101 
-	|  BangDB Server 2.0  |		PID = 1597
-	|   www.iqlect.com    |
+	|  BangDB Server 2.0  |		PID = 2658
+	|   www.bangdb.com    |
 	|__________           |
 	|          |          |
 	|   BSD    |          |
@@ -177,5 +176,5 @@ I am also going to start the community part here in few weeks
 Please feel free to write to me at sachin@bangdb.com for any info, clarity, feedback etc.
 
 Enjoy!
-Sachin
+<br>Sachin
  
