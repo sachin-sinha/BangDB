@@ -1,0 +1,12 @@
+cli could run simply
+
+./bangdb-cli-2.0
+
+print help
+
+> help
+
+or to get help for db
+> help db
+
+and so on ...

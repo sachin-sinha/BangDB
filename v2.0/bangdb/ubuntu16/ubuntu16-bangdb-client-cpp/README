@@ -1,0 +1,25 @@
+You may write your applications using the client.
+Please see getting started with client at bangdb.com/developer
+
+However you may simply get started by building the sample app provided here
+
+Following steps would help;
+
+A. link with the bangdb-client-cpp only
+B. include the headers in the include folder
+
+that's it!
+You may use following to build sample.cpp and run [ pls do start server before running it ]
+
+compile ....
+	g++ -O3 -Wall sample.cpp -osample -Iinclude -Llib -lbangdb-client-cpp
+
+run...
+	export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH:lib [ may be needed ]
+	./sample
+
+Note: bangdb.config is required to run any app (keep in the same folder as exe)
+
+Use the detail API and dev section at the bangdb.com
+
+Enjoy!

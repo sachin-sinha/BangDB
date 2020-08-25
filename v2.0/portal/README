@@ -1,0 +1,21 @@
+This is beta version of portal/dashboard for bangdb stream processing. 
+You will be able to interact with bangdb for stream processing using this as well.
+Further charts, reports etc. could be set up as well for the use cases.
+
+
+Please note, you will need to copy the libraries of the respective platform into the
+lib folders to be able to run properly. For ex; if you are running it on centos7, then
+please take the centos7 libs for running the benchmark
+
+libraries that need to be copied are;
+
+libbangdb-client.so.2.0
+libbangdb-client-java.so.2.0
+
+You need to copy it under the lib folder
+
+Please also see the portal(how to) doc present in the root folder
+Please let me know feedback, suggestions or comments at sachin@bangdb.com
+
+Sachin
+Enjoy!
