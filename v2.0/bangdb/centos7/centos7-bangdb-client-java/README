@@ -1,0 +1,24 @@
+You may write your applications using the client.
+Please see getting started with client at bangdb.com/developer
+
+However you may simply get started by building the sample app provided here
+
+Following steps would help;
+
+A. link with the bangdb-client-java lib only
+B. include the jar file present in the lib folder
+
+that's it!
+You may use following to build sample.cpp and run [ pls do start server before running it ]
+
+complie...
+	javac -cp .:lib/bangdb-client-java.jar test/Main.java test/Sample.java
+
+run...
+	java -cp .:lib/bangdb-client-java.jar -Djava.library.path="lib"  test.Main
+
+Note: bangdb.config is required to run any app (keep in the same folder as exe)
+
+Use the detail API and dev section at the bangdb.com
+
+Enjoy!
