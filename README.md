@@ -54,6 +54,7 @@ to achieve very high performance, efficiency and robustness for scale;
 * IO Layer
 * primary, secondary, composite, nested, reverse index
 * Normal, wide, primitive, sliding window tables
+* Fully concurrent read and write
 
 Basic Types
 -----------
@@ -67,7 +68,7 @@ The db provides simple types, interfaces and APIs, most important types are;
 * bangdb_ml_helper
 * bangdb_dl_helper
 
-BangDB flavors
+BangDB Flavors
 --------------
 
 BangDB comes in different flavors, namely
@@ -76,7 +77,7 @@ BangDB comes in different flavors, namely
 * P2P based distributed database - [ Upcoming, later this year ] Implements consistent hashing, Chord+ algo, CAP Knob, high churning, linear scale etc.
 Note: API remains same across all flavors [ except in ~5% cases where certain changes are unavoidable ]. This allows portability, one can write app for embedded and deploy for Server or Cluster. In fact I usually write all my apps for embedded as it's easy to debug and test, and then deploy for other flavors
 
-Other components
+Other Components
 ----------------
 
 1. Clients - to help user write applications for BangDB, clients are fully concurrent and exposes simple APIs for writing such applications. Please note that the API for BangDB are same for all falvors. The core client is written in C++, it uses TCP socket to communicate. It also implements robust and very efficient message protocol for high performance. Java wrapper is provided for allowing users to write their apps in java/scala
@@ -86,7 +87,7 @@ Other components
 3. brs-cli - a command line tool for uploading and downloading large files, much like S3 features
 
 
-Install and run
+Install and Run
 ---------------
 
 Running BangDB is 3 steps process (first time, after that it's simply single step flow)
