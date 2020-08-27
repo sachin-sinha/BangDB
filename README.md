@@ -104,7 +104,15 @@ Second, ensure that you have installed java8, python3
 
 Then it needs certain other libs to be installed
 ssl, crypto, curl, rt, dl, X11, pthread, lapack, blas, python3 
+
+To run IE (information extraction) we need few more lib;
+SPARQLWrapper, wikipedia, html2text
 Note: for python, pls pick the right binary based on which version you would like to link with 3.5, 3.6, 3.8 so on..
+
+libjvm - set the path or create soft link to libjvm which can be found by the server
+export LD_LIBRARY_PATH=$JAVA_HOME/jre/lib/amd64/server/
+OR
+ln -sf $JAVA_HOME/jre/lib/amd64/server/libjvm.so /usr/local/lib/libjvm.so
 
 Finally it also needs lib mitie, dlib which is present in the download folder
 
@@ -112,10 +120,26 @@ Step2 - Create a base folder/dir, untar the download file there, let's say we ar
 
 Step3 - Run install.sh to have several soft links configured as required
 
-That's it. You are ready to run the server by simply typing following
+That's it. You are ready to run the server in following two ways;
 
+Method 1
+--------
+cd bin
 ./bangdb-server-2.0
 
+There are many command line args that this can take and ther are defined below in the configuration section
+
+Method 2
+--------
+./bangdb-server start
+
+This runs the db in background, you may check the status
+./bangdb-server status
+
+and stop the server
+./bangdb-server stop
+
+This method don't allow command line args to be specified, therefore we will need to set those in the bangdb.config file
 
 Configurtaion
 -------------
