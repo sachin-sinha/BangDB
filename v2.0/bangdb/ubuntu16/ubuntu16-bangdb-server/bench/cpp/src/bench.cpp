@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 		printf("       1/factor part write and rest read. ex; factor = 3, 33 percent write and 67 percent read\n");
 		printf("----------------------------------------------------------------------------\n");
 		printf("\nRunning the default test with 16 threads (connections), put and get 1000000 items\n");
-		bangdb_bench("kv", 16, 1000000, "all", 0);
+		bangdb_bench("kv", 32, 1000000, "all", 0);
 		exit(0);
 	}
 

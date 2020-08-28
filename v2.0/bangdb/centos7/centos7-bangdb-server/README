@@ -18,33 +18,42 @@ BangDB requires bangdb.config file as an input, you may leave it in the same fol
 libs
 ====
 
-The binary links with several libraries, few of these are provided along with the server in the lib folder.
-However, please ensure you have following libs on the server (most of these might already be there or 
-simply get from appropriate repo(apt, yum etc.)
+Simply run install.sh to get the various libs and headers installed and also necessary soft link created
 
-First install "build-essential" (ubuntu) or "Development Tools" on centos 
-sudo apt-get install build-essential [ ubuntu]
-sudo yum groupinstall 'Development Tools' [ centos ]
+Also ensure you have pyhton 3.5(ubuntu16), python 3.6 (ubuntu 18 and Centos7)
 
-Second, ensure that you have installed java8, python3
-
-Then it needs certain other libs to be installed
-ssl, crypto, curl, rt, dl, X11, pthread, lapack, blas, python3 
-Note: for python, pls pick the right binary based on which version you would like to link with 3.5, 3.6, 3.8 so on..
-
-Finally it also needs lib mitie, dlib which is present in the download folder (lib)
-
-Note: 	If you wish, you may run install.sh to get the various libs and headers installed in /usr/local lib 
-and include folders
+Finally, install java8 as well, ensure libjvm is reachable
 
 libjvm
 ======
+
+Not required unless you get this error, although it is recommended you do it
 
 create a soft link to libjvm if not already there, so that server can find it easily, else export/set path to it
 for ex;
 sudo ln -sf $JAVA_HOME/jre/lib/amd64/server/libjvm.so /usr/local/lib/libjvm.so
 OR
 export LD_LIBRARY_PATH=$JAVA_HOME/jre/lib/amd64/server/
+
+--------------------------------------------------------------------------------------------------------------------
+Note:
+	The binary links with several libraries, few of these are provided along with the server in the lib folder.
+	However, please ensure you have following libs on the server (most of these might already be there or 
+	simply get from appropriate repo(apt, yum etc.)
+
+	First install "build-essential" (ubuntu) or "Development Tools" on centos 
+	sudo apt-get install build-essential [ ubuntu]
+	sudo yum groupinstall 'Development Tools' [ centos ]
+
+	Second, ensure that you have installed java8, python3
+
+	Then it needs certain other libs to be installed
+	ssl, crypto, curl, rt, dl, X11, pthread, lapack, blas, python3 
+	Note: for python, pls pick the right binary based on which version you would like to link with 3.5, 3.6, 3.8 so on..
+
+	Finally it also needs lib mitie, dlib which is present in the download folder (lib)
+
+--------------------------------------------------------------------------------------------------------------------
 
 
 That's it. You are ready to run the server.
