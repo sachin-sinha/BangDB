@@ -136,6 +136,8 @@ This method don't allow command line args to be specified, therefore we will nee
 Configurtaion
 -------------
 
+Checkout https://www.bangdb.com/bangdb-config for more details on configuring BangDB
+
 There are however several ways to configure for the server, here are the relevant details;
 
 * configure how server should be run [ master, slave, isolated, foreground, background etc ... ]
