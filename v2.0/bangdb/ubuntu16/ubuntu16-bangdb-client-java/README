@@ -11,11 +11,11 @@ B. include the jar file present in the lib folder
 that's it!
 You may use following to build sample.cpp and run [ pls do start server before running it ]
 
-complie...
-	javac -cp .:lib/bangdb-client-java.jar test/Main.java test/Sample.java
+compile...
+	javac -cp .:lib/bangdb-client-java.jar:lib/json-20190722.jar test/Main.java test/Sample.java
 
 run...
-	java -cp .:lib/bangdb-client-java.jar -Djava.library.path="lib"  test.Main
+	java -cp .:lib/bangdb-client-java.jar:lib/json-20190722.jar -Djava.library.path="lib"  test.Main
 
 Note: bangdb.config is required to run any app (keep in the same folder as exe)
 

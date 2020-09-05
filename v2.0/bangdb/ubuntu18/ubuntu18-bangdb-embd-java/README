@@ -41,10 +41,10 @@ that's it!
 You may use following to build sample.cpp and run [ pls do start server before running it ]
 
 compile ....
-	javac -cp .:lib/bangdb-embd-java.jar test/Main.java test/Sample.java
+	javac -cp .:lib/bangdb-embd-java.jar:lib/json-20190722.jar test/Main.java test/Sample.java
 
 run...
-	java -cp .:lib/bangdb-embd-java.jar -Djava.library.path="lib"  test.Main
+	java -cp .:lib/bangdb-embd-java.jar:lib/json-20190722.jar -Djava.library.path="lib"  test.Main
 
 Note: bangdb.config is required to run any app (keep in the same folder as exe)
 

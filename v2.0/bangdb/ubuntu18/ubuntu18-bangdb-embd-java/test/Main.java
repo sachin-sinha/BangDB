@@ -7,6 +7,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		  Sample.testsanity();
+		  Sample.test_manual_sample();
      		 return;
 	}
 }
