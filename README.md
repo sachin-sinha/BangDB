@@ -133,7 +133,7 @@ and stop the server
 
 This method don't allow command line args to be specified, therefore we will need to set those in the bangdb.config file
 
-Configurtaion
+Configurataion
 -------------
 
 Checkout https://www.bangdb.com/bangdb-config for more details on configuring BangDB
