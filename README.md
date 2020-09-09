@@ -64,7 +64,7 @@ The db provides simple types, interfaces and APIs, most important types are;
 * bangdb_database
 * bangdb_table
 * bangdb_stream_manager
-* bangdb_notificatin_manager
+* bangdb_notification_manager
 * bangdb_ml_helper
 * bangdb_dl_helper
 
