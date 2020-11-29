@@ -34,7 +34,7 @@ Git clone YCSB and compile:
     mvn -pl site.ycsb:bangdb-binding -am clean package
 
 Edit YCSB pom.xml 
-    add following in respective sections;
+    add following in respective sections;(two places in the pom.xml of YCSB (at the base folder))
 	<bangdb.version>2.0.0</bangdb.version>
 	<module>bangdb</module>
 
@@ -55,5 +55,7 @@ Run the workload test:
 
     ./bin/ycsb load bangdb -threads 60 -P workloads/workloadc
 
+If you get the error of not finding the bangdb-client-java lib, set following;
+export LD_LIBRARY_PATH = /usr/local/lib
 etc...
 
