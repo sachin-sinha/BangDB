@@ -92,26 +92,30 @@ Install and Run
 
 Running BangDB is very simple
 
-go to the base folder of the bangdb (ubuntu18-bangdb-server for ubuntu18 binary etc.)
+go to the base folder of the bangdb (v2.0/bangdb-2.0_<OS>)
 
 Deal with Prereqs - The binary links with several libraries, few of these are provided along with the server in the lib folder.
 However, to ensure you have following libs on the server run the install.sh
 
->bash install.sh
+> sudo apt-get update (or sudo yum update)
+> sudo bash install.sh
 
+..................................................................................................................
 This will install necessary libs and set the softlinks as well
-
-Second, ensure that you have installed java8, python3
+It also ensures that it has installed java8, python3 (python 3.6 for all, and 3.8 for ubuntu20)
 
 To run IE (information extraction) we need few more lib;
-SPARQLWrapper, wikipedia, html2text
-Note: for python, pls pick the right binary based on which version you would like to link with 3.5, 3.6, 3.8 so on..
+Hence it also installsSPARQLWrapper, wikipedia, html2text
 
+It also sest the PATH and LD_LIBRARY_PATH
 libjvm - set the path or create soft link to libjvm which can be found by the server
 export LD_LIBRARY_PATH=$JAVA_HOME/jre/lib/amd64/server/
 OR
 ln -sf $JAVA_HOME/jre/lib/amd64/server/libjvm.so /usr/local/lib/libjvm.so
 
+For Cli, as it needs feedgnuplot which requires gnuplot and perl, hence it brings those as well
+..................................................................................................................
+.
 That's it. You are ready to run the server in following two ways;
 
 Method 1
@@ -140,32 +144,43 @@ Checkout https://www.bangdb.com/bangdb-config for more details on configuring Ba
 
 There are however several ways to configure for the server, here are the relevant details;
 
-* configure how server should be run [ master, slave, isolated, foreground, background etc ... ]
-pls type help to see the options
-./bangdb-server-2.0 -help
+--------------------------------------------------------------------------------------------------------------
+	Command line arguments
+	----------------------
 
-Here are some of the details;
+	There are however several ways to configure for the server through command line arguments, 
+	here are the relevant details;
 
-Usage: -i [master | slave] -r [yes | no] -t [yes | no] -d [dbname] -s [IP:PORT] -m [IP:PORT] -b [yes | no] -v
+	pls type help to see the options
+	./bangdb-server-2.0 -help
 
-Options
+	Here are some of the details;
 
- * -i: defines the server's identity [master | slave], default is SERVER_TYPE as defined in bangdb.config
- * -r: defines replication state [yes | no], default is ENABLE_REPLICATION as defined in bangdb.config 
- * -t: defines if transaction is enabled(yes) or disabled(no) [yes | no], default is no 
- * -d: defines the dbname, default is BANGDB_DATABASE_NAME as defined in bangdb.config 
- * -s: defines IP:Port of this server, default is SERVER_ID:SERV_PORT as defined in bangdb.config
- * -m: defines IP:Port of the master (required only for slave as it declares master with this option)
- * -b: defines if server to be run in background as daemon
-     default is MASTER_SERVER_ID:MASTER_SERV_PORT as defined in the bangdb.config
- * -v: prints the alpha-numeric version of the executable
+	----------------------------------------------------------------------------------------------------
+	Usage: -i [master | slave] -r [yes | no] -t [yes | no] -d [dbname] -s [IP:PORT] -m [IP:PORT] -p [IP] -b [yes | no] -v
+	----------------------------------------------------------------------------------------------------
+	Options
+	-------
+ 	-i: defines the server's identity [master | slave], default is SERVER_TYPE as defined in bangdb.config
+ 	-r: defines replication state [yes | no], default is ENABLE_REPLICATION as defined in bangdb.config 
+ 	-t: defines if transaction is enabled(yes) or disabled(no) [yes | no], default is no 
+	-d: defines the dbname, default is BANGDB_DATABASE_NAME as defined in bangdb.config 
+ 	-s: defines IP:Port of this server, default is SERVER_ID:SERV_PORT as defined in bangdb.config
+	-m: defines IP:Port of the master (required only for slave as it declares master with this option)
+ 	-p: defines public IP of the server (required for master and slave to denote it's own public IP)
+	-b: defines if server to be run in background as daemon
+     	default is MASTER_SERVER_ID:MASTER_SERV_PORT as defined in the bangdb.config
+	-v: prints the alpha-numeric version of the executable
 
- Hence to run master with other values as defined in the bangdb.config, issue following command
- ./bangdb-server -s 192.168.1.5:7887
+ 	Hence to run master with other values as defined in the bangdb.config, issue following command
+ 	./bangdb-server -s 192.168.1.5:7887
 
- To run slave for this master with default other values..
- ./bangdb-server -i slave -s 192.168.1.6:7887 -m 192.168.1.5:7887
-etc...
+ 	To run slave for this master with default other values..
+ 	./bangdb-server -i slave -s 192.168.1.6:7887 -m 192.168.1.5:7887
+	etc...
+	----------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+
 
 BangDB requires bangdb.config file as an input, you may leave it in the same folder as bangdb-server.
 
@@ -176,8 +191,6 @@ structured in a manner to allow you to pick and modify things in rather conforta
 
 Please refer www.bangdb.com/developer section to get most of the detail info as needed
 
-We are working hard to provide more help and information on our website and also for next 3 months,
-we will be releasing and updating BangDB on weekly basis. 
 
 Update DB with new version
 --------------------------
