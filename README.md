@@ -64,7 +64,7 @@ The db provides simple types, interfaces and APIs, most important types are;
 * bangdb_database
 * bangdb_table
 * bangdb_stream_manager
-* bangdb_notificatin_manager
+* bangdb_notification_manager
 * bangdb_ml_helper
 * bangdb_dl_helper
 
@@ -133,7 +133,7 @@ and stop the server
 
 This method don't allow command line args to be specified, therefore we will need to set those in the bangdb.config file
 
-Configurtaion
+Configurataion
 -------------
 
 Checkout https://www.bangdb.com/bangdb-config for more details on configuring BangDB
