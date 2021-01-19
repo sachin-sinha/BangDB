@@ -43,26 +43,15 @@ import java.util.Vector;
  */
 public class BangdbClient extends DB {
 
-  private BangDBEnv dbenv;
-  private BangDBDatabase db;
-  private BangDBTable tbl;
-  private TableEnv te;
-  private static boolean flag = true;
+  private static BangDBEnv dbenv = null;
+  private static BangDBDatabase db = null;
+  private BangDBTable tbl = null;
+  private TableEnv te = null;
   private static int count = 0;
-  private Gson gson;
+  private Gson gson = null;
 
   public void init() throws DBException {
-    System.loadLibrary("bangdb-client-java");
-    DBParam dbp = new DBParam();
-    dbp.set_host("127.0.0.1");
-    dbp.set_port("10101");
-    dbp.setTransactionType(TransactionType.DB_MULTIOPS_TRANSACTION_NONE);
-    dbenv = BangDBEnv.getInstance(dbp);
-    if(dbenv == null) {
-      System.out.println("bangdb env couldn't be initialized");
-    }
-    db = dbenv.openDatabase("ycsb", dbp);
-
+    initenv();
     te = new TableEnv();
     te.setTable_type(TableType.WIDE_TABLE);
     //te.setLogState(false);
@@ -72,11 +61,36 @@ public class BangdbClient extends DB {
   }
 
   public void cleanup() throws DBException {
-    //tbl.closeTable(CloseType.DEFAULT_AT_SERVER, false);
-    //dbenv.closeDatabase(CloseType.DEFAULT_AT_SERVER);
-    //dbenv.close();
+    cleanupenv();
   }
 
+  private static synchronized void initenv() {
+    if(dbenv == null) {
+      System.loadLibrary("bangdb-client-java");
+      DBParam dbp = new DBParam();
+      dbp.set_host("127.0.0.1");
+      dbp.set_port("10101");
+      dbp.setTransactionType(TransactionType.DB_MULTIOPS_TRANSACTION_NONE);
+      dbenv = new BangDBEnv(dbp);
+      if(dbenv == null) {
+        System.out.println("bangdb env couldn't be initialized");
+      }
+      db = dbenv.openDatabase("ycsb", dbp);
+      System.out.println("init done ..."); 
+    }
+    count++;
+  }    
+
+  private static synchronized void cleanupenv() {
+    count--;
+    if(count != 0) {
+      return;
+    }
+    dbenv.close();
+    dbenv = null;
+    System.out.println("cleanup done!");
+  }
+ 
   @Override
   public Status read(String table, String key, Set<String> fields,
       Map<String, ByteIterator> result) {
@@ -101,7 +115,7 @@ public class BangdbClient extends DB {
   public Status insert(String table, String key,
       Map<String, ByteIterator> values) {
     String inputJson = gson.toJson(StringByteIterator.getStringMap(values));
-    if (tbl.putDoc(inputJson, key, null, InsertOptions.INSERT_UNIQUE) < 0) {
+    if (tbl.putDoc(inputJson, key, null, InsertOptions.INSERT_UNIQUE) < 0) { 
       return Status.ERROR;
     }
     return Status.OK;
@@ -143,22 +157,6 @@ public class BangdbClient extends DB {
       ++nitr;
     }
     return nitr > 0 ? Status.OK : Status.ERROR;
-/*
-    rs = tbl.scanDoc(rs, startkey, null, null, sf);
-    if (rs != null) {
-      HashMap<String, ByteIterator> values = new HashMap<String, ByteIterator>(rs.count());
-      while(rs.hasNext()) {
-        values.put(rs.getNextKeyStr(), new StringByteIterator(rs.getNextValStr()));
-        result.add(values);
-        rs.moveNext();
-        values.clear();
-      }
-      rs.clear();
-      return Status.OK;
-    }
-
-    return Status.ERROR;
-*/
   }
 
 }
