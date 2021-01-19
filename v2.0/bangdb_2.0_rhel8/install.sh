@@ -258,7 +258,8 @@ sudo pip3 install html2text
 
 USR_LIB_LOC=/usr/local/lib
 USR_INC_LOC=/usr/local/include
-
+USR_LIB64=/usr/lib64
+USR_INC64=/usr/include
 
 echo 'export PATH=/usr/local/bin:/usr/local/include:$PATH' >>~/.bash_profile
 echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' >>~/.bashrc
@@ -292,6 +293,18 @@ sudo ln -sf $USR_LIB_LOC/libbangdb-embd-cpp_s.so.2.0 $USR_LIB_LOC/libbangdb-embd
 sudo ln -sf $USR_LIB_LOC/libbangdb-embd-java.so.2.0 $USR_LIB_LOC/libbangdb-embd-java.so
 sudo ln -sf $USR_LIB_LOC/libbangdb-embd.so.2.0 $USR_LIB_LOC/libbangdb-embd.so
 
+
+sudo ln -sf $USR_LIB_LOC/libbangdb-client-cpp.so.2.0 $USR_LIB64/libbangdb-client-cpp.so
+sudo ln -sf $USR_LIB_LOC/libbangdb-client-cpp_s.so.2.0 $USR_LIB64/libbangdb-client-cpp_s.so
+sudo ln -sf $USR_LIB_LOC/libbangdb-client-java.so.2.0 $USR_LIB64/libbangdb-client-java.so
+sudo ln -sf $USR_LIB_LOC/libbangdb-client.so.2.0 $USR_LIB64/libbangdb-client.so
+sudo ln -sf $USR_LIB_LOC/libbangdb-client_s.so.2.0 $USR_LIB64/libbangdb-client_s.so
+sudo ln -sf $USR_LIB_LOC/libbangdb-embd-cpp.so.2.0 $USR_LIB64/libbangdb-embd-cpp.so
+sudo ln -sf $USR_LIB_LOC/libbangdb-embd-cpp_s.so.2.0 $USR_LIB64/libbangdb-embd-cpp_s.so
+sudo ln -sf $USR_LIB_LOC/libbangdb-embd-java.so.2.0 $USR_LIB64/libbangdb-embd-java.so
+sudo ln -sf $USR_LIB_LOC/libbangdb-embd.so.2.0 $USR_LIB64/libbangdb-embd.so
+
+
 jv=$(echo $JAVA_HOME)
 if [ -z "$jv" ]
 then
@@ -307,6 +320,10 @@ echo "created env vars, soft links for the libs for bangdb"
 sudo cp -r bangdb_udf $USR_INC_LOC/
 sudo cp -r include/bangdb-embd $USR_INC_LOC/
 sudo cp -r include/bangdb-client $USR_INC_LOC/
+
+sudo ln -sf $USR_INC_LOC/bangdb_udf $USR_INC64/bangdb_udf
+sudo ln -sf $USR_INC_LOC/bangdb-embd $USR_INC64/bangdb-embd
+sudo ln -sf $USR_INC_LOC/bangdb-client $USR_INC64/bangdb-client
 
 echo "copied the include folders for bangdb"
 
