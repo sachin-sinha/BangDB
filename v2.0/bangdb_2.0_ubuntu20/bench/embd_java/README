@@ -1,0 +1,50 @@
+Install and run
+---------------
+
+Make sure you have run install.sh to have several soft links configured as required
+and also installed the necessary libs
+
+Build sample app
+----------------
+
+You may write your applications using the client.
+Please see getting started with client at bangdb.com/developer
+
+However you may simply get started by building the sample app provided here
+
+Following steps would help;
+
+A. link with the bangdb-embd-cpp only
+B. include the headers in the include folder
+
+that's it!
+You may use following to build sample.cpp and run [ pls do start server before running it ]
+
+compile ....
+	javac -cp .:../../jars/bangdb-embd-java.jar:.../../jars/json-20190722.jar test/Main.java test/Sample.java
+
+run...
+	java -cp .:../../jars/bangdb-embd-java.jar:../../jars/json-20190722.jar -Djava.library.path="/usr/local/lib"  test.Main
+
+Note: bangdb.config is required to run any app (keep in the same folder as exe)
+
+Use the detail API and dev section at the bangdb.com
+
+Enjoy!
+
+
+
+BangDB Config : bangdb.config file. Keep this file in the base dir of your application
+
+bangdb.config - using this you can set various run time config for the db. Also it provides
+enough hadles with tune the core and internals of db to run in the best possible manner depending upon
+the host configuration and boundaries. The config file has details before each of these paramaeters and also
+structured in a manner to allow you to pick and modify things in rather confortable way
+
+Please refer www.bangdb.com/developer section to get most of the detail info as needed
+Please feel free to write to me at sachin@bangdb.com for any info, clarity, feedback etc.
+
+Hope you find the db useful and it helps you solve some of the problems for you.
+Looking forward to connect with you soon
+Enjoy!
+

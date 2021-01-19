@@ -1,0 +1,26 @@
+There are ssl and non-ssl exe for cli, as per bangdb convention,
+ssl version of binary or exe is appeneded with "_s", therefore;
+ssl version     : bangdb-cli_s-2.0
+non-ssl version : bangdb-cli-2.0 
+
+cli mandates bangdb.config to be placed in the same dir as cli,
+although user should not require at all to change anything in 
+the bangdb.config but still it is needed as of now
+---------------------------------------------------------------
+
+cli could run simply by using following command
+
+>./bangdb-cli-2.0
+
+to print help
+
+bangdb> help
+
+or to get help for db
+bangdb> help db
+
+or to get help for stream
+bangdb> help stream
+
+and so on ...
+-------------------------------------------------------------

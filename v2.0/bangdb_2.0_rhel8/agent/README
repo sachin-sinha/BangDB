@@ -1,0 +1,69 @@
+Agent is standalone service that can be used to continuously push data into
+BangDB. Agent runs like a service which based on the configuration can read
+data from a source and then parse it (as required) before sending it to the db.
+
+The source of data could be any of the following;
+a. a file
+b. all files within a dir
+c. RDBs (relational dbs) usign ODBC
+d. using protocols (SNMP etc.)
+e. some other utiliy (SAR etc.)
+
+In the current version, file is supported. In subsequent releases other will
+come.
+
+The data could be formatted before sending to the db. The current supported
+options are;
+
+0. default : read the line, just add _pk (timestamp) and send as json
+1. input is already json : just add _pk (timestamp) and send
+2. use regex : use given regex, parse into set of tokens, send as json
+3. token regex : using sys regex define tokens and send as json
+4. NER : use IE and name entity recognition to define tokens [ not supported in this version ]
+5. UDF : user defined function to extract the tokens before sending as json
+6. generic : uses config file (user defined) to parse line and sends as json
+             csv, key value files could be converted to json using this option
+
+
+It's rather simple to configure and run. We just need to define the agent.conf and
+the agent will use this to read, parse and send data in continuous manner
+
+
+Typically one agent can send data for more than on collectors if needed. For
+each collector, user can define where to read from, how to parse and whom to send.
+Following is the typical strucutre of the agent.conf;
+
+{
+  "agentid": 12345,				// some id, user given
+  "collectors": [				
+    {
+      "name": "logfile_collector",		// name of the collector
+      "file": "/mnt/myapp_logs/fwlog.txt",	// file to read data from (as and when data is written to it)
+      "dir": "/mnt/myapp_logs",			// dir where the file is contained
+      "regex": [],				// if we wanted to use regex, we could have given it here, note 
+						// multiple regexes could be given, agent uses the one that works
+      "fields": [],				// set of field names, usefule when we need to provide the key names
+      "stream_name": "firewall_log",		// name of the stream to which the data will be sent	
+      "schema_name": "firewall",		// name of the schema which contains the stream
+      "server_ip": "127.0.0.1",			// ip of server where the db is running to which data will be send
+      "server_port": "10101",			// port of the server where the db is running
+      "add_ts": 1,				// whether timestamp (ley "_pk") will be added by agent or not
+      "state": 1,				// state of the agent, running (1), paused (0)
+      "read_from": 2,				// read from tail (0), beginning (1) or from given offset (2)
+      "cfg_upd_freq": 100,			// frequency with which agent will check if config needs to be updated
+      "col_freq": 60,				// frequency with which agent will check if more data needs to be sent
+      "mode": 1,				// 1 means streaming, 0 means batch
+      "nthreads": 1,				// num of threads to be used for sending data (as of now only 1 is used per collector)
+      "isssl": 0,				// is ssl ON (1) or OFF (0)	
+      "type":1,					// Log file (1), linux sys data (2), dir (3) etc. Only 1 is supported as of now
+      "parse_method": 1	 			// type of the prsing (see above 0 to 6 - format options)
+    }
+  ]
+}
+
+Once we set the agent.conf, agent is ready to send data continuously to the server.
+
+Note that the schema and stream are required to be created at the DB in order to ingest data
+into it.
+
+For more info, pls see https://bangdb.com/developer/agent

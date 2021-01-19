@@ -1,0 +1,39 @@
+This is simple bench file to test the bangdb.
+
+This may also be helpful in understanding how one can code for the BangDB, although
+it covers only small part
+
+Please go to www.bangdb.com\developer to get more info on BangDB and help
+related to development of app using BangDB
+
+Here are the steps to run the bench
+
+First, let's build the bench
+
+> bash build.sh
+
+// if successful, now you may run tests
+
+> bash exapp.sh
+
+or, to put 1M key and val using 4 threads
+
+> bash exapp kv 4 1000000 put
+
+or, to get 1M key and val using 4 threads
+
+> bash exapp kv 4 1000000 get
+
+Note: you may have to set path to run, unless you have libs in standard folders
+
+for bench, Various options are;
+
+----------------------------------------------------------------------------
+usage: bangdb_bench <kv/doc/stream> <num_threads> <num_items> <put/get/scan/all/overlap> [factor(optional define only with overlap)]
+       factor > 1; the factor defines how much read and write
+       1/factor part write and rest read. ex; factor = 3, 33 percent write and 67 percent read
+----------------------------------------------------------------------------
+Running the default test with 4 threads (connections), put and get 500000 items
+
+
+etc...

@@ -1,0 +1,116 @@
+It's really easy to get started with server and clients
+This is for ubuntu16
+
+Install
+------
+
+To install BangDB, do following;
+
+0. It is always good to update
+	> sudo apt-get update
+
+1. If not set, the make sure locale is set properly. You may add following in /etc/environment
+	LANG=en_US.utf-8
+	LC_ALL=en_US.utf-8
+Note: you will need to logout and login to effect the change
+
+3. run the install.sh file. it needs sudo
+
+That's it, you are ready to run the BangDB
+
+
+
+Run
+---
+
+There are two ways to run the server;
+
+Option1:
+========
+
+directly using the bangdb-server-2.0 binary. Here you may use command line options available that can be used
+
+cd bin
+./bangdb-server-2.0
+
+--------------------------------------------------------------------------------------------------------------
+	Command line arguments
+	----------------------
+
+	There are however several ways to configure for the server through command line arguments, 
+	here are the relevant details;
+
+	pls type help to see the options
+	./bangdb-server-2.0 -help
+
+	Here are some of the details;
+
+	----------------------------------------------------------------------------------------------------
+	Usage: -i [master | slave] -r [yes | no] -t [yes | no] -d [dbname] -s [IP:PORT] -m [IP:PORT] -p [IP] -b [yes | no] -v
+	----------------------------------------------------------------------------------------------------
+	Options
+	-------
+ 	-i: defines the server's identity [master | slave], default is SERVER_TYPE as defined in bangdb.config
+ 	-r: defines replication state [yes | no], default is ENABLE_REPLICATION as defined in bangdb.config 
+ 	-t: defines if transaction is enabled(yes) or disabled(no) [yes | no], default is no 
+	-d: defines the dbname, default is BANGDB_DATABASE_NAME as defined in bangdb.config 
+ 	-s: defines IP:Port of this server, default is SERVER_ID:SERV_PORT as defined in bangdb.config
+	-m: defines IP:Port of the master (required only for slave as it declares master with this option)
+ 	-p: defines public IP of the server (required for master and slave to denote it's own public IP)
+	-b: defines if server to be run in background as daemon
+     	default is MASTER_SERVER_ID:MASTER_SERV_PORT as defined in the bangdb.config
+	-v: prints the alpha-numeric version of the executable
+
+ 	Hence to run master with other values as defined in the bangdb.config, issue following command
+ 	./bangdb-server -s 192.168.1.5:7887
+
+ 	To run slave for this master with default other values..
+ 	./bangdb-server -i slave -s 192.168.1.6:7887 -m 192.168.1.5:7887
+	etc...
+	----------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+
+Note: you may set these from command line or you may simply set the bangdb.config for these params
+Pls see the getting started section on bangdb.com/developer
+
+Option2:
+========
+
+Or you may use the helper script "bangdb-server" present in the main folder.
+This allows us to start, stop and check status using the script. It always runs the
+server in the background.
+To set command line options, you will need to edit the config file present in bin/ folder and set these
+params accordingly. Check the bangdb.com/bangdb-config to learn more.
+To run the server;
+
+./bangdb-server start
+
+you may check status as
+./bangdb-server status
+
+and stop it as
+./bangdb-server stop
+
+Next:
+
+	tail the log (data/mydb.applog) to view the logs
+
+Test
+====
+	> Go ahead and run the bench in the bench folder, go through the readme and run the bench
+	> Go to cli and interact with the server
+
+You may also take client (cpp or java) and run the sample app available in it
+Also - ps visit bangdb.com/developer to learn more about building applications
+
+
+* bangdb.config - using this you can set various run time config for the db. Also it provides
+enough hadles with tune the core and internals of db to run in the best possible manner depending upon
+the host configuration and boundaries. The config file has details before each of these paramaeters and also
+structured in a manner to allow you to pick and modify things in rather confortable way
+
+Please refer www.bangdb.com/developer section to get most of the detail info as needed
+Please feel free to write to me at sachin@bangdb.com for any info, clarity, feedback etc.
+
+Enjoy!
+
