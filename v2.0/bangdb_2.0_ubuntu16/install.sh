@@ -17,6 +17,15 @@ else
 	exit
 fi
 
+# common
+echo 'export PATH=/usr/local/bin:/usr/local/include:$PATH' >>~/.bash_profile
+echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' >>~/.bashrc
+echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' >>~/.profile
+
+sudo echo 'LC_ALL="en_US.utf8"' >> /etc/environment
+sudo echo 'LC_CTYPE="en_US.utf8"' >> /etc/environment
+sudo echo 'LANGUAGE="en_US.utf8"' >> /etc/environment
+
 
 #### installing necessary packages and libs
 if [ $osv -eq 2 ]
@@ -167,7 +176,7 @@ else
         echo "$lib is installed"
 fi
 
-lib=java-1.8.0-openjdk
+lib=java-1.8.0-openjdk-devel
 v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
@@ -260,14 +269,6 @@ USR_LIB_LOC=/usr/local/lib
 USR_INC_LOC=/usr/local/include
 USR_LIB64=/usr/lib64
 USR_INC64=/usr/include
-
-echo 'export PATH=/usr/local/bin:/usr/local/include:$PATH' >>~/.bash_profile
-echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' >>~/.bashrc
-echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' >>~/.profile
-
-sudo echo 'LC_ALL="en_US.utf8"' >> /etc/environment
-sudo echo 'LC_CTYPE="en_US.utf8"' >> /etc/environment
-sudo echo 'LANGUAGE="en_US.utf8"' >> /etc/environment
 
 
 sudo cp $PWD/libs/libbangdb-client-cpp.so.2.0 $USR_LIB_LOC/
