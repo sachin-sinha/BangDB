@@ -97,10 +97,11 @@ go to the base folder of the bangdb (v2.0/bangdb-2.0_<OS>)
 Deal with Prereqs - The binary links with several libraries, few of these are provided along with the server in the lib folder.
 However, to ensure you have following libs on the server run the install.sh
 
-> sudo apt-get update (or sudo yum update)
-> sudo bash install.sh
+>sudo apt-get update (or sudo yum update)
+>sudo bash install.sh
 
 ..................................................................................................................
+
 This will install necessary libs and set the softlinks as well
 It also ensures that it has installed java8, python3 (python 3.6 for all, and 3.8 for ubuntu20)
 
@@ -114,8 +115,9 @@ OR
 ln -sf $JAVA_HOME/jre/lib/amd64/server/libjvm.so /usr/local/lib/libjvm.so
 
 For Cli, as it needs feedgnuplot which requires gnuplot and perl, hence it brings those as well
+
 ..................................................................................................................
-.
+
 That's it. You are ready to run the server in following two ways;
 
 Method 1
