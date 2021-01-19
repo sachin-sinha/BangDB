@@ -304,6 +304,9 @@ sudo ln -sf $USR_LIB_LOC/libbangdb-embd-cpp_s.so.2.0 $USR_LIB64/libbangdb-embd-c
 sudo ln -sf $USR_LIB_LOC/libbangdb-embd-java.so.2.0 $USR_LIB64/libbangdb-embd-java.so
 sudo ln -sf $USR_LIB_LOC/libbangdb-embd.so.2.0 $USR_LIB64/libbangdb-embd.so
 
+sudo ln -sf $USR_LIB_LOC/libdlib.so.19.20.0 $USR_LIB64/libdlib.so.19.20.0
+sudo ln -sf $USR_LIB_LOC/libmitie.so $USR_LIB64/libmitie.so
+
 
 jv=$(echo $JAVA_HOME)
 if [ -z "$jv" ]
