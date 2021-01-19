@@ -313,9 +313,9 @@ if [ -z "$jv" ]
 then
 	echo "JAVA_HOME is not set up, pls set it up. right now using hard link"
 	#sudo ln -sf /lib/jvm/java-1.8.0/jre/lib/amd64/server/libjvm.so $USR_LIB_LOC/libjvm.so
-	sudo ln -sf /lib/jvm/jre-1.8.0/lib/amd64/server/libjvm.so $USR_LIB_LOC/libjvm.so
+	sudo ln -sf /lib/jvm/jre-1.8.0/lib/amd64/server/libjvm.so $USR_LIB64/libjvm.so
 else
-	sudo ln -sf $JAVA_HOME/jre/lib/amd64/server/libjvm.so $USR_LIB_LOC/libjvm.so
+	sudo ln -sf $JAVA_HOME/jre/lib/amd64/server/libjvm.so $USR_LIB64/libjvm.so
 fi
 
 echo "created env vars, soft links for the libs for bangdb"
