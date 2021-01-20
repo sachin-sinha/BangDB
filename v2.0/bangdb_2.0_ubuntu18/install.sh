@@ -197,7 +197,7 @@ then
 else
         echo "$lib is installed"
 fi
-lib=perl
+lib=perl-core
 v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
