@@ -272,6 +272,12 @@ USR_INC_LOC=/usr/local/include
 USR_LIB64=/usr/lib64
 USR_INC64=/usr/include
 
+if [ -d "/usr/lib64" ]
+then
+	USR_LIB64=/usr/lib64
+else
+	USR_LIB64=/usr/lib
+fi
 
 sudo cp $PWD/libs/libbangdb-client-cpp.so.2.0 $USR_LIB_LOC/
 sudo cp $PWD/libs/libbangdb-client-cpp_s.so.2.0 $USR_LIB_LOC/
@@ -320,6 +326,7 @@ then
 else
 	sudo ln -sf $JAVA_HOME/jre/lib/amd64/server/libjvm.so $USR_LIB64/libjvm.so
 fi
+sudo ldconfig
 
 echo "created env vars, soft links for the libs for bangdb"
 
