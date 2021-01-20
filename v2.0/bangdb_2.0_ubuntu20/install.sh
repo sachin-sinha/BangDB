@@ -50,7 +50,7 @@ then
 else
         echo "$lib is installed"
 fi
-lib=python3.8
+lib=python3.6
 v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
@@ -120,6 +120,7 @@ fi
 #else for centos and rhel
 else
 	sudo yum group install 'Development Tools'
+	sudo yum install curl-devel
 lib=openssl
 v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
@@ -144,6 +145,7 @@ if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
         sudo yum install $lib
+	sudo ln -sf /usr/bin/python2.7 /usr/bin/python
 else
         echo "$lib is installed"
 fi
