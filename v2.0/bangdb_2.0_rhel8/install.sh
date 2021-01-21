@@ -61,6 +61,7 @@ then
 	sudo apt install python3-pip
 else
         echo "$lib is installed"
+	sudo apt install python3-pip
 fi
 lib=liblapack-dev
 v=$(ldconfig -p | grep $lib)
@@ -365,6 +366,7 @@ mvn install:install-file -Dfile=jars/bangdb-reverb.jar -DgroupId=com.bangdb -Dar
 
 if [ $osv -eq 3 ]
 then
+	sudo yum install wget
 	mkdir perl_module
 	cd perl_module
 	wget https://cpan.metacpan.org/authors/id/T/TO/TOBYINK/Exporter-Tiny-1.002002.tar.gz

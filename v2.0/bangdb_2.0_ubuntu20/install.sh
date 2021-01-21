@@ -52,7 +52,7 @@ then
 else
         echo "$lib is installed"
 fi
-lib=python3.6
+lib=python3.8
 v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
@@ -61,6 +61,7 @@ then
 	sudo apt install python3-pip
 else
         echo "$lib is installed"
+	sudo apt install python3-pip
 fi
 lib=liblapack-dev
 v=$(ldconfig -p | grep $lib)
@@ -362,5 +363,36 @@ mvn install:install-file -Dfile=jars/bangdb-client-java.jar -DgroupId=com.bangdb
 mvn install:install-file -Dfile=jars/bangdb-embd-java.jar -DgroupId=com.bangdb -DartifactId=bangdb-embd-java -Dversion=2.0.0 -Dpackaging=jar -DgeneratePom=true
 mvn install:install-file -Dfile=jars/gson-2.6.2.jar -DgroupId=com.google -DartifactId=gson-2.6.2 -Dversion=2.6.2 -Dpackaging=jar -DgeneratePom=true
 mvn install:install-file -Dfile=jars/bangdb-reverb.jar -DgroupId=com.bangdb -DartifactId=bangdb-reverb -Dversion=2.0.0 -Dpackaging=jar -DgeneratePom=true
+
+if [ $osv -eq 3 ]
+then
+	sudo yum install wget
+	mkdir perl_module
+	cd perl_module
+	wget https://cpan.metacpan.org/authors/id/T/TO/TOBYINK/Exporter-Tiny-1.002002.tar.gz
+	tar -xzvf Exporter-Tiny-1.002002.tar.gz
+	cd Exporter-Tiny-1.002002
+	perl Makefile.PL prefix=/usr/local
+	make
+	sudo make install
+	cd ..
+	
+	wget https://cpan.metacpan.org/authors/id/T/TO/TODDR/IPC-Run-20200505.0.tar.gz
+	tar -xzvf IPC-Run-20200505.0.tar.gz
+	cd IPC-Run-20200505.0.tar.gz
+	perl Makefile.PL prefix=/usr/local
+	make
+	sudo make install
+	cd ..
+
+	wget https://cpan.metacpan.org/authors/id/R/RE/REHSACK/List-MoreUtils-0.430.tar.gz
+	tar -xzvf List-MoreUtils-0.430.tar.gz
+	cd List-MoreUtils-0.430
+	perl Makefile.PL prefix=/usr/local
+	make
+	sudo make install
+	cd ..
+	cd ..
+fi
 echo "bangdb install done!"
 
