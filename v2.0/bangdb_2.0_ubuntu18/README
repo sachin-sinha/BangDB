@@ -9,12 +9,8 @@ To install BangDB, do following;
 0. It is always good to update
 	> sudo apt-get update
 
-1. If not set, the make sure locale is set properly. You may add following in /etc/environment
-	LANG=en_US.utf-8
-	LC_ALL=en_US.utf-8
-Note: you will need to logout and login to effect the change
-
-3. run the install.sh file. it needs sudo
+1. run the install.sh file
+	> bash install.sh
 
 That's it, you are ready to run the BangDB
 

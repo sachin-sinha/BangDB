@@ -9,14 +9,10 @@ To install BangDB, do following;
 0. It is always good to update
 	> sudo yum update
 
-1. Make sure locale is set properly. You may add following in /etc/environment
-	LANG=en_US.utf-8
-	LC_ALL=en_US.utf-8
-Note: you will need to logout and login to effect the change
+1. run the install.sh file
+	> bash install.sh
 
-3. run the install.sh file. it needs sudo
-
-4. [OPTIONAL] If you wish to run cli which can draw charts on shell then you will also need to do this on centos
+2. [OPTIONAL] If you wish to run cli which can draw charts on shell then you will also need to do this on centos
 
 	> perl -MCPAN -e 'install Time::Piece'
 

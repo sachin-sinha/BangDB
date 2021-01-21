@@ -9,7 +9,8 @@ To install BangDB, do following;
 0. It is always good to update
 	> sudo yum update
 
-1. run the install.sh file. it needs sudo
+1. run the install.sh file
+	> bash install.sh
 
 2. [OPTIONAL] If you wish to run cli which can draw charts on shell then you will also need to do this on centos
 
