@@ -363,7 +363,7 @@ mvn install:install-file -Dfile=jars/bangdb-embd-java.jar -DgroupId=com.bangdb -
 mvn install:install-file -Dfile=jars/gson-2.6.2.jar -DgroupId=com.google -DartifactId=gson-2.6.2 -Dversion=2.6.2 -Dpackaging=jar -DgeneratePom=true
 mvn install:install-file -Dfile=jars/bangdb-reverb.jar -DgroupId=com.bangdb -DartifactId=bangdb-reverb -Dversion=2.0.0 -Dpackaging=jar -DgeneratePom=true
 
-if [ $osv -eq 2 ]
+if [ $osv -eq 3 ]
 then
 	mkdir perl_module
 	cd perl_module
@@ -391,5 +391,6 @@ then
 	sudo make install
 	cd ..
 	cd ..
+fi
 echo "bangdb install done!"
 
