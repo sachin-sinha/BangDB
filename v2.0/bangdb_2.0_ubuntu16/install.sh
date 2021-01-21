@@ -42,12 +42,13 @@ then
 else
         echo "$lib is installed"
 fi
-lib=libcurl
+lib=libcurl4-openssl-dev
 v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
         sudo apt-get install $lib
+	sudo apt-get install libcurl
 else
         echo "$lib is installed"
 fi
@@ -56,8 +57,8 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-    	sudo apt-get update
    	sudo apt-get install $lib
+	sudo apt install python3-pip
 else
         echo "$lib is installed"
 fi
@@ -323,7 +324,12 @@ if [ -z "$jv" ]
 then
 	echo "JAVA_HOME is not set up, pls set it up. right now using hard link"
 	#sudo ln -sf /lib/jvm/java-1.8.0/jre/lib/amd64/server/libjvm.so $USR_LIB_LOC/libjvm.so
-	sudo ln -sf /lib/jvm/jre-1.8.0/lib/amd64/server/libjvm.so $USR_LIB64/libjvm.so
+	if [ -d "/lib/jvm" ]
+	then
+		sudo ln -sf /lib/jvm/jre-1.8.0/lib/amd64/server/libjvm.so $USR_LIB64/libjvm.so
+	else
+		sudo ln -sf /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so $USR_LIB64/libjvm.so
+	fi
 else
 	sudo ln -sf $JAVA_HOME/jre/lib/amd64/server/libjvm.so $USR_LIB64/libjvm.so
 fi
