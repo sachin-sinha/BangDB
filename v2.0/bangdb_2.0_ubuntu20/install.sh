@@ -27,7 +27,6 @@ sudo echo 'LC_CTYPE="en_US.utf8"' >> /etc/environment
 sudo echo 'LANGUAGE="en_US.utf8"' >> /etc/environment
 
 alias brc='source ~/.bashrc'
-exec bash
 
 #### installing necessary packages and libs
 if [ $osv -eq 2 ]
@@ -402,3 +401,4 @@ then
 fi
 echo "bangdb install done!"
 
+exec bash
