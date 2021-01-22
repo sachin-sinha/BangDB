@@ -18,9 +18,9 @@ else
 fi
 
 # common
-echo 'export PATH=/usr/local/bin:/usr/local/include:$PATH' >> ~/.bash_profile
-echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' >> ~/.bashrc
-echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' >> ~/.profile
+echo 'export PATH=/usr/local/bin:/usr/local/include:/usr/lib:/usr/lib64:$PATH' >> ~/.bash_profile
+echo 'export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:/usr/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
+echo 'export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:/usr/lib64:$LD_LIBRARY_PATH' >> ~/.profile
 
 sudo echo 'LC_ALL="en_US.utf8"' >> /etc/environment
 sudo echo 'LC_CTYPE="en_US.utf8"' >> /etc/environment
