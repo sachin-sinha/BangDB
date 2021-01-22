@@ -15,6 +15,27 @@ To install BangDB, do following;
 That's it, you are ready to run the BangDB
 
 
+      NOTE:  	If you wish to run ssl version of bangdb-server then we need to enable ssl level =1
+		since by default tls v1.3 is enabled in ubuntu20
+		To do this, just edit the the sslconf file
+
+		> sudo vi /etc/ssl/openssl.cnf
+		
+		Just below the line where "HOME = ." at the begining, add following
+	
+			openssl_conf = default_conf
+	
+		and at the end of the file, add following
+
+	 		[default_conf]
+			ssl_conf = ssl_sect
+
+			[ssl_sect]
+			system_default = system_default_sect
+
+			[system_default_sect]
+			CipherString = DEFAULT@SECLEVEL=1
+
 Run
 ---
 
