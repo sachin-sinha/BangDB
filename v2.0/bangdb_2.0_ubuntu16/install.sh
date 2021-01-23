@@ -52,7 +52,7 @@ then
 else
         echo "$lib is installed"
 fi
-lib=python3.6
+lib=python3.8
 v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
@@ -330,15 +330,20 @@ then
 		if [ -d "/lib/jvm/jre-1.8.0" ]
 		then
 			sudo ln -sf /lib/jvm/jre-1.8.0/lib/amd64/server/libjvm.so $USR_LIB64/libjvm.so
+			sudo ln -sf /lib/jvm/jre-1.8.0/lib/amd64/server/libjvm.so $USR_LIB_LOC/libjvm.so
 		else
 			sudo ln -sf /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so $USR_LIB64/libjvm.so
+			sudo ln -sf /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so $USR_LIB_LOC/libjvm.so
 		fi
 	else
 		sudo ln -sf /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so $USR_LIB64/libjvm.so
+		sudo ln -sf /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so $USR_LIB_LOC/libjvm.so
 	fi
 else
 	sudo ln -sf $JAVA_HOME/jre/lib/amd64/server/libjvm.so $USR_LIB64/libjvm.so
+	sudo ln -sf $JAVA_HOME/jre/lib/amd64/server/libjvm.so $USR_LIB_LOC/libjvm.so
 fi
+
 sudo ldconfig
 
 echo "created env vars, soft links for the libs for bangdb"
