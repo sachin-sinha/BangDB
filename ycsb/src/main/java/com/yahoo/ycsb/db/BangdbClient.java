@@ -142,11 +142,8 @@ public class BangdbClient extends DB {
     sf.setFilter();
     ResultSet rs = null;
     int nitr = 0;
-    while(true) {
-      rs = tbl.scanDoc(rs, startkey, null, null, sf);
-      if(rs == null) {
-        break;
-      }
+    rs = tbl.scanDoc(rs, startkey, null, null, sf);
+    if (rs != null) {
       HashMap<String, ByteIterator> values = new HashMap<String, ByteIterator>(rs.count());
       while(rs.hasNext()) {
         values.put(rs.getNextKeyStr(), new StringByteIterator(rs.getNextValStr()));
@@ -154,9 +151,11 @@ public class BangdbClient extends DB {
         rs.moveNext();
         values.clear();
       }
-      ++nitr;
+      rs.clear();
+      return Status.OK;
     }
-    return nitr > 0 ? Status.OK : Status.ERROR;
+
+    return Status.ERROR;
   }
 
 }
