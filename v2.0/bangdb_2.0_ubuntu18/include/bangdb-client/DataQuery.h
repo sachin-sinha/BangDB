@@ -29,6 +29,8 @@ public:
 	// matchWordList = "apple, phone, music" - comma separated list
 	void addQuery(const char *matchWordList, JoinOperator wordJoin, JoinOperator queryJoin, const char *field);
 
+	void addGeoQuery(const char *query_json);
+
 	void setQueryType(int type);
 
 	const char *getQuery();

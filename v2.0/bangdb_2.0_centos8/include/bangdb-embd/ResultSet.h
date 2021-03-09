@@ -33,6 +33,16 @@ public:
 	bool isKeyString();
 	bool isValString();
 	FDT *lastEvaluatedKey();
+
+	void add(ResultSet *rs, bool byval = false);
+	void append(ResultSet *rs, bool appendAtFront = false);
+	void intersect(ResultSet *rs, bool byval = false);
+	void addDoc(ResultSet *rs, char *orderBy=NULL);
+	void appendDoc(ResultSet *rs, char *orderBy = NULL);
+	void intersectDoc(ResultSet *rs, char *orderBy = NULL);
+	void sortDoc(char *byField = NULL);
+	void sortDocPK(short bysort_id);
+
 	virtual ~ResultSet();
 	long ptrs;
 };
