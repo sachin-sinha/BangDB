@@ -38,7 +38,7 @@ Edit YCSB pom.xml
 	<bangdb.version>2.0.0</bangdb.version>
 	<module>bangdb</module>
 
-Edit bin/ycsb file and add [ at the right position in alphabetical order ]
+Edit bin/ycsb file and add [ at the right position in alphabetical order - ensure the order ]
 	"bangdb"        : "site.ycsb.db.BangdbClient",
 
 ### 4. Provide BangDB Connection Parameters
