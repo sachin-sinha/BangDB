@@ -53,7 +53,9 @@ Load the data:
 
 Run the workload test:
 
-    ./bin/ycsb load bangdb -threads 60 -P workloads/workloadc
+    ./bin/ycsb load bangdb -threads 60 -P workloads/workloada
+
+and so on...
 
 If you get the error of not finding the bangdb-client-java lib, set following;
 export LD_LIBRARY_PATH = /usr/local/lib
