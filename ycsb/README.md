@@ -35,6 +35,7 @@ Git clone YCSB and compile:
 
 Edit YCSB pom.xml 
     add following in respective sections;(two places in the pom.xml of YCSB (at the base folder))
+
 	<bangdb.version>2.0.0</bangdb.version>
 	<module>bangdb</module>
 
