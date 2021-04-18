@@ -58,10 +58,10 @@ if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
    	sudo apt-get install -y $lib
-	sudo apt install python3-pip
+	sudo apt install -y python3-pip
 else
         echo "$lib is installed"
-	sudo apt install python3-pip
+	sudo apt install -y python3-pip
 fi
 lib=liblapack-dev
 v=$(ldconfig -p | grep $lib)

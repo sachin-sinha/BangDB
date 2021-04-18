@@ -52,16 +52,16 @@ then
 else
         echo "$lib is installed"
 fi
-lib=python3.8
+lib=python3.6
 v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
    	sudo apt-get install -y $lib
-	sudo apt install python3-pip
+	sudo apt install -y python3-pip
 else
         echo "$lib is installed"
-	sudo apt install python3-pip
+	sudo apt install -y python3-pip
 fi
 lib=liblapack-dev
 v=$(ldconfig -p | grep $lib)
@@ -122,14 +122,14 @@ fi
 
 #else for centos and rhel
 else
-	sudo yum group install 'Development Tools'
-	sudo yum install curl-devel
+	sudo yum -y group install 'Development Tools'
+	sudo yum -y install curl-devel
 lib=openssl
 v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
 	echo "$lib is not installed, installing ... "
-	sudo yum install $lib
+	sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -138,7 +138,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -147,7 +147,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 	sudo ln -sf /usr/bin/python2.7 /usr/bin/python
 else
         echo "$lib is installed"
@@ -157,7 +157,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -166,7 +166,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
 	echo "$lib is installed"
 fi
@@ -176,7 +176,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -186,7 +186,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -196,7 +196,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -205,7 +205,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -214,7 +214,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -223,7 +223,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -232,7 +232,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -241,7 +241,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -250,7 +250,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -366,7 +366,7 @@ then
 	then
 		sudo apt-get install -y maven
 	else
-		sudo yum install maven
+		sudo yum -y install maven
 	fi	
 fi
 mvn install:install-file -Dfile=jars/bangdb-client-java.jar -DgroupId=com.bangdb -DartifactId=bangdb-client-java -Dversion=2.0.0 -Dpackaging=jar -DgeneratePom=true
@@ -376,7 +376,7 @@ mvn install:install-file -Dfile=jars/bangdb-reverb.jar -DgroupId=com.bangdb -Dar
 
 if [ $osv -eq 3 ]
 then
-	sudo yum install wget
+	sudo yum -y install wget
 	mkdir perl_module
 	cd perl_module
 	wget https://cpan.metacpan.org/authors/id/T/TO/TOBYINK/Exporter-Tiny-1.002002.tar.gz
