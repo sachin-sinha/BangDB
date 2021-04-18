@@ -31,14 +31,14 @@ alias brc='source ~/.bashrc'
 #### installing necessary packages and libs
 if [ $osv -eq 2 ]
 then
-	sudo apt-get install build-essential
+	sudo apt-get install -y build-essential
 
 lib=libopenssl
 v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
 	echo "$lib is not installed, installing ... "
-	sudo apt-get install $lib
+	sudo apt-get install -y $lib
 else
         echo "$lib is installed"
 fi
@@ -47,8 +47,8 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo apt-get install $lib
-	sudo apt-get install libcurl
+        sudo apt-get install -y $lib
+	sudo apt-get install -y libcurl
 else
         echo "$lib is installed"
 fi
@@ -57,7 +57,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-   	sudo apt-get install $lib
+   	sudo apt-get install -y $lib
 	sudo apt install python3-pip
 else
         echo "$lib is installed"
@@ -68,7 +68,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo apt-get install $lib
+        sudo apt-get install -y $lib
 else
         echo "$lib is installed"
 fi
@@ -77,7 +77,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo apt-get install $lib
+        sudo apt-get install -y $lib
 else
 	echo "$lib is installed"
 fi
@@ -87,7 +87,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo apt-get install $lib
+        sudo apt-get install -y $lib
 else
         echo "$lib is installed"
 fi
@@ -97,7 +97,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo apt-get install $lib
+        sudo apt-get install -y $lib
 else
         echo "$lib is installed"
 fi
@@ -106,7 +106,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo apt-get install $lib
+        sudo apt-get install -y $lib
 else
         echo "$lib is installed"
 fi
@@ -115,7 +115,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo apt-get install $lib
+        sudo apt-get install -y $lib
 else
         echo "$lib is installed"
 fi
@@ -291,7 +291,7 @@ sudo cp $PWD/libs/libbangdb-embd-cpp.so.2.0 $USR_LIB_LOC/
 sudo cp $PWD/libs/libbangdb-embd-cpp_s.so.2.0 $USR_LIB_LOC/
 sudo cp $PWD/libs/libbangdb-embd-java.so.2.0 $USR_LIB_LOC/
 sudo cp $PWD/libs/libbangdb-embd.so.2.0 $USR_LIB_LOC/
-sudo cp $PWD/libs/libdlib.so.19.20.0 $USR_LIB_LOC/
+sudo cp $PWD/libs/libdlib.so $USR_LIB_LOC/
 sudo cp $PWD/libs/libmitie.so $USR_LIB_LOC/
 
 
@@ -316,7 +316,7 @@ sudo ln -sf $USR_LIB_LOC/libbangdb-embd-cpp_s.so.2.0 $USR_LIB64/libbangdb-embd-c
 sudo ln -sf $USR_LIB_LOC/libbangdb-embd-java.so.2.0 $USR_LIB64/libbangdb-embd-java.so
 sudo ln -sf $USR_LIB_LOC/libbangdb-embd.so.2.0 $USR_LIB64/libbangdb-embd.so
 
-sudo ln -sf $USR_LIB_LOC/libdlib.so.19.20.0 $USR_LIB64/libdlib.so.19.20.0
+sudo ln -sf $USR_LIB_LOC/libdlib.so $USR_LIB64/libdlib.so
 sudo ln -sf $USR_LIB_LOC/libmitie.so $USR_LIB64/libmitie.so
 
 
@@ -364,7 +364,7 @@ then
 	echo "mvn is not installed"
 	if [ $osv -eq 2 ]
 	then
-		sudo apt-get install maven
+		sudo apt-get install -y maven
 	else
 		sudo yum install maven
 	fi	

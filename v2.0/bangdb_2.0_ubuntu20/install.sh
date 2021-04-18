@@ -31,14 +31,14 @@ alias brc='source ~/.bashrc'
 #### installing necessary packages and libs
 if [ $osv -eq 2 ]
 then
-	sudo apt-get install build-essential
+	sudo apt-get install -y build-essential
 
 lib=libopenssl
 v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
 	echo "$lib is not installed, installing ... "
-	sudo apt-get install $lib
+	sudo apt-get install -y $lib
 else
         echo "$lib is installed"
 fi
@@ -47,8 +47,8 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo apt-get install $lib
-	sudo apt-get install libcurl
+        sudo apt-get install -y $lib
+	sudo apt-get install -y libcurl
 else
         echo "$lib is installed"
 fi
@@ -57,7 +57,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-   	sudo apt-get install $lib
+   	sudo apt-get install -y $lib
 	sudo apt install python3-pip
 else
         echo "$lib is installed"
@@ -68,7 +68,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo apt-get install $lib
+        sudo apt-get install -y $lib
 else
         echo "$lib is installed"
 fi
@@ -77,7 +77,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo apt-get install $lib
+        sudo apt-get install -y $lib
 else
 	echo "$lib is installed"
 fi
@@ -87,7 +87,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo apt-get install $lib
+        sudo apt-get install -y $lib
 else
         echo "$lib is installed"
 fi
@@ -97,7 +97,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo apt-get install $lib
+        sudo apt-get install -y $lib
 else
         echo "$lib is installed"
 fi
@@ -106,7 +106,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo apt-get install $lib
+        sudo apt-get install -y $lib
 else
         echo "$lib is installed"
 fi
@@ -115,21 +115,21 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo apt-get install $lib
+        sudo apt-get install -y $lib
 else
         echo "$lib is installed"
 fi
 
 #else for centos and rhel
 else
-	sudo yum group install 'Development Tools'
-	sudo yum install curl-devel
+	sudo yum -y group install 'Development Tools'
+	sudo yum -y install curl-devel
 lib=openssl
 v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
 	echo "$lib is not installed, installing ... "
-	sudo yum install $lib
+	sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -138,7 +138,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -147,7 +147,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 	sudo ln -sf /usr/bin/python2.7 /usr/bin/python
 else
         echo "$lib is installed"
@@ -157,7 +157,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -166,7 +166,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
 	echo "$lib is installed"
 fi
@@ -176,7 +176,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -186,7 +186,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -196,7 +196,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -205,7 +205,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -214,7 +214,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -223,7 +223,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -232,7 +232,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -241,7 +241,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -250,7 +250,7 @@ v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
-        sudo yum install $lib
+        sudo yum -y install $lib
 else
         echo "$lib is installed"
 fi
@@ -291,7 +291,7 @@ sudo cp $PWD/libs/libbangdb-embd-cpp.so.2.0 $USR_LIB_LOC/
 sudo cp $PWD/libs/libbangdb-embd-cpp_s.so.2.0 $USR_LIB_LOC/
 sudo cp $PWD/libs/libbangdb-embd-java.so.2.0 $USR_LIB_LOC/
 sudo cp $PWD/libs/libbangdb-embd.so.2.0 $USR_LIB_LOC/
-sudo cp $PWD/libs/libdlib.so.19.20.0 $USR_LIB_LOC/
+sudo cp $PWD/libs/libdlib.so $USR_LIB_LOC/
 sudo cp $PWD/libs/libmitie.so $USR_LIB_LOC/
 
 
@@ -316,7 +316,7 @@ sudo ln -sf $USR_LIB_LOC/libbangdb-embd-cpp_s.so.2.0 $USR_LIB64/libbangdb-embd-c
 sudo ln -sf $USR_LIB_LOC/libbangdb-embd-java.so.2.0 $USR_LIB64/libbangdb-embd-java.so
 sudo ln -sf $USR_LIB_LOC/libbangdb-embd.so.2.0 $USR_LIB64/libbangdb-embd.so
 
-sudo ln -sf $USR_LIB_LOC/libdlib.so.19.20.0 $USR_LIB64/libdlib.so.19.20.0
+sudo ln -sf $USR_LIB_LOC/libdlib.so $USR_LIB64/libdlib.so
 sudo ln -sf $USR_LIB_LOC/libmitie.so $USR_LIB64/libmitie.so
 
 
@@ -364,9 +364,9 @@ then
 	echo "mvn is not installed"
 	if [ $osv -eq 2 ]
 	then
-		sudo apt-get install maven
+		sudo apt-get install -y maven
 	else
-		sudo yum install maven
+		sudo yum -y install maven
 	fi	
 fi
 mvn install:install-file -Dfile=jars/bangdb-client-java.jar -DgroupId=com.bangdb -DartifactId=bangdb-client-java -Dversion=2.0.0 -Dpackaging=jar -DgeneratePom=true
@@ -376,7 +376,7 @@ mvn install:install-file -Dfile=jars/bangdb-reverb.jar -DgroupId=com.bangdb -Dar
 
 if [ $osv -eq 3 ]
 then
-	sudo yum install wget
+	sudo yum -y install wget
 	mkdir perl_module
 	cd perl_module
 	wget https://cpan.metacpan.org/authors/id/T/TO/TOBYINK/Exporter-Tiny-1.002002.tar.gz
