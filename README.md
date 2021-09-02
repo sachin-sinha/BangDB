@@ -43,6 +43,11 @@ High level features in BangDB includes (not limited to);
 	* IE (Information Extraction)
 	* DL (Deep Learning - with Enterprise Edition only)
 
+* Graph
+	* Create Graph within BangDB (it's just a table) and store nodes and/or triples (sub-rel-obj)
+	* Use Cypher to run query ( little modified version of Cypher for better efficiency, support and speed )
+	* Create ontologies and query ( using absolute or probabilistic methods (IE - information extraction))
+
 The db and other components are written in C/C++ and has following core features
 to achieve very high performance, efficiency and robustness for scale;
 
@@ -158,30 +163,30 @@ There are however several ways to configure for the server, here are the relevan
 
 	Here are some of the details;
 
-	----------------------------------------------------------------------------------------------------
-	Usage: -i [master | slave] -r [yes | no] -t [yes | no] -d [dbname] -s [IP:PORT] -m [IP:PORT] -p [IP] -b [yes | no] -v
-	----------------------------------------------------------------------------------------------------
+	----------------------------------------------------------------------------------------------------------------------------------------------------------
+	Usage: -i [master | slave] -r [yes | no] -t [yes | no] -d [dbname] -s [IP:PORT] -m [IP:PORT] -p [IP] -b [yes | no] -c [tcp | http | hybrid] -w [PORT] -v
+	----------------------------------------------------------------------------------------------------------------------------------------------------------
 	Options
 	-------
- 	-i: defines the server's identity [master | slave], default is SERVER_TYPE as defined in bangdb.config
- 	-r: defines replication state [yes | no], default is ENABLE_REPLICATION as defined in bangdb.config 
- 	-t: defines if transaction is enabled(yes) or disabled(no) [yes | no], default is no 
-	-d: defines the dbname, default is BANGDB_DATABASE_NAME as defined in bangdb.config 
- 	-s: defines IP:Port of this server, default is SERVER_ID:SERV_PORT as defined in bangdb.config
-	-m: defines IP:Port of the master (required only for slave as it declares master with this option)
- 	-p: defines public IP of the server (required for master and slave to denote it's own public IP)
-	-b: defines if server to be run in background as daemon
-     	default is MASTER_SERVER_ID:MASTER_SERV_PORT as defined in the bangdb.config
-	-v: prints the alpha-numeric version of the executable
+	 -i: defines the server's identity [master | slave], default is SERVER_TYPE (master) as defined in bangdb.config
+	 -r: defines replication state [yes | no], default is ENABLE_REPLICATION (0) as defined in bangdb.config 
+	 -t: defines if transaction is enabled(yes) or disabled(no) [yes | no], default is no 
+	 -d: defines the dbname, default is BANGDB_DATABASE_NAME (mydb) as defined in bangdb.config 
+	 -s: defines IP:Port of this server, default is SERVER_ID:SERV_PORT as defined in bangdb.config
+	 -m: defines IP:Port of the master (required only for slave as it declares master with this option)
+	 -p: defines public IP of the server (required for master and slave to expose their own public IP)
+	 -b: defines if server to be run in background as daemon, default is foreground
+	 -c: defines if server runs as tcp server or http (rest) server or both (hybrid), default is tcp server
+	 -w: defines the http port when server runs in http or hybrid mode     default is MASTER_SERVER_ID:MASTER_SERV_PORT as defined in the bangdb.config
+	 -v: prints the alpha-numeric version of the executable
 
- 	Hence to run master with other values as defined in the bangdb.config, issue following command
- 	./bangdb-server -s 192.168.1.5:7887
+	 Hence to run master with other values as defined in the bangdb.config, issue following command
+	 ./bangdb-server -s 192.168.1.5:10101
 
- 	To run slave for this master with default other values..
- 	./bangdb-server -i slave -s 192.168.1.6:7887 -m 192.168.1.5:7887
+	 To run slave for this master with default other values..
+	 ./bangdb-server -i slave -s 192.168.1.6:10102 -m 192.168.1.5:10101
 	etc...
-	----------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------
+	----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 BangDB requires bangdb.config file as an input, you may leave it in the same folder as bangdb-server.
