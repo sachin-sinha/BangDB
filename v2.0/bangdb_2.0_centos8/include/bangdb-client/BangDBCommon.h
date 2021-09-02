@@ -304,6 +304,29 @@ enum ML_BANGDB_ML_DATA_FORMAT
 	ML_BANGDB_ML_DATA_FORMAT_INVALID,
 };
 
+enum BANGDB_TS_DATA_GRAN
+{
+	BANGDB_TS_DATA_GRAN_NONE = 0,
+	BANGDB_TS_DATA_GRAN_DAY,
+	BANGDB_TS_DATA_GRAN_WEEK,
+	BANGDB_TS_DATA_GRAN_MONTH,
+	BANGDB_TS_DATA_GRAN_YEAR
+};
+
+enum BANGDB_DATA_AGGR_TYPE
+{
+	BANGDB_DATA_AGGR_TYPE_COUNT = 1,
+	BANGDB_DATA_AGGR_TYPE_SUM,
+	BANGDB_DATA_AGGR_TYPE_AVG
+};
+
+enum BANGDB_TS_DATA_TYPE
+{
+	BANGDB_TS_DATA_TYPE_STRING = 5,
+	BANGDB_TS_DATA_TYPE_LONG = 9,
+	BANGDB_TS_DATA_TYPE_DOUBLE = 11
+};
+
 struct svm_feautre_order_node
 {
 	char *feature;
@@ -564,6 +587,8 @@ char *form_model_key_name(const char *modelName, const char *accountName);
 char *get_full_path(const char *base_path, const char *train_data, bool fileDir);
 char *get_file_name_path(const char *basepath, const char *filename, const char *fileext);
 char *get_udf_logic_file(const char *udf_name);
+
+char* geohashEncode(double lat, double lng, int precision);
 
 
 void bangdb_print_error(int errnum);

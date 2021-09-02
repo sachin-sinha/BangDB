@@ -358,17 +358,18 @@ sudo ln -sf $USR_INC_LOC/bangdb-client $USR_INC64/bangdb-client
 
 echo "copied the include folders for bangdb"
 
-v=$(whereis mvn)
-if [ -z "$v" ]
-then
-	echo "mvn is not installed"
+i#v=$(whereis mvn)
+#if [ -z "$v" ]
+#then
+#	echo "mvn is not installed"
 	if [ $osv -eq 2 ]
 	then
 		sudo apt-get install -y maven
 	else
 		sudo yum -y install maven
 	fi	
-fi
+#fi
+
 mvn install:install-file -Dfile=jars/bangdb-client-java.jar -DgroupId=com.bangdb -DartifactId=bangdb-client-java -Dversion=2.0.0 -Dpackaging=jar -DgeneratePom=true
 mvn install:install-file -Dfile=jars/bangdb-embd-java.jar -DgroupId=com.bangdb -DartifactId=bangdb-embd-java -Dversion=2.0.0 -Dpackaging=jar -DgeneratePom=true
 mvn install:install-file -Dfile=jars/gson-2.6.2.jar -DgroupId=com.google -DartifactId=gson-2.6.2 -Dversion=2.6.2 -Dpackaging=jar -DgeneratePom=true
