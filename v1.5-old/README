@@ -1,7 +1,0 @@
-This is the repo for BangDB. Following are included here;
-
-A. Release - This includes the release files for BangDB 1.5.2 as of now. This includes all necessary headers, libraries, install and unistall files. Currently BangDB is available in C++, JAVA and C# for linux and windows platform
-
-B. Bench - This includes the bench files for BangDB. User may just download the folder, build and run the benchmark for BangDB. It also includes the performance comparison program for BangDB, BerkeleyDB and Leveldb. Again this perf_comp folder is self contained and can be downloaded, built and run in simple fashion
-
-More folders are coming up basically for providing more sample programs for BangDB
