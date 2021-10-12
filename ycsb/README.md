@@ -29,19 +29,10 @@ This section describes how to run YCSB on BangDB.
 
 Git clone YCSB and compile:
 
-    git clone https://github.com/brianfrankcooper/YCSB
+    git clone https://github.com/sachin-sinha/YCSB
     cd YCSB
+    git checkout db_bangdb
     mvn -pl site.ycsb:bangdb-binding -am clean package
-
-Edit YCSB pom.xml 
-    add following in respective sections;(two places in the pom.xml of YCSB (at the base folder))
-
-	<bangdb.version>2.0.0</bangdb.version>
-	<module>bangdb</module>
-
-Edit bin/ycsb file and add [ at the right position in alphabetical order - ensure the order ]
-
-	"bangdb"        : "site.ycsb.db.BangdbClient",
 
 ### 4. Provide BangDB Connection Parameters
     
@@ -51,11 +42,11 @@ Edit bin/ycsb file and add [ at the right position in alphabetical order - ensur
 
 Load the data:
 
-    ./bin/ycsb load bangdb -s -P workloads/workloada > outputLoad.txt
+    ./bin/ycsb load bangdb -threads 128 -s -P workloads/workloada
 
 Run the workload test:
 
-    ./bin/ycsb load bangdb -threads 60 -P workloads/workloada
+    ./bin/ycsb run bangdb -threads 128 -s -P workloads/workloada
 
 and so on...
 
