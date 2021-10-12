@@ -54,3 +54,5 @@ If you get the error of not finding the bangdb-client-java lib, set following;
 export LD_LIBRARY_PATH = /usr/local/lib
 etc...
 
+Checkout the https://bangdb.com/ycsb/ for more details
+
