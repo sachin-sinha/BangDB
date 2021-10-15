@@ -3,10 +3,10 @@ User/customer messages/reviews analysis
 
 Scenario
 
-        Users and customers are sending their messages or reviews from their devices. 
+	Users and customers are sending their messages or reviews from their devices. 
 	There are several such messages streaming from different users into the system. 
 	We must first be able to ingest these messages in real time manner.
-        Further we should be able to processes every single message and  take corrective action as needed. 
+	Further we should be able to processes every single message and  take corrective action as needed. 
 	The processes would include following;
 
         a. set the streams and sliding window and ingest the data in these streams in continuous manner
