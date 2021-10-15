@@ -212,53 +212,53 @@ need to add mapping for [ 2 ] attributes as we have so many dimensions
 
 
 	we also need to provide the labels for which the model will be trained
-enter the label name: positive
+        enter the label name: positive
 	do you wish to add more labels? [ yes |  no ]: yes
-enter the label name: negative
+        enter the label name: negative
 	do you wish to add more labels? [ yes |  no ]: 
-enter the name of the KB model file (full path)(for ex; /mydir/total_word_feature_extractor.dat): total_word_feature_extractor.dat
-Do you wish to upload the file? [ yes |  no ]: yes
-training request : 
-{
-   "training_details" : {
-      "train_action" : 0,
-      "training_source_type" : 1,
-      "training_source" : "review_train.txt",
-      "file_size_mb" : 1
-   },
-   "model_name" : "user_sentiment",
-   "algo_type" : "IE_SENT",
-   "labels" : [
-      "positive",
-      "negative"
-   ],
-   "schema-name" : "ecomm",
-   "total_feature_ex" : "total_word_feature_extractor.dat",
-   "attr_list" : [
-      {
-         "position" : 0,
-         "name" : "sentiment"
-      },
-      {
-         "name" : "msg",
-         "position" : 1
-      }
-   ]
-}
+        enter the name of the KB model file (full path)(for ex; /mydir/total_word_feature_extractor.dat): total_word_feature_extractor.dat
+        Do you wish to upload the file? [ yes |  no ]: yes
+	training request : 
+	{
+	   "training_details" : {
+	      "train_action" : 0,
+	      "training_source_type" : 1,
+	      "training_source" : "review_train.txt",
+	      "file_size_mb" : 1
+	   },
+	   "model_name" : "user_sentiment",
+	   "algo_type" : "IE_SENT",
+	   "labels" : [
+	      "positive",
+	      "negative"
+	   ],
+	   "schema-name" : "ecomm",
+	   "total_feature_ex" : "total_word_feature_extractor.dat",
+	   "attr_list" : [
+	      {
+		 "position" : 0,
+		 "name" : "sentiment"
+	      },
+	      {
+		 "name" : "msg",
+		 "position" : 1
+	      }
+	   ]
+	}
 	do you wish to start training now? [ yes |  no ]: yes
-model [ user_sentiment ] scheduled successfully for training
-you may check the train status by using 'show train status' command
+	model [ user_sentiment ] scheduled successfully for training
+	you may check the train status by using 'show train status' command
 	do you wish to save the schema (locally) for later reference? [ yes |  no ]: 
 
 
 	Now you can see the status of the model training
 
-bangdb> show models
-+--------------------+--------------+-------+------------+-----------+------------------------+------------------------+
-|key                 |model name    |   algo|train status|schema name|train start time        |train end time          |
-+--------------------+--------------+-------+------------+-----------+------------------------+------------------------+
-|ecomm:user_sentiment|user_sentiment|IE_SENT|passed      |ecomm      |Sat Oct 16 00:07:11 2021|Sat Oct 16 00:07:12 2021|
-+--------------------+--------------+-------+------------+-----------+------------------------+------------------------+
+	bangdb> show models
+	+--------------------+--------------+-------+------------+-----------+------------------------+------------------------+
+	|key                 |model name    |   algo|train status|schema name|train start time        |train end time          |
+	+--------------------+--------------+-------+------------+-----------+------------------------+------------------------+
+	|ecomm:user_sentiment|user_sentiment|IE_SENT|passed      |ecomm      |Sat Oct 16 00:07:11 2021|Sat Oct 16 00:07:12 2021|
+	+--------------------+--------------+-------+------------+-----------+------------------------+------------------------+
 
 
 	Now let's ingest the customer reviews and see the output
@@ -268,42 +268,42 @@ bangdb> show models
 
 	come back to cli terminal and select few events from the stream "reviews" in the "ecomm"schema
 
-bangdb> select * from ecomm.reviews
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|key             |val                                                                                                                             |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|1634329532924119|{"uid":"sal","prod":"ipad","msg":"finally the order arrived but i am returning it due to delay","tag":"return","revid":"rev13","|
-|                |_pk":1634329532924119,"sentiment":"negative","_v":1}                                                                            |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|1634329531921928|{"uid":"raman","prod":"guitar","msg":"finally order is placed, delivery date is still ok do it's fine","tag":"order","revid":"re|
-|                |v12","_pk":1634329531921928,"sentiment":"positive","_v":1}                                                                      |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|1634329530919064|{"uid":"sal","prod":"iphone","msg":"just ordered for p3 and i got a call that the delivery is delayed","tag":"order","revid":"re|
-|                |v11","_pk":1634329530919064,"sentiment":"positive","_v":1}                                                                      |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|1634329529916681|{"uid":"raman","prod":"guitar","msg":"the product is in cart, i want to order but it's not going","tag":"cart","revid":"rev10","|
-|                |_pk":1634329529916681,"sentiment":"negative","_v":1}                                                                            |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|1634329528914003|{"uid":"mike","prod":"football","msg":"how amazing to get the packet before time, great work xyz","tag":"order","revid":"rev9","|
-|                |_pk":1634329528914003,"sentiment":"positive","_v":1}                                                                            |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|1634329527911595|{"uid":"sal","prod":"ipad","msg":"not sure why the product is not yet delivered, it said it will be done 3 days ago","tag":"orde|
-|                |r","revid":"rev8","_pk":1634329527911595,"sentiment":"negative","_v":1}                                                         |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|1634329526909432|{"uid":"rose","prod":"guitar","msg":"not sure if this site works or not, frustating","tag":"order","revid":"rev7","_pk":16343295|
-|                |26909432,"sentiment":"negative","_v":1}                                                                                         |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|1634329525906102|{"uid":"hema","prod":"p3","msg":"the tabla got set very smoothly, thanks for the quality service","tag":"order","revid":"rev6","|
-|                |_pk":1634329525906102,"sentiment":"positive","_v":1}                                                                            |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|1634329524902468|{"uid":"hema","prod":"tabla","msg":"i received the product, it looks awesome","tag":"order","revid":"rev5","_pk":163432952490246|
-|                |8,"sentiment":"positive","_v":1}                                                                                                |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|1634329523899985|{"uid":"rose","prod":"guitar","msg":"order placed, money debited but status is still pending","tag":"order","revid":"rev4","_pk"|
-|                |:1634329523899985,"sentiment":"negative","_v":1}                                                                                |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-total rows retrieved = 10 (10)
-more data to come, continue .... [y/n]: 
+	bangdb> select * from ecomm.reviews
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|key             |val                                                                                                                             |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|1634329532924119|{"uid":"sal","prod":"ipad","msg":"finally the order arrived but i am returning it due to delay","tag":"return","revid":"rev13","|
+	|                |_pk":1634329532924119,"sentiment":"negative","_v":1}                                                                            |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|1634329531921928|{"uid":"raman","prod":"guitar","msg":"finally order is placed, delivery date is still ok do it's fine","tag":"order","revid":"re|
+	|                |v12","_pk":1634329531921928,"sentiment":"positive","_v":1}                                                                      |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|1634329530919064|{"uid":"sal","prod":"iphone","msg":"just ordered for p3 and i got a call that the delivery is delayed","tag":"order","revid":"re|
+	|                |v11","_pk":1634329530919064,"sentiment":"positive","_v":1}                                                                      |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|1634329529916681|{"uid":"raman","prod":"guitar","msg":"the product is in cart, i want to order but it's not going","tag":"cart","revid":"rev10","|
+	|                |_pk":1634329529916681,"sentiment":"negative","_v":1}                                                                            |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|1634329528914003|{"uid":"mike","prod":"football","msg":"how amazing to get the packet before time, great work xyz","tag":"order","revid":"rev9","|
+	|                |_pk":1634329528914003,"sentiment":"positive","_v":1}                                                                            |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|1634329527911595|{"uid":"sal","prod":"ipad","msg":"not sure why the product is not yet delivered, it said it will be done 3 days ago","tag":"orde|
+	|                |r","revid":"rev8","_pk":1634329527911595,"sentiment":"negative","_v":1}                                                         |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|1634329526909432|{"uid":"rose","prod":"guitar","msg":"not sure if this site works or not, frustating","tag":"order","revid":"rev7","_pk":16343295|
+	|                |26909432,"sentiment":"negative","_v":1}                                                                                         |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|1634329525906102|{"uid":"hema","prod":"p3","msg":"the tabla got set very smoothly, thanks for the quality service","tag":"order","revid":"rev6","|
+	|                |_pk":1634329525906102,"sentiment":"positive","_v":1}                                                                            |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|1634329524902468|{"uid":"hema","prod":"tabla","msg":"i received the product, it looks awesome","tag":"order","revid":"rev5","_pk":163432952490246|
+	|                |8,"sentiment":"positive","_v":1}                                                                                                |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|1634329523899985|{"uid":"rose","prod":"guitar","msg":"order placed, money debited but status is still pending","tag":"order","revid":"rev4","_pk"|
+	|                |:1634329523899985,"sentiment":"negative","_v":1}                                                                                |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	total rows retrieved = 10 (10)
+	more data to come, continue .... [y/n]: 
 
 
 	As you see, the attribute "sentiment" is added with the value predicted by the model user_sentiment
@@ -311,35 +311,35 @@ more data to come, continue .... [y/n]:
 	Now let's check out the events in the filter stream. We see that all negative events are also available in the stream
 	negtative_reviews
 
-bangdb> select * from ecomm.negative_reviews
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|key             |val                                                                                                                             |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|1634329532924119|{"uid":"sal","prod":"ipad","msg":"finally the order arrived but i am returning it due to delay","tag":"return","revid":"rev13","|
-|                |_pk":1634329532924119,"_v":1}                                                                                                   |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|1634329529916681|{"uid":"raman","prod":"guitar","msg":"the product is in cart, i want to order but it's not going","tag":"cart","revid":"rev10","|
-|                |_pk":1634329529916681,"_v":1}                                                                                                   |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|1634329527911595|{"uid":"sal","prod":"ipad","msg":"not sure why the product is not yet delivered, it said it will be done 3 days ago","tag":"orde|
-|                |r","revid":"rev8","_pk":1634329527911595,"_v":1}                                                                                |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|1634329526909432|{"uid":"rose","prod":"guitar","msg":"not sure if this site works or not, frustating","tag":"order","revid":"rev7","_pk":16343295|
-|                |26909432,"_v":1}                                                                                                                |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|1634329523899985|{"uid":"rose","prod":"guitar","msg":"order placed, money debited but status is still pending","tag":"order","revid":"rev4","_pk"|
-|                |:1634329523899985,"_v":1}                                                                                                       |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|1634329522897451|{"uid":"sal","prod":"ipad","msg":"even after contacting customer care, we have no update yet","tag":"order","revid":"rev3","_pk"|
-|                |:1634329522897451,"_v":1}                                                                                                       |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|1634329521895545|{"uid":"sal","prod":"ipad","msg":"the order 2 was placed 4 days ago, still there is no response, i am still waiting for any conf|
-|                |irmation","tag":"order","revid":"rev2","_pk":1634329521895545,"_v":1}                                                           |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|1634329520891590|{"uid":"sachin","prod":"cello","msg":"even after calling 20 times, the customer care is not responding at all","tag":"order","re|
-|                |vid":"rev1","_pk":1634329520891590,"_v":1}                                                                                      |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-total rows retrieved = 8 (8)
+	bangdb> select * from ecomm.negative_reviews
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|key             |val                                                                                                                             |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|1634329532924119|{"uid":"sal","prod":"ipad","msg":"finally the order arrived but i am returning it due to delay","tag":"return","revid":"rev13","|
+	|                |_pk":1634329532924119,"_v":1}                                                                                                   |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|1634329529916681|{"uid":"raman","prod":"guitar","msg":"the product is in cart, i want to order but it's not going","tag":"cart","revid":"rev10","|
+	|                |_pk":1634329529916681,"_v":1}                                                                                                   |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|1634329527911595|{"uid":"sal","prod":"ipad","msg":"not sure why the product is not yet delivered, it said it will be done 3 days ago","tag":"orde|
+	|                |r","revid":"rev8","_pk":1634329527911595,"_v":1}                                                                                |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|1634329526909432|{"uid":"rose","prod":"guitar","msg":"not sure if this site works or not, frustating","tag":"order","revid":"rev7","_pk":16343295|
+	|                |26909432,"_v":1}                                                                                                                |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|1634329523899985|{"uid":"rose","prod":"guitar","msg":"order placed, money debited but status is still pending","tag":"order","revid":"rev4","_pk"|
+	|                |:1634329523899985,"_v":1}                                                                                                       |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|1634329522897451|{"uid":"sal","prod":"ipad","msg":"even after contacting customer care, we have no update yet","tag":"order","revid":"rev3","_pk"|
+	|                |:1634329522897451,"_v":1}                                                                                                       |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|1634329521895545|{"uid":"sal","prod":"ipad","msg":"the order 2 was placed 4 days ago, still there is no response, i am still waiting for any conf|
+	|                |irmation","tag":"order","revid":"rev2","_pk":1634329521895545,"_v":1}                                                           |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|1634329520891590|{"uid":"sachin","prod":"cello","msg":"even after calling 20 times, the customer care is not responding at all","tag":"order","re|
+	|                |vid":"rev1","_pk":1634329520891590,"_v":1}                                                                                      |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	total rows retrieved = 8 (8)
 
 
 	As you see, the events got automatically collected in this stream, we can further set notification as well which will allow server to
@@ -353,23 +353,23 @@ total rows retrieved = 8 (8)
 	Let's now add two events which are negative (as you note, the last event is predicted as negative hence we have one negative event
 	already so another two more negative event should trigger a pattern)
 
-bangdb> insert into ecomm.reviews values null {"uid":"sal","prod":"ipad","msg":"finally the order arrived but i am returning it due to delay","tag":"return","revid":"rev14"}
-success
+	bangdb> insert into ecomm.reviews values null {"uid":"sal","prod":"ipad","msg":"finally the order arrived but i am returning it due to delay","tag":"return","revid":"rev14"}
+	success
 
-bangdb> insert into ecomm.reviews values null {"uid":"john","prod":"ipad","msg":"frustating that product is not delievered yet","tag":"return","revid":"rev15"}
-success
+	bangdb> insert into ecomm.reviews values null {"uid":"john","prod":"ipad","msg":"frustating that product is not delievered yet","tag":"return","revid":"rev15"}
+	success
 
 
 	Now select from the pattern stream
 
-bangdb> select * from ecomm.negative_reviews_pattern
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|key             |val                                                                                                                             |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-|1634329705652574|{"uid":"john","prod":"ipad","sentiment":"negative","revid":"rev15","_pk":1634329705652574,"uid":"sal","prod":"ipad","_jpk1":1634|
-|                |329669688454,"_v":1}                                                                                                            |
-+----------------+--------------------------------------------------------------------------------------------------------------------------------+
-total rows retrieved = 1 (1)
+	bangdb> select * from ecomm.negative_reviews_pattern
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|key             |val                                                                                                                             |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	|1634329705652574|{"uid":"john","prod":"ipad","sentiment":"negative","revid":"rev15","_pk":1634329705652574,"uid":"sal","prod":"ipad","_jpk1":1634|
+	|                |329669688454,"_v":1}                                                                                                            |
+	+----------------+--------------------------------------------------------------------------------------------------------------------------------+
+	total rows retrieved = 1 (1)
 
 	As you see it has two uids (since we select both as per schema definition - see the ecomm_schema.txt). The first one where the pattern started
 	and the one where it got completed.
@@ -380,30 +380,30 @@ total rows retrieved = 1 (1)
 
 	Now, let's see the triples as stored by the server in graph structure, we will run Cypher queries
 
-bangdb> USE GRAPH ecomm_graph
-USE GRAPH ecomm_graph successful
+	bangdb> USE GRAPH ecomm_graph
+	USE GRAPH ecomm_graph successful
 
-bangdb> S=>(@u uid:*)-[POSTS_REVIEWS]->(@p prod:guitar)
-+---------+-------------+-----------+
-|sub      |pred         |        obj|
-+---------+-------------+-----------+
-|uid:raman|POSTS_REVIEWS|prod:guitar|
-+---------+-------------+-----------+
-|uid:raman|POSTS_REVIEWS|prod:guitar|
-+---------+-------------+-----------+
-|uid:rose |POSTS_REVIEWS|prod:guitar|
-+---------+-------------+-----------+
-|uid:rose |POSTS_REVIEWS|prod:guitar|
-+---------+-------------+-----------+
+	bangdb> S=>(@u uid:*)-[POSTS_REVIEWS]->(@p prod:guitar)
+	+---------+-------------+-----------+
+	|sub      |pred         |        obj|
+	+---------+-------------+-----------+
+	|uid:raman|POSTS_REVIEWS|prod:guitar|
+	+---------+-------------+-----------+
+	|uid:raman|POSTS_REVIEWS|prod:guitar|
+	+---------+-------------+-----------+
+	|uid:rose |POSTS_REVIEWS|prod:guitar|
+	+---------+-------------+-----------+
+	|uid:rose |POSTS_REVIEWS|prod:guitar|
+	+---------+-------------+-----------+
 
-bangdb>  S1=>(@u uid:hema)-[POSTS_REVIEWS]->(@p prod:*)-[HAS_REVIEWS]->(@r revid:*)
-+----------+-----------+----------+
-|sub       |pred       |       obj|
-+----------+-----------+----------+
-|prod:tabla|HAS_REVIEWS|revid:rev5|
-+----------+-----------+----------+
-|prod:p3   |HAS_REVIEWS|revid:rev6|
-+----------+-----------+----------+
+	bangdb>  S1=>(@u uid:hema)-[POSTS_REVIEWS]->(@p prod:*)-[HAS_REVIEWS]->(@r revid:*)
+	+----------+-----------+----------+
+	|sub       |pred       |       obj|
+	+----------+-----------+----------+
+	|prod:tabla|HAS_REVIEWS|revid:rev5|
+	+----------+-----------+----------+
+	|prod:p3   |HAS_REVIEWS|revid:rev6|
+	+----------+-----------+----------+
 
 
 And so on.
