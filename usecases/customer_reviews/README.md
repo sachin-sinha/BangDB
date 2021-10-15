@@ -126,7 +126,7 @@ Steps to run the demo on your own
 	you will see something like this on the prompt
 
 
-server [ 127.0.0.1 : 10101 ] is master with repl = OFF
+	server [ 127.0.0.1 : 10101 ] is master with repl = OFF
 
 	 __     _    _   _   ____   ___    ___
 	|   \  / \  | \ | | | ___\ |   \  |   \
@@ -136,17 +136,17 @@ server [ 127.0.0.1 : 10101 ] is master with repl = OFF
 	
 	command line tool for db+stream+ai+graph
 
-please type 'help' to get more info, 'quit' or 'exit' to return
+	please type 'help' to get more info, 'quit' or 'exit' to return
 
-bangdb> 
+	bangdb> 
 
 
 	C. Register the schema (set of streams)
 
 	Let's first register the stream schema into which we will be receiving the data
 
-bangdb> register schema ecomm_schema.txt 
-success
+	bangdb> register schema ecomm_schema.txt 
+	success
 
 
 	now let's ingest few data into the stream product.
@@ -186,9 +186,9 @@ success
 	sufficient. If you want proper KB for sentiment analysis for customer reviews / comments / messages then please
 	send me mail (sachin@bangdb.com), I will forward the link to you. For production, we must use proper trained KB file
 
-bangdb> train model user_sentiment
-what's the name of the schema for which you wish to train the model?: ecomm
-do you wish to read earlier saved ml schema for editing/adding? [ yes |  no ]: 
+	bangdb> train model user_sentiment
+	what's the name of the schema for which you wish to train the model?: ecomm
+	do you wish to read earlier saved ml schema for editing/adding? [ yes |  no ]: 
 
 
 		BangDB supports following algorithm, pls select from these
@@ -196,15 +196,15 @@ do you wish to read earlier saved ml schema for editing/adding? [ yes |  no ]:
 		| IE - ontology (6) | IE - NER (7) | IE - Sentiment (8) | IE - KB (9) | TS - Forecast (10) 
 		| DL - resnet (11) | DL - lenet (12) | DL - face detection (13) | DL - shape detection (14) | SL - object detection (15)
 
-what's the algo would you like to use (or Enter for default (1)): 8
-what's the input (training data) source? [ local file (1) | file on BRS (2) | stream (3) ] (press enter for default (1)): 1
-enter the training file name for upload (along with full path): ../data/review_train.txt
+	what's the algo would you like to use (or Enter for default (1)): 8
+	what's the input (training data) source? [ local file (1) | file on BRS (2) | stream (3) ] (press enter for default (1)): 1
+	enter the training file name for upload (along with full path): ../data/review_train.txt
 
 
 		we need to do the mapping so it can be used on streams later
 		This means we need to provide attr name and its position in the training file
 
-need to add mapping for [ 2 ] attributes as we have so many dimensions
+	need to add mapping for [ 2 ] attributes as we have so many dimensions
 	enable attr name: sentiment
 	enable attr position: 0
 	enable attr name: msg
