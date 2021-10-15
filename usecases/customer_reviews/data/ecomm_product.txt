@@ -1,0 +1,7 @@
+iphone,electronics
+ipad,electronics
+rubik cube,sports
+football,sports
+guitar,music
+cello,music
+tabla,music

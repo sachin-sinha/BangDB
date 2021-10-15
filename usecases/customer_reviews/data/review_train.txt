@@ -1,0 +1,16 @@
+{"labels":["positive", "negative"]}
+{"uid":"sachin","prod":"cello","msg":"even after calling 20 times, the customer care is not responding at all","tag":"order","sentiment":"negative"}
+{"uid":"sal","prod":"ipad","msg":"the order 2 was placed 4 days ago, still there is no response, i am still waiting for any confirmation","tag":"order","sentiment":"negative"}
+{"uid":"sal","prod":"ipad","msg":"even after contacting customer care, we have no update yet","tag":"order","sentiment":"negative"}
+{"uid":"rose","prod":"guitar","msg":"order placed, money debited but status is still pending","tag":"order","sentiment":"negative"}
+{"uid":"hema","prod":"tabla","msg":"i received the product, it looks awesome","tag":"order","sentiment":"positive"}
+{"uid":"hema","prod":"p3","msg":"the tabla got set very smoothly, thanks for the quality service","tag":"order","sentiment":"positive"}
+{"uid":"rose","prod":"guitar","msg":"not sure if this site works or not, frustating","tag":"order","sentiment":"negative"}
+{"uid":"sal","prod":"ipad","msg":"not sure why the product is not yet delivered, it said it will be done 3 days ago","tag":"order","sentiment":"negative"}
+{"uid":"mike","prod":"football","msg":"how amazing to get the packet before time, great work xyz","tag":"order","sentiment":"positive"}
+{"uid":"raman","prod":"guitar","msg":"the product is in cart, i want to order but it's not going","tag":"cart","sentiment":"negative"}
+{"uid":"sal","prod":"iphone","msg":"just ordered for p3 and i got a call that the delivery is delayed","tag":"order","sentiment":"negative"}
+{"uid":"raman","prod":"guitar","msg":"finally order is placed, delivery date is still ok do it's fine","tag":"order","sentiment":"positive"}
+{"uid":"sal","prod":"ipad","msg":"finally the order arrived but i am returning it due to delay","tag":"return","sentiment":"negative"}
+{"uid":"sal","prod":"ipad","msg":"delay in the order arrival was the cause for return","tag":"return","sentiment":"negative"}
+{"uid":"sal","prod":"guitar","msg":"now order is not going through even though the product is in cart","tag":"cart","sentiment":"negative"}

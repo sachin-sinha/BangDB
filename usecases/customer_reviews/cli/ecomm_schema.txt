@@ -1,0 +1,61 @@
+{
+	"schema":"ecomm", 
+	"streams":[
+			{
+				"name":"product","type":1, "swsz":86400,
+				"inpt":[],
+				"attr":[
+					{"name":"prod","type":"STRING","kysz":32},
+					{"name":"category","type":"STRING","kysz":24}
+				],
+				"rels":[{"sub":"prod","rel":"BELONGS_TO","obj":"category"}]
+			},
+			{
+				"name":"order","type":1, "swsz":86400,
+				"inpt":[],
+				"attr":[
+					{"name":"prod","type":"OBJECT","fields":[{"name":"prod.name","type":5,"sidx":1,"kysz":32,"stat":"UCOUNT"},{"name":"prod.make","type":5,"sidx":1,"kysz":24,"stat":"UCOUNT"}]},
+					{"name":"uid","type":"STRING","sidx":1,"stat":"UCOUNT"},
+					{"name":"orderid","type":"LONG"},
+					{"name":"amount","type":"DOUBLE"}
+				],
+				"rels":[{"sub":"uid","rel":"BUYS","obj":"prod.name"}]
+			},
+			{
+				"name":"reviews","type":1,"swsz":86400,
+				"inpt":[],
+				"attr":[
+					{"name":"uid","type":"STRING","sidx":1},
+					{"name":"prod","type":"STRING","kysz":32,"sidx":1},
+					{"name":"msg","type":"STRING","ridx":1},
+					{"name":"tag","type":"STRING","sidx":1},
+					{"name":"revid","type":"STRING","sidx":1}
+				],
+				"catr":[{"name":"sentiment","type":"STRING","opnm":"PRED","algo":"IE_SENT","attr_type":"STR","model":"user_sentiment","exp_fmt":"JSON","iatr":["msg"]}],
+				"fltr":[{"name":"f1","fqry":{"type":1,"name":"{\"qtype\":1,\"query\":[{\"key\":\"sentiment\",\"cmp_op\":4,\"val\":\"negative\"}]}"},"fatr":["uid","prod","msg","tag","revid"],"ostm":"negative_reviews"}],
+				"cepq":[{"name":"cep1","type":1,"tloc":3000,"ratr":["uid","prod"],"rstm":"reviews","iatr":["uid","prod","sentiment","revid"],"fqry":{"type":1,"name":"{\"qtype\":1, \"query\":[{\"key\":\"sentiment\",\"cmp_op\":4,\"val\":\"negative\"}]}"},"jqry":{"cond":["prod","uid","sentiment"],"opid":11,"args":["prod","uid","sentiment"],"cmp":["EQ","NE","EQ"]}, "cond":[{"name":"NUMT","val":3,"opid":1},{"name":"DUR","val":1000,"opid":0}],"ostm":"negative_reviews_pattern"}],
+				"rels":[{"sub":"uid","rel":"POSTS_REVIEWS","obj":"prod"},{"sub":"prod","rel":"HAS_REVIEWS","obj":"revid"}]
+			},
+			{
+				"name":"negative_reviews","type":2,"swsz":86400,
+				"inpt":["reviews"],
+				"attr":[
+					{"name":"uid","type":"STRING"},
+					{"name":"prod","type":"STRING"},
+					{"name":"msg","type":"STRING"},
+					{"name":"tag","type":"STRING"},
+					{"name":"revid","type":"STRING","sidx":1}
+					]
+			},
+			{
+				"name":"negative_reviews_pattern","type":3,"swsz":86400,
+				"inpt":["reviews"],
+				"attr":[
+					{"name":"uid","type":"STRING"},
+					{"name":"prod","type":"STRING"},
+					{"name":"sentiment","type":"STRING"},
+					{"name":"revid","type":"STRING","sidx":1}
+					]
+			}
+	]
+}
