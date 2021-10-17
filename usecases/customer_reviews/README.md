@@ -353,7 +353,7 @@ Steps to run the demo on your own
 	Let's now add two events which are negative (as you note, the last event is predicted as negative hence we have one negative event
 	already so another two more negative event should trigger a pattern)
 
-	bangdb> insert into ecomm.reviews values null {"uid":"sal","prod":"ipad","msg":"finally the order arrived but i am returning it due to delay","tag":"return","revid":"rev14"}
+	bangdb> insert into ecomm.reviews values null {"uid":"alan","prod":"ipad","msg":"finally the order arrived but i am returning it due to delay","tag":"return","revid":"rev14"}
 	success
 
 	bangdb> insert into ecomm.reviews values null {"uid":"john","prod":"ipad","msg":"frustating that product is not delievered yet","tag":"return","revid":"rev15"}
