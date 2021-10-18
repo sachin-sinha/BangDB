@@ -1,6 +1,8 @@
 User/customer messages/reviews analysis
 ---------------------------------------
 
+Please find the video of this demo/usecase at https://www.youtube.com/watch?v=Z4Maz0y_rNk 
+
 Scenario
 
 	Users and customers are sending their messages or reviews from their devices. 
