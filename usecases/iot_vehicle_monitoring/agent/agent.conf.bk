@@ -1,0 +1,135 @@
+{
+  "agentid": 2,
+  "ssl": 0,
+  "collectors": [
+    {
+      "name": "car",
+      "file": "/mnt/bangdb2/bangdb/BangDB/usecases/iot_vehicle_monitoring/mon/car.txt",
+      "dir": "/mnt/bangdb2/bangdb/BangDB/usecases/iot_vehicle_monitoring/mon/",
+      "regex": [],
+      "fields": [],
+      "parse_config": {
+        "training_details": {
+          "expected_format": "JSON",
+          "input_format": "CSV",
+          "SEP": ","
+        },
+        "attr_list": [
+          {
+            "name": "time",
+            "position": 0,
+            "dtype": 9
+          },
+          {
+            "name": "car",
+            "position": 1,
+            "dtype": 9
+          },
+          {
+            "name": "coolant_temp",
+            "position": 2,
+            "dtype": 11
+          },
+          {
+            "name": "intake_air_temp",
+            "position": 3,
+            "dtype": 11
+          },
+          {
+            "name": "intake_air_flow_speed",
+            "position": 4,
+            "dtype": 11
+          },
+          {
+            "name": "battery_percentage",
+            "position": 5,
+            "dtype": 11
+          },
+          {
+            "name": "battery_voltage",
+            "position": 6,
+            "dtype": 11
+          },
+          {
+            "name": "current_draw",
+            "position": 7,
+            "dtype": 11
+          },
+          {
+            "name": "speed",
+            "position": 8,
+            "dtype": 11
+          },
+          {
+            "name": "engine_vibration_amplitude",
+            "position": 9,
+            "dtype": 11
+          },
+          {
+            "name": "throttle_pos",
+            "position": 10,
+            "dtype": 11
+          },
+          {
+            "name": "tire_pressure_1_1",
+            "position": 11,
+            "dtype": 9
+          },
+          {
+            "name": "tire_pressure_1_2",
+            "position": 12,
+            "dtype": 9
+          },
+          {
+            "name": "tire_pressure_2_1",
+            "position": 13,
+            "dtype": 9
+          },
+          {
+            "name": "tire_pressure_2_2",
+            "position": 14,
+            "dtype": 9
+          },
+          {
+            "name": "accelerometer_1_1_value",
+            "position": 15,
+            "dtype": 11
+          },
+          {
+            "name": "accelerometer_1_2_value",
+            "position": 16,
+            "dtype": 11
+          },
+          {
+            "name": "accelerometer_2_1_value",
+            "position": 17,
+            "dtype": 11
+          },          {
+            "name": "accelerometer_2_2_value",
+            "position": 18,
+            "dtype": 11
+          },
+          {
+            "name": "control_unit_firmware",
+            "position": 19,
+            "dtype": 9
+          }
+        ]
+      },
+      "stream_name": "sensor",
+      "schema_name": "cars",
+      "server_ip": "0.0.0.0",
+      "server_port": "10101",
+      "add_ts": 0,
+      "state": 1,
+      "read_from": 2,
+      "cfg_upd_freq": 100,
+      "col_freq": 60,
+      "mode": 1,
+      "nthreads": 1,
+      "isssl": 0,
+      "type": 1,
+      "parse_method": 6
+    }
+  ]
+}

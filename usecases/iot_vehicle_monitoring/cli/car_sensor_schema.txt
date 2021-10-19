@@ -1,0 +1,74 @@
+{
+	"schema":"cars",
+	"streams":[
+			{
+				"name":"sensor","type":1,"swsz":86400,
+				"inpt":[],
+				"attr":	[
+						{"name":"_pk","type":"LONG"},
+						{"name":"time","type":"LONG"},
+						{"name":"car","type":"LONG","sidx":1},
+						{"name":"coolant_temp","type":"DOUBLE","stat":"RSTAT"},
+						{"name":"intake_air_temp","type":"DOUBLE"},
+						{"name":"intake_air_flow_speed","type":"DOUBLE"},
+						{"name":"battery_percentage","type":"DOUBLE"},
+						{"name":"battery_voltage","type":"DOUBLE","stat":"RSTAT"},
+						{"name":"current_draw","type":"DOUBLE","stat":"RSTAT"},
+						{"name":"speed","type":"DOUBLE","stat":"RSTAT"},
+						{"name":"engine_vibration_amplitude","type":"DOUBLE","stat":"RSTAT"},
+						{"name":"throttle_pos","type":"DOUBLE"},
+						{"name":"tire_pressure_1_1","type":"LONG"},
+						{"name":"tire_pressure_1_2","type":"LONG"},
+						{"name":"tire_pressure_2_1","type":"LONG"},
+						{"name":"tire_pressure_2_2","type":"LONG"},
+						{"name":"accelerometer_1_1_value","type":"DOUBLE"},
+						{"name":"accelerometer_1_2_value","type":"DOUBLE"},
+						{"name":"accelerometer_2_1_value","type":"DOUBLE"},
+						{"name":"accelerometer_2_2_value","type":"DOUBLE"},
+						{"name":"control_unit_firmware","type":"LONG"}
+					],
+				"catr": [
+						{"name":"proj_battery_voltage","type":"DOUBLE","opnm":"PRED","algo":"PROJ_LIN","lag":5,"uid":"car","model":"battery_voltage_model","iatr":["battery_voltage"],"order":0},
+						{"name":"speed_pred","type":"DOUBLE","opnm":"PRED","algo":"LIN","model":"speed_pred_model","iatr":["coolant_temp","intake_air_temp","intake_air_flow_speed","battery_percentage","battery_voltage","current_draw","engine_vibration_amplitude","throttle_pos"],"order":1},
+						{"name":"battery_voltage_diff","type":"DOUBLE","stat":"RSTAT","opnm":"MATH_EXP","iatr":["ABS($proj_battery_voltage-$battery_voltage)"],"order":2},
+						{"name":"speed_diff","type":"DOUBLE","stat":"RSTAT","opnm":"MATH_EXP","iatr":["ABS($speed_pred-$speed)"],"order":3},
+						{"name":"tsms","type":9,"opnm":"MATH_EXP","iatr":["($_pk/1000)"]}
+					],
+				"fltr": [
+						{"name":"f1","fqry":{"type":1,"name":"{\"qtype\":3, \"query\":[{\"key\":\"battery_voltage_diff\",\"cmp_op\":0,\"val\":\"avg(sensor.battery_voltage_diff,m_5,more_10)\"}]}"},"fatr":["tsms","car","battery_voltage_diff","battery_voltage"],"ostm":"battery_voltage_anomaly"},
+						{"name":"f2","fqry":{"type":1,"name":"{\"qtype\":3, \"query\":[{\"key\":\"speed_diff\",\"cmp_op\":0,\"val\":\"avg(sensor.speed_diff,m_5,more_20)\"}]}"},"fatr":["tsms","car","speed_diff","speed"],"ostm":"speed_anomaly"}
+					],
+				"cepq": [
+						{"name":"cep1","type":1,"tloc":3000,"ratr":["speed","car"],"rstm":"sensor","iatr":["speed","car"],"fqry":{"type":1,"name":"{\"qtype\":2, \"query\":[{\"key\":\"speed\",\"cmp_op\":0,\"val\":35}]}"},"jqry":{"cond":["speed","car"],"opid":11,"args":["speed","car"],"cmp":["LT","EQ"],"seq":1}, "cond":[{"name":"NUMT","val":3,"opid":1},{"name":"DUR","val":1000,"opid":0}], "ostm":"high_speed_inc_pattern"}
+					]
+			},
+			{
+				"name":"battery_voltage_anomaly","type":2,"swsz":86400,
+				"inpt":["sensor"],
+				"attr": [
+						{"name":"tsms","type":"LONG"},
+						{"name":"car","type":"LONG"},
+						{"name":"battery_voltage","type":"DOUBLE"},
+						{"name":"battery_voltage_diff","type":"DOUBLE"}
+					]
+			},
+			{
+				"name":"speed_anomaly","type":2,"swsz":86400,
+				"inpt":["sensor"],
+				"attr": [
+						{"name":"tsms","type":"LONG"},
+						{"name":"car","type":"LONG"},
+						{"name":"speed","type":"DOUBLE"},
+						{"name":"speed_diff","type":"DOUBLE"}
+					]
+			},
+			{
+				"name":"high_speed_inc_pattern","type":3,"swsz":86400,
+				"inpt":["sensor"],
+				"attr": [
+						{"name":"car","type":"LONG"},
+						{"name":"speed","type":"DOUBLE"}
+					]
+			}
+		]
+}
