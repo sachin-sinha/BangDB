@@ -52,7 +52,7 @@ Solution overview
 	   coolant_temp,intake_air_temp,intake_air_flow_speed,battery_percentage,battery_voltage,current_draw,engine_vibration_amplitude,throttle_pos
 
 	c. Find a pattern using CEP (complex event processing). The pattern is following;
-	   Speed of a car is more than 35 unit, consecutively for 3 times in last 1000 sec, keep finding this pattern continuously for all cars	  
+	   Speed of a car is more than 35 unit and is increasing continuously. And if we observe this for 3 consicutive times in last 1000 sec, then this is a pattern for us and we should keep finding this pattern continuously for all cars	  
 
 	All of these anomalies should be pushed to different streams for notifications or further analysis or action need to be taken as required
 
