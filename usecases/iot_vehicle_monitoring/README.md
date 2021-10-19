@@ -318,11 +318,23 @@ Steps to run the demo
 	Note: as you see, the speed and predicted speed are close most of the time
 	and so on ...
 
-	10. to similate the pattern, insert few rows
+	10. to similate the pattern, insert following events (cut and paste on the cli prompt one by one)
 
 	insert into cars.sensor values null {"time":1567607187,"car":100,"coolant_temp":191.3604,"intake_air_temp":19.891075,"intake_air_flow_speed":9.86402,"battery_percentage":-18.83759,"battery_voltage":242.07639,"current_draw":15.151241,"speed":35.703476,"engine_vibration_amplitude":2570.3477,"throttle_pos":0.6609447000000001,"tire_pressure_1_1":22,"tire_pressure_1_2":34,"tire_pressure_2_1":31,"tire_pressure_2_2":33,"accelerometer_1_1_value":0.0812409499999999,"accelerometer_1_2_value":3.3291862,"accelerometer_2_1_value":3.0881116,"accelerometer_2_2_value":0.033119857,"control_unit_firmware":1000}
 
-	If you run "select stream from cars" you will see one event there
+
+insert into cars.sensor values null {"time":1567607187,"car":100,"coolant_temp":191.3604,"intake_air_temp":19.891075,"intake_air_flow_speed":9.86402,"battery_percentage":-18.83759,"battery_voltage":242.07639,"current_draw":15.151241,"speed":36.703476,"engine_vibration_amplitude":2570.3477,"throttle_pos":0.6609447000000001,"tire_pressure_1_1":22,"tire_pressure_1_2":34,"tire_pressure_2_1":31,"tire_pressure_2_2":33,"accelerometer_1_1_value":0.0812409499999999,"accelerometer_1_2_value":3.3291862,"accelerometer_2_1_value":3.0881116,"accelerometer_2_2_value":0.033119857,"control_unit_firmware":1000}
+
+
+insert into cars.sensor values null {"time":1567607187,"car":100,"coolant_temp":191.3604,"intake_air_temp":19.891075,"intake_air_flow_speed":9.86402,"battery_percentage":-18.83759,"battery_voltage":242.07639,"current_draw":15.151241,"speed":37.703476,"engine_vibration_amplitude":2570.3477,"throttle_pos":0.6609447000000001,"tire_pressure_1_1":22,"tire_pressure_1_2":34,"tire_pressure_2_1":31,"tire_pressure_2_2":33,"accelerometer_1_1_value":0.0812409499999999,"accelerometer_1_2_value":3.3291862,"accelerometer_2_1_value":3.0881116,"accelerometer_2_2_value":0.033119857,"control_unit_firmware":1000}
+
+
+insert into cars.sensor values null {"time":1567607187,"car":100,"coolant_temp":191.3604,"intake_air_temp":19.891075,"intake_air_flow_speed":9.86402,"battery_percentage":-18.83759,"battery_voltage":242.07639,"current_draw":15.151241,"speed":38.703476,"engine_vibration_amplitude":2570.3477,"throttle_pos":0.6609447000000001,"tire_pressure_1_1":22,"tire_pressure_1_2":34,"tire_pressure_2_1":31,"tire_pressure_2_2":33,"accelerometer_1_1_value":0.0812409499999999,"accelerometer_1_2_value":3.3291862,"accelerometer_2_1_value":3.0881116,"accelerometer_2_2_value":0.033119857,"control_unit_firmware":1000}
+
+
+
+	If you run "select stream from cars" you will see one event there in the cep output stream.
+	Basically we simulated continulously increasing speed of a particular car for 3 times in 1000 sec window
 
 	Please go to https://bangdb.com/developer for more info on BangDB
 
