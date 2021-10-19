@@ -1,6 +1,8 @@
 Monitoring vehicle using various sensors data
 ---------------------------------------------
 
+You can watch the detailed hands on video for the demo here https://www.youtube.com/watch?v=DHfNxc-15Qc
+
 Scenario
 --------
 	
