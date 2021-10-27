@@ -1,3 +1,18 @@
+Please download BangDB from https://bangdb.com/download
+
+Once you have downloaded the db, then you will find following directory structure;
+
+        agent
+        bangdb_udf
+        bench
+        bin
+        cli
+        helpers
+        include
+        jars
+        libs
+
+
 It's really easy to get started with server and clients
 This is for ubuntu18
 
