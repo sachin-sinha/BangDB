@@ -63,8 +63,8 @@ Solution overview
 Steps to run the demo
 ---------------------
 
-	1. Install BangDB. There are many ways to do this, check out https://bangdb.com/download 
-	   You may checkout this repo as well and you get BangDB binaries as well with a install.sh file
+	1. Install BangDB. There are many ways to do this, check out https://bangdb.com/download or https://github.com/sachin-sinha/BangDB/releases
+	   You may checkout this repo as well
 
 	2. cd to the usecases/iot-car-sensor-analysis
 
