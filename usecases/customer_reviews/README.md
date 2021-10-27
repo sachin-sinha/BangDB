@@ -76,7 +76,7 @@ Steps to run the demo on your own
 	A. Set up BangDB on your machine
 
 		Note: If you have got the BangDB already, you may skip the step
-		a. Get the BangDB, please check out https://bangdb.com/download ot https://github.com/sachin-sinha/BangDB
+		a. Get the BangDB, please check out https://bangdb.com/download or https://github.com/sachin-sinha/BangDB/releases
 		b. Follow the read me file available in the folder and install the db
 
 	
