@@ -1,4 +1,17 @@
 # BangDB
+
+Get BangDB 2.0 from;
+	A. download from https://bangdb.com/download
+	B. Get from github release
+	C. wget https://github.com/sachin-sinha/BangDB/releases/download/v2.0/bangdb_2.0_centos7.tar.gz
+	D. Take the docker image from https://hub.docker.com/r/bangdb/bangdb
+
+However, it's recommended to register with BangDB (if you download from the website, you will have to register) to get updates
+
+It's pretty straight forward to install the server. 
+For detail info, please see the README present in the base folder or checkout https://bangdb.com/server-install/
+
+
 BangDB - nosql database
 
 	 _____________________
