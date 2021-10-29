@@ -4,7 +4,6 @@ User/customer messages/reviews analysis
 Find the detail steps to run this usecase on your machine at https://bangdb.com/blog/customer-message-analysis-predictive-streaming/
 
 Please find the video of this demo/usecase at https://www.youtube.com/watch?v=Z4Maz0y_rNk 
--------------
 
 Scenario
 
@@ -63,15 +62,7 @@ Benefits of BangDB
 
 Overview of the solution
 
-	1. We have a stream schema ecomm_schema. Here in these streams we will be ingesting data from various sources
-	2. Ingestion of data happens as and when data is created. Therefore agent monitors a set of files here and as we write data into these files
-	   agent will parse the data and send to bangdb server. We could directly write data using cli or using program which uses bangdb client etc...
-	3. We have 3 different data sources here;
-		a. product data - this is rathe non-streaming data, but still we could ingest these using agent
-		b. order data - as and when order is placed
-		c. customer or user reviews/ messages. This should be high volume streaming data
-	4. Sample data is provided here, however you may add more data to run it at larger scale etc.
-
+	Checkout the details at https://bangdb.com/blog/customer-message-analysis-predictive-streaming/
 
 Please let me know if you want more features in the use case to be added or another use case to be implemented and shared.
 Also do send me your feedback / comment at sachin@bangdb.com
