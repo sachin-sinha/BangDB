@@ -2,8 +2,8 @@
 
 Get BangDB 2.0 from;
 * Download from https://bangdb.com/download
-* Get from github release [ https://github.com/sachin-sinha/BangDB/releases ]
-* wget https://github.com/sachin-sinha/BangDB/releases/download/v2.0/bangdb_2.0_centos7.tar.gz
+* Get from github - clone this repo
+* wget https://bangdb.com/downloads/bangdb_2.0_centos7.tar.gz
 * Take the docker image from https://hub.docker.com/r/bangdb/bangdb
 
 However, it's recommended to register with BangDB (if you download from the website, you will have to register) to get regular updates
