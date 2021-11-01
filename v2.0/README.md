@@ -1,13 +1,12 @@
-BangDB 2.0 is supported for centos7, cenots8, ubuntu16, ubuntu18, ubuntu20 and rhel8
-For other platform, you may use the docker image https://hub.docker.com/r/bangdb/bangdb (see  https://bangdb.com/docker for more info )
+* BangDB 2.0 is supported for centos7, cenots8, ubuntu16, ubuntu18, ubuntu20 and rhel8<br>
+* For other platform, you may use the docker image https://hub.docker.com/r/bangdb/bangdb (see  https://bangdb.com/docker for more info )
 
-Get BangDB from https://bangdb.com/download
-It's better to get from the website as you can get update from us as necessary.
+* Get BangDB from https://bangdb.com/download  It's better to get from the website as you can get update from us as necessary.
 
-Or, You can also get from this repo (clone it)
+* Or, You can also get from this repo (clone it)
 
-Or, simply use wget;
-
+* Or, simply use wget;
+ 
 wget https://bangdb.com/downloads/bangdb_2.0_rhel8.tar.gz
 
 go to the base folder and follow the README to install the db
@@ -43,5 +42,5 @@ You can write directly to me at sachin@bangdb.com
 
 Kindly let me know you feedback, thoughts and what do you think we should add further and it will be a great help.
 
-Enjoy!
-Sach
+Enjoy!<br>
+Sachin
