@@ -14,6 +14,7 @@ go to the base folder and follow the README to install the db
 
 
 About BangDB 2.0
+----------------
 
 BangDB 2.0 is a stable release.
 
