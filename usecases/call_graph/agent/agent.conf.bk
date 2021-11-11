@@ -1,0 +1,87 @@
+{
+  "mode": 1,
+  "agentid": 2323,
+  "ssl": 0,
+  "collectors": [
+    {
+      "name": "cdr",
+      "file": "../mon/log_calls.csv",
+      "dir": "../mon/",
+      "regex": [],
+      "fields": [],
+      "parse_config": {
+        "training_details": {
+          "expected_format": "JSON",
+          "input_format": "CSV",
+          "SEP": ","
+        },
+        "attr_list": [
+          {
+            "name": "from_dt",
+            "position": 0,
+            "dtype": 5
+          },
+          {
+            "name": "to_dt",
+            "position": 1,
+            "dtype": 5
+          },
+          {
+            "name": "from_city",
+            "position": 2,
+            "dtype": 5
+          },
+          {
+            "name": "from_gender",
+            "position": 3,
+            "dtype": 5
+          },
+          {
+            "name": "from_name",
+            "position": 4,
+            "dtype": 5
+          },
+          {
+            "name": "from_number",
+            "position": 5,
+            "dtype": 5
+          },
+          {
+            "name": "to_city",
+            "position": 6,
+            "dtype": 5
+          },
+          {
+            "name": "to_gender",
+            "position": 7,
+            "dtype": 5
+          },
+          {
+            "name": "to_name",
+            "position": 8,
+            "dtype": 5
+          },
+          {
+            "name": "to_number",
+            "position": 9,
+            "dtype": 5
+          }
+        ]
+      },
+      "server_ip": "0.0.0.0",
+      "server_port": "10101",     
+      "stream_name": "calls",
+      "schema_name": "cdr",
+      "add_ts": 1,
+      "state": 1,
+      "read_from": 2,
+      "cfg_upd_freq": 100,
+      "col_freq": 60,
+      "mode": 1,
+      "nthreads": 1,
+      "isssl": 0,
+      "type": 1,
+      "parse_method": 6
+    }
+  ]
+}

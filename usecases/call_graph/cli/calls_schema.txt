@@ -1,0 +1,25 @@
+	{
+		"schema":"cdr", 
+		"streams":[
+				{
+					"name":"calls","type":1, "swsz":86400,
+					"inpt":[],
+					"attr":[
+						{"name":"from_name","type":"STRING","sidx":1,"kysz":32,"stat":"UCOUNT"},
+						{"name":"from_gender","type":"STRING","sidx":1},
+						{"name":"from_city","type":"STRING","sidx":1,"stat":"UCOUNT"},
+						{"name":"from_number","type":"STRING","sidx":1,"stat":"UCOUNT"},
+						{"name":"from_dt","type":"STRING"},
+						{"name":"to_name","type":"STRING","sidx":1,"kysz":32,"stat":"UCOUNT"},
+						{"name":"to_gender","type":"STRING","sidx":1},
+						{"name":"to_city","type":"STRING","sidx":1,"stat":"UCOUNT"},
+						{"name":"to_number","type":"STRING","sidx":1,"stat":"UCOUNT"},
+						{"name":"to_dt","type":"STRING"},
+						{"name":"from_month","type":"LONG"},
+						{"name":"to_month","type":"LONG"}
+					],
+					"catr":[{"name":"from_month","type":"LONG","opnm":"MONTH","iatr":["from_dt"]},{"name":"to_month","type":"LONG","opnm":"MONTH","iatr":["to_dt"]}],
+					"rels":[{"sub":"from_name","sub_label":"person","obj":"to_name","obj_label":"person","rel":"CALLS","sub_props":["from_gender","from_city","from_number"],"obj_props":["to_gender","to_city","to_number"],"rel_props":["from_dt","from_month","to_dt","to_month"]}]
+				}
+		]
+	}
