@@ -2,13 +2,13 @@ Let's say we need to store call data such that it can be analysed in different w
 There are people calling each other and we capture name of the caller, callee, phone number, location, gender of both caller and callee along with timestamp of call start and end.
 Following queries we would be interested in
 
- A. list of persons calling others
- B. list of persons calling each other, person A calls B and B calls A
- C. list of persons not calling each other, person A calls B but B doesn't call A
- D. list of persons with gender 'Man' calling other persons
- E. list of persons with gender 'Man' calling 'Woman'
- F. list of persons with gender 'Man' and from 'Pattaya' calling other persons with gender 'Man'
- G. person who received call from 'Henry' in month of Jan
+ 	A. list of persons calling others
+ 	B. list of persons calling each other, person A calls B and B calls A
+ 	C. list of persons not calling each other, person A calls B but B doesn't call A
+ 	D. list of persons with gender 'Man' calling other persons
+ 	E. list of persons with gender 'Man' calling 'Woman'
+ 	F. list of persons with gender 'Man' and from 'Pattaya' calling other persons with gender 'Man'
+ 	G. person who received call from 'Henry' in month of Jan
 
 The datafile : log_of_calls.csv
 Schema : calls_schema.txt
