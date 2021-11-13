@@ -41,7 +41,8 @@ Step 4: We would like to run following queries using cli
 	bangdb> USE GRAPH cdr_graph
 
 	A. list of persons calling others
-		S=>(person:*)-[CALLS]->(person:*)
+	
+	bangdb> S=>(person:*)-[CALLS]->(person:*)
 
 	+---------------+-----+----------------+
 	|sub            |pred |             obj|
@@ -62,7 +63,8 @@ Step 4: We would like to run following queries using cli
 
 
 	B. list of persons calling each other, person A calls B and B calls A
-		S{SYMM}=>(person:*)-[CALLS]->(person:*)
+		
+	bangdb> S{SYMM}=>(person:*)-[CALLS]->(person:*)
 
 	+--------------+-----+--------------+
 	|sub           |pred |           obj|
@@ -74,7 +76,8 @@ Step 4: We would like to run following queries using cli
 
 
 	C. list of persons not calling each other, person A calls B but B doesn't call A
-		S{ASYMM}=>(person:*)-[CALLS]->(person:*)
+		
+	bangdb> S{ASYMM}=>(person:*)-[CALLS]->(person:*)
 
 	+---------------+-----+----------------+
 	|sub            |pred |             obj|
@@ -90,7 +93,8 @@ Step 4: We would like to run following queries using cli
 
 
 	D. list of persons with gender 'Man' calling other persons
-		S=>(@p1 person:* {from_gender = "Man"})-[@c CALLS]->(@p2 person:*); RETURN p1.name AS p1name, p2.name AS p2name
+		
+	bangdb> S=>(@p1 person:* {from_gender = "Man"})-[@c CALLS]->(@p2 person:*); RETURN p1.name AS p1name, p2.name AS p2name
 
 	+--------+-------+
 	|p1name  |p2name |
@@ -104,7 +108,8 @@ Step 4: We would like to run following queries using cli
 
 
 	E. list of persons with gender 'Man' calling 'Woman'
-		S=>(@p1 person:* {from_gender = "Man"})-[@c CALLS]->(@p2 person:* {to_gender = "Woman"}); RETURN p1.name AS p1name, p2.name AS p2name
+		
+	bangdb> S=>(@p1 person:* {from_gender = "Man"})-[@c CALLS]->(@p2 person:* {to_gender = "Woman"}); RETURN p1.name AS p1name, p2.name AS p2name
 
 	+--------+------+
 	|p1name  |p2name|
@@ -114,7 +119,8 @@ Step 4: We would like to run following queries using cli
 
 
 	F. list of persons with gender 'Man' and from 'Pattaya' calling other persons with gender 'Man'
-		S=>(@p1 person:* {from_gender = "Man" AND from_city = "Pattaya"})-[@c CALLS]->(@p2 person:* {to_gender = "Man"}); RETURN p1.name AS p1name, p1.from_city AS fcity, p2.name AS p2name, p2.to_city AS tcity
+	
+	bangdb> S=>(@p1 person:* {from_gender = "Man" AND from_city = "Pattaya"})-[@c CALLS]->(@p2 person:* {to_gender = "Man"}); RETURN p1.name AS p1name, p1.from_city AS fcity, p2.name AS p2name, p2.to_city AS tcity
 
 	+------+-------+-------+------------+
 	|p1name|fcity  | p2name|tcity       |
@@ -126,7 +132,8 @@ Step 4: We would like to run following queries using cli
 
 
 	G. person who received call from 'Henry' in month of Jan
-		S=>(@p1 person:Henry)-[@c CALLS {from_month = 0}]->(@p2 person:*); RETURN p2.name AS p2name
+		
+	bangdb> S=>(@p1 person:Henry)-[@c CALLS {from_month = 0}]->(@p2 person:*); RETURN p2.name AS p2name
 
 	+------+
 	|p2name|
