@@ -1,6 +1,6 @@
 Let's say we need to store call data such that it can be analysed in different ways using set of queries.
-There are people calling each other and we capture name of the caller, callee, phone number, location, gender of both caller and callee along with timestamp of call start and end.
-Following queries we would be interested in
+There are people calling each other and we capture name of the caller, callee, phone number, location, gender of both caller and callee along with timestamp of call start and end.<br>
+Following queries, let's say we would be interested in. If you notice some of these queries could become very complex and time consuming with regular system, but when we use Graph model on BangDB with Cypher* then the query could be really simple and efficient
 
  	A. list of persons calling others
  	B. list of persons calling each other, person A calls B and B calls A
