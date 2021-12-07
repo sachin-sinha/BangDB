@@ -90,7 +90,7 @@ start() {
 #	then
 #		bash ${MONITOR_SCRIPT} "bangdb-server-2.0" "sachin@bangdb.com" "${BINARY} -e" &
 #	else
-		${BINARY} -b yes
+		${BINARY} -c hybrid -w 18080 -b yes
 		RETVAL=$?
 #	fi
 	sleep 4
