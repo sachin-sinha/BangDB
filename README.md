@@ -116,8 +116,8 @@ go to the base folder of the bangdb (v2.0/bangdb-2.0_<OS>)
 Deal with Prereqs - The binary links with several libraries, few of these are provided along with the server in the lib folder.
 However, to ensure you have following libs on the server run the install.sh
 
->sudo apt-get update (or sudo yum update)
->sudo bash install.sh
+   > sudo apt-get update (or sudo yum update)
+   > sudo bash install.sh
 
 ..................................................................................................................
 
