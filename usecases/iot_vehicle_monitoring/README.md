@@ -8,7 +8,7 @@ Scenario
 	
 	Today's vehicle has lots of sensors generating lots of different data which if captured could be used
 	for vehicle monitoring, predictive analytics, finding anomalies and taking corrective actions as needed
-	either locally, remotely or in self healing mannner
+	either locally, remotely or in self-healing manner
 
 	The various data points (sensors) are as follows;
 		time
