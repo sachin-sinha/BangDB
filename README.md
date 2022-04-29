@@ -231,3 +231,12 @@ Please feel free to write to me at sachin@bangdb.com for any info, clarity, feed
 Enjoy!
 <br>Sachin
  
+# Use cases
+* I.O.T. vehicle monitoring 
+* Analytics from customer reviews 
+* Fraud detection 
+* Supply chain management 
+* and many more...
+
+Check out detailed analysis of all examples here:
+https://bangdb.com/docs/bangdb-2-0-use-cases/
