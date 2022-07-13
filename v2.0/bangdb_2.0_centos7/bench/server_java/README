@@ -8,6 +8,8 @@ related to development of app using BangDB
 
 Here are the steps to run the bench
 
+Start the bangdb server
+
 First, let's build the bench
 
 > bash make-app.sh

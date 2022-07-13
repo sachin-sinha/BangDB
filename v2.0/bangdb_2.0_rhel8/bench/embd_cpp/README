@@ -14,7 +14,7 @@ A. link with the libbangdb-embd-cpp only
 B. include the headers in the include folder
 
 that's it!
-You may use following to build sample.cpp and run [ pls do start server before running it ]
+You may use following to build sample.cpp and run. This is embedded version hence it doesn't need server, simply run it
 
 compile ....
 	g++ -O3 -Wall sample.cpp -osample -I/usr/local/include/bangdb-embd -lbangdb-embd-cpp

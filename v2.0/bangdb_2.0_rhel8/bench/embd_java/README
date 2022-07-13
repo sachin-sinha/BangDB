@@ -18,7 +18,7 @@ A. link with the bangdb-embd-cpp only
 B. include the headers in the include folder
 
 that's it!
-You may use following to build sample.cpp and run [ pls do start server before running it ]
+You may use following to build sample.cpp and run. This is embedded version hence it doesn't need server, simply run it
 
 compile ....
 	javac -cp .:../../jars/bangdb-embd-java.jar:.../../jars/json-20190722.jar test/Main.java test/Sample.java
