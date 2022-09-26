@@ -23,7 +23,7 @@ It prints return code (error or success) and then the actual value returned
   B. to query a Graph or run cypher query
      The uri structure is /graph/<graph_name>/query
 
-     Therefore, for graph name "myg", we can execute the cypher query like following;
+  Therefore, for graph name "myg", we can execute the cypher query like following;
      python3 bangdb_rest_cli.py -m POST -u /graph/myg/query -p 'S=>(@p Person:*); RETURN p.name AS Person'
      
   C. To get all patient info for hl7
