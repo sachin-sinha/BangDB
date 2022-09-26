@@ -25,6 +25,10 @@ It prints return code (error or success) and then the actual value returned
 
      Therefore, for graph name "myg", we can execute the cypher query like following;
      python3 bangdb_rest_cli.py -m POST -u /graph/myg/query -p 'S=>(@p Person:*); RETURN p.name AS Person'
+     
+  C. To get all patient info for hl7
+  
+     python3 bangdb_rest_cli.py -m POST -u /graph/hl7_graph/query -p 'S=>(@p Patient:*); RETURN p.name AS patient'
 
 To see most of the REST API supported by BangDB, please visit https://bangdb.com/docs/bangdb-2-0-rest-api/api-2-0/introduction/
 
