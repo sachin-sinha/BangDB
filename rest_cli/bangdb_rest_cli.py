@@ -7,7 +7,7 @@ import json
 if not sys.warnoptions:
     warnings.simplefilter("ignore")
 
-end_point = "https://192.168.1.105:18080"
+end_point = "https://hl7.bangdb.com:18080"
 headers = {"Content-Type": "application/json", "Accept": "text/plain"}
 
 # a sample get request
