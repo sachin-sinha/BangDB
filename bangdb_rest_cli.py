@@ -9,7 +9,7 @@ import json
 if not sys.warnoptions:
     warnings.simplefilter("ignore")
 
-headers = {"Content-Type": "application/json", "Accept": "text/plain"}
+headers = {"Content-Type": "application/json", "Accept": "text/plain", "x-bang-api-key": "6709188284852932043"}
 
 # a sample get request
 def get_call(url):
@@ -40,7 +40,6 @@ def main():
     uri = ''
     payload = ''
     end_point = ''
-    port = ''
     insert_event = ''
     argv = sys.argv[1:]
     if len(argv) < 3:
@@ -86,7 +85,7 @@ def main():
     if end_point:
         print('rest call for method: [', method, '], uri: [', uri, '], endpoint: [', end_point, ']')
     else:
-        end_point = "https://hl7.bangdb.com:18080"
+        end_point = "https://testbe.bangdb.com:18080"
         print('rest call for method: [', method, '], uri: [', uri, ']')
 
     if method == 'GET':
