@@ -90,19 +90,20 @@ v=$(awk -F= '/^VERSION_ID/{print $2;exit}' /etc/os-release)
 if [ $osv -eq 2 ]
 then
 	if [ $v = '"16.04"' ]; then
-		wget $ubuntu16
+		echo "installing for ubuntu 16 ..."
+		wget --no-check-certificate $ubuntu16
 		tar -xzvf bangdb-agent-ubuntu16.tar.gz
 		cd bangdb-agent-ubuntu16
 		ssl_configure
-		./bangdb-agent_s-2.0 -b yes -c hybrid -w 18081 -s 0.0.0.0:10102 -f linux_agent.com
+		bangdb-agent-ssl start
 	fi
 	if [ $v = '"18.04"' ]; then
-		wget $ubuntu18
+		echo "installing for ubuntu 18 ..."
+		wget --no-check-certificate $ubuntu18
 		tar -xzvf bangdb-agent-ubuntu18.tar.gz
-		cd bangdb-agent-ubuntu168
+		cd bangdb-agent-ubuntu18
 		ssl_configure
-		./bangdb-agent_s-2.0 -b yes -c hybrid -w 18081 -s 0.0.0.0:10102 -f linux_agent.com
+		bangdb-agent-ssl start
 	fi
 fi
-
 echo "bangdb-agent install done!"
