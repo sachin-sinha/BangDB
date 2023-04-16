@@ -1,0 +1,108 @@
+#!/bin/bash
+## find os type
+osv=0
+x=$(awk -F= '/^ID/{print $2;exit}' /etc/os-release)
+if [ "$x" = '"centos"' ]; then
+	echo "installing for centos"
+	osv=1
+elif [ "$x" = 'ubuntu' ]; then
+	echo "installing for ubuntu"
+	osv=2
+elif [ "$x" = '"rhel"' ]; then
+	echo "installing for red hat"
+	osv=3
+else
+	echo "unkown os [ $x ] , quitting..."
+	osv=0
+	exit
+fi
+
+alias brc='source ~/.bashrc'
+
+#### installing necessary packages and libs
+if [ $osv -eq 2 ]
+then
+	sudo apt-get install -y build-essential
+
+	lib=libopenssl
+	v=$(ldconfig -p | grep $lib)
+	if [ -z "$v" ]
+	then
+		echo "$lib is not installed, installing ... "
+		sudo apt-get install -y $lib
+	else
+		echo "$lib is installed"
+	fi
+	lib=libcurl4-openssl-dev
+	v=$(ldconfig -p | grep $lib)
+	if [ -z "$v" ]
+	then
+		echo "$lib is not installed, installing ... "
+		sudo apt-get install -y $lib
+		sudo apt-get install -y libcurl
+	else
+		echo "$lib is installed"
+	fi
+
+#else for centos and rhel
+else
+	sudo yum -y group install 'Development Tools'
+	sudo yum -y install curl-devel
+	lib=openssl
+	v=$(ldconfig -p | grep $lib)
+	if [ -z "$v" ]
+	then
+		echo "$lib is not installed, installing ... "
+		sudo yum -y install $lib
+	else
+		echo "$lib is installed"
+	fi
+	lib=curl
+	v=$(ldconfig -p | grep $lib)
+	if [ -z "$v" ]
+	then
+		echo "$lib is not installed, installing ... "
+		sudo yum -y install $lib
+	else
+		echo "$lib is installed"
+	fi
+fi
+
+#binary=bangdb-agent_s-2.0
+ubuntu16=https://github.com/sachin-sinha/BangDB/raw/master/linux_mon/all/bangdb-agent-ubuntu16.tar.gz
+ubuntu18=https://github.com/sachin-sinha/BangDB/raw/master/linux_mon/all/bangdb-agent-ubuntu18.tar.gz
+
+# install key and certificate
+ssl_configure() {
+	openssl req -nodes -newkey rsa:2048 -keyout example.key -out example.csr -subj "/C=IN/ST=Bangalore/L=Bangalore/O=Global Security/OU=BangDB/CN=bangdb.com"
+	openssl x509 -req -in example.csr -signkey example.key -out example.crt
+	openssl rsa -in example.key -text > key.pem
+	openssl x509 -inform PEM -in example.crt > cert.pem
+	mkdir certificate
+	mv key.pem cert.pem certificate	
+	# cleanup
+	rm example.crt example.csr example.key
+}
+
+#get the agent now
+v=$(awk -F= '/^VERSION_ID/{print $2;exit}' /etc/os-release)
+
+if [ $osv -eq 2 ]
+then
+	if [ $v = '"16.04"' ]; then
+		wget $ubuntu16
+		tar -xzvf bangdb-agent-ubuntu16.tar.gz
+		cd bangdb-agent-ubuntu16
+		ssl_configure
+		./bangdb-agent_s-2.0 -b yes -c hybrid -w 18081 -s 0.0.0.0:10102 -f linux_agent.com
+	fi
+	if [ $v = '"18.04"' ]; then
+		wget $ubuntu18
+		tar -xzvf bangdb-agent-ubuntu18.tar.gz
+		cd bangdb-agent-ubuntu168
+		ssl_configure
+		./bangdb-agent_s-2.0 -b yes -c hybrid -w 18081 -s 0.0.0.0:10102 -f linux_agent.com
+	fi
+fi
+
+echo "bangdb-agent install done!"
