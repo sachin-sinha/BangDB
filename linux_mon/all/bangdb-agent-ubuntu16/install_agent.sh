@@ -68,7 +68,8 @@ else
 	fi
 fi
 
-#binary=bangdb-agent_s-2.0
+name=bangdb-agent-ssl
+binary="./${name}"
 ubuntu16=https://github.com/sachin-sinha/BangDB/raw/master/linux_mon/all/bangdb-agent-ubuntu16.tar.gz
 ubuntu18=https://github.com/sachin-sinha/BangDB/raw/master/linux_mon/all/bangdb-agent-ubuntu18.tar.gz
 
@@ -78,8 +79,8 @@ ssl_configure() {
 	openssl x509 -req -in example.csr -signkey example.key -out example.crt
 	openssl rsa -in example.key -text > key.pem
 	openssl x509 -inform PEM -in example.crt > cert.pem
-	mkdir certificate
-	mv key.pem cert.pem certificate	
+	mkdir bin/certificate
+	mv key.pem cert.pem bin/certificate	
 	# cleanup
 	rm example.crt example.csr example.key
 }
@@ -90,19 +91,20 @@ v=$(awk -F= '/^VERSION_ID/{print $2;exit}' /etc/os-release)
 if [ $osv -eq 2 ]
 then
 	if [ $v = '"16.04"' ]; then
-		wget $ubuntu16
+		echo "installing for ubuntu 16 ..."
+		wget --no-check-certificate $ubuntu16
 		tar -xzvf bangdb-agent-ubuntu16.tar.gz
 		cd bangdb-agent-ubuntu16
 		ssl_configure
-		./bangdb-agent_s-2.0 -b yes -c hybrid -w 18081 -s 0.0.0.0:10102 -f linux_agent.com
+		${binary} start
 	fi
 	if [ $v = '"18.04"' ]; then
-		wget $ubuntu18
+		echo "installing for ubuntu 18 ..."
+		wget --no-check-certificate $ubuntu18
 		tar -xzvf bangdb-agent-ubuntu18.tar.gz
-		cd bangdb-agent-ubuntu168
+		cd bangdb-agent-ubuntu18
 		ssl_configure
-		./bangdb-agent_s-2.0 -b yes -c hybrid -w 18081 -s 0.0.0.0:10102 -f linux_agent.com
+		${binary} start
 	fi
 fi
-
 echo "bangdb-agent install done!"

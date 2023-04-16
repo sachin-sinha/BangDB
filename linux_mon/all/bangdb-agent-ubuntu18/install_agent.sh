@@ -68,7 +68,8 @@ else
 	fi
 fi
 
-#binary=bangdb-agent_s-2.0
+name=bangdb-agent-ssl
+binary="./${name}"
 ubuntu16=https://github.com/sachin-sinha/BangDB/raw/master/linux_mon/all/bangdb-agent-ubuntu16.tar.gz
 ubuntu18=https://github.com/sachin-sinha/BangDB/raw/master/linux_mon/all/bangdb-agent-ubuntu18.tar.gz
 
@@ -95,7 +96,7 @@ then
 		tar -xzvf bangdb-agent-ubuntu16.tar.gz
 		cd bangdb-agent-ubuntu16
 		ssl_configure
-		bangdb-agent-ssl start
+		${binary} start
 	fi
 	if [ $v = '"18.04"' ]; then
 		echo "installing for ubuntu 18 ..."
@@ -103,7 +104,7 @@ then
 		tar -xzvf bangdb-agent-ubuntu18.tar.gz
 		cd bangdb-agent-ubuntu18
 		ssl_configure
-		bangdb-agent-ssl start
+		${binary} start
 	fi
 fi
 echo "bangdb-agent install done!"
