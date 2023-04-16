@@ -78,8 +78,8 @@ ssl_configure() {
 	openssl x509 -req -in example.csr -signkey example.key -out example.crt
 	openssl rsa -in example.key -text > key.pem
 	openssl x509 -inform PEM -in example.crt > cert.pem
-	mkdir certificate
-	mv key.pem cert.pem certificate	
+	mkdir bin/certificate
+	mv key.pem cert.pem bin/certificate	
 	# cleanup
 	rm example.crt example.csr example.key
 }
