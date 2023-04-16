@@ -1,5 +1,8 @@
 #!/bin/bash
 ## find os type
+        ip=$1
+        port=$2
+	echo "ip = $ip, port = $port"
 osv=0
 x=$(awk -F= '/^ID/{print $2;exit}' /etc/os-release)
 if [ "$x" = '"centos"' ]; then
@@ -85,6 +88,11 @@ ssl_configure() {
 	rm example.crt example.csr example.key
 }
 
+configure_ip_port() {
+	sed -i -e "s/\(\"server_ip\":\).*/\1\"$ip\",/" \
+	-e "s/\(\"server_port\":\).*/\1\"$port\",/"  bin/linux_agent.conf
+}
+
 #get the agent now
 v=$(awk -F= '/^VERSION_ID/{print $2;exit}' /etc/os-release)
 
@@ -96,6 +104,7 @@ then
 		tar -xzvf bangdb-agent-ubuntu16.tar.gz
 		cd bangdb-agent-ubuntu16
 		ssl_configure
+		configure_ip_port
 		${binary} start
 	fi
 	if [ $v = '"18.04"' ]; then
@@ -104,6 +113,7 @@ then
 		tar -xzvf bangdb-agent-ubuntu18.tar.gz
 		cd bangdb-agent-ubuntu18
 		ssl_configure
+		configure_ip_port
 		${binary} start
 	fi
 fi
