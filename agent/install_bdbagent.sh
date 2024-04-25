@@ -151,8 +151,8 @@ ssl_configure() {
 }
 
 install_agentcmd() {
-	sudo cp cli/bdbagent_s-2.0 /usr/local/bin
-	sudo ln -sf /usr/local/bin/bdbagent_s-2.0 /usr/local/bin/bdbagent
+	sudo cp cli/bdbagent-2.0 /usr/local/bin
+	sudo ln -sf /usr/local/bin/bdbagent-2.0 /usr/local/bin/bdbagent
 	grp=bangdb
 	if [ $(getent group $grp) ]; then
 		echo "group $grp exists."
