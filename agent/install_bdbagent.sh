@@ -151,8 +151,6 @@ ssl_configure() {
 }
 
 install_agentcmd() {
-	sudo cp cli/bdbagent-2.0 /usr/local/bin
-	sudo ln -sf /usr/local/bin/bdbagent-2.0 /usr/local/bin/bdbagent
 	grp=bangdb
 	if [ $(getent group $grp) ]; then
 		echo "group $grp exists."
@@ -163,8 +161,31 @@ install_agentcmd() {
 	fi
 
 	sudo mkdir /opt/bangdb-agent
+	sudo mkdir /opt/bangdb-agent/bin
+	sudo mkdir /opt/bangdb-agent/cli
 	sudo chown -R $USER:bangdb /opt/bangdb-agent
-	sudo mv * /opt/bangdb-agent
+	sudo mv bangdb-server-ssl /opt/bangdb-agent/
+	sudo mv bin/bangdb-agent_s-2.0 /opt/bangdb-agent/bin/
+	sudo cp cli/bdbagent-2.0 /opt/bangdb-agent/cli/
+	sudo ln -sf /opt/bangdb-agent/cli/bdbagent-2.0 /usr/local/bin/bdbagent
+	certdir=/opt/bangdb-agent/bin/certificate
+	if [ -d $certdir ]; then
+		echo "certificates already existing"
+	else
+		sudo cp -r certificate /opt/bangdb-agent/bin/
+	fi
+	agentfile=agent.cfg
+	if [ -f $agentfile ]; then
+		echo "agent.cfg file exists"
+	else
+		sudo cp bin/agent.cfg /opt/bangdb-agent/bin/
+	fi
+	bangdbcfg=bangdb.config
+	if [ -f $bangdbcfg ]; then
+		echo "bangdb.config file exists"
+	else
+		sudo cp bin/bangdb.config /opt/bangdb-agent/bin/
+	fi
 	cd ..
 	rm -rf bangdb-agent-* bangdb-agent-*.tar.gz
 }
