@@ -164,7 +164,7 @@ install_agentcmd() {
 	sudo mkdir /opt/bangdb-agent/bin
 	sudo mkdir /opt/bangdb-agent/cli
 	sudo chown -R $USER:bangdb /opt/bangdb-agent
-	sudo mv bangdb-server-ssl /opt/bangdb-agent/
+	sudo mv bangdb-agent-ssl /opt/bangdb-agent/
 	sudo mv bin/bangdb-agent_s-2.0 /opt/bangdb-agent/bin/
 	sudo cp cli/bdbagent-2.0 /opt/bangdb-agent/cli/
 	sudo ln -sf /opt/bangdb-agent/cli/bdbagent-2.0 /usr/local/bin/bdbagent
@@ -172,13 +172,13 @@ install_agentcmd() {
 	if [ -d $certdir ]; then
 		echo "certificates already existing"
 	else
-		sudo cp -r certificate /opt/bangdb-agent/bin/
+		sudo cp -r bin/certificate /opt/bangdb-agent/bin/
 	fi
-	agentfile=agent.cfg
+	agentfile=agent.conf
 	if [ -f $agentfile ]; then
-		echo "agent.cfg file exists"
+		echo "agent.conf file exists"
 	else
-		sudo cp bin/agent.cfg /opt/bangdb-agent/bin/
+		sudo cp bin/agent.conf /opt/bangdb-agent/bin/
 	fi
 	bangdbcfg=bangdb.config
 	if [ -f $bangdbcfg ]; then
