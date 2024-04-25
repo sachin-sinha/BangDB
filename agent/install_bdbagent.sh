@@ -166,7 +166,7 @@ install_agentcmd() {
 	sudo chown -R $USER:bangdb /opt/bangdb-agent
 	sudo mv * /opt/bangdb-agent
 	cd ..
-	rm -rf bangdb-agent-ubuntu16 bangdb-agent-ubuntu16.tar.gz
+	rm -rf bangdb-agent-* bangdb-agent-*.tar.gz
 }
 
 #get the agent now
