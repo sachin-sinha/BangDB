@@ -125,16 +125,16 @@ else
 fi
 
 #binary=bangdb-agent_s-2.0
-ubuntu16=https://github.com/sachin-sinha/BangDB/raw/master/linux_mon/all/bangdb-agent-ubuntu16.tar.gz
-ubuntu18=https://github.com/sachin-sinha/BangDB/raw/master/linux_mon/all/bangdb-agent-ubuntu18.tar.gz
-ubuntu20=https://github.com/sachin-sinha/BangDB/raw/master/linux_mon/all/bangdb-agent-ubuntu20.tar.gz
-ubuntu22=https://github.com/sachin-sinha/BangDB/raw/master/linux_mon/all/bangdb-agent-ubuntu22.tar.gz
-rhel9=https://github.com/sachin-sinha/BangDB/raw/master/linux_mon/all/bangdb-agent-rhel9.tar.gz
-rhel8=https://github.com/sachin-sinha/BangDB/raw/master/linux_mon/all/bangdb-agent-rhel8.tar.gz
-rhel7=https://github.com/sachin-sinha/BangDB/raw/master/linux_mon/all/bangdb-agent-rhel7.tar.gz
-centos9=https://github.com/sachin-sinha/BangDB/raw/master/linux_mon/all/bangdb-agent-centos9.tar.gz
-centos8=https://github.com/sachin-sinha/BangDB/raw/master/linux_mon/all/bangdb-agent-centos8.tar.gz
-centos7=https://github.com/sachin-sinha/BangDB/raw/master/linux_mon/all/bangdb-agent-centos7.tar.gz
+ubuntu16=https://github.com/sachin-sinha/BangDB/raw/master/agent/all/bangdb-agent-ubuntu16.tar.gz
+ubuntu18=https://github.com/sachin-sinha/BangDB/raw/master/agent/all/bangdb-agent-ubuntu18.tar.gz
+ubuntu20=https://github.com/sachin-sinha/BangDB/raw/master/agent/all/bangdb-agent-ubuntu20.tar.gz
+ubuntu22=https://github.com/sachin-sinha/BangDB/raw/master/agent/all/bangdb-agent-ubuntu22.tar.gz
+rhel9=https://github.com/sachin-sinha/BangDB/raw/master/agent/all/bangdb-agent-rhel9.tar.gz
+rhel8=https://github.com/sachin-sinha/BangDB/raw/master/agent/all/bangdb-agent-rhel8.tar.gz
+rhel7=https://github.com/sachin-sinha/BangDB/raw/master/agent/all/bangdb-agent-rhel7.tar.gz
+centos9=https://github.com/sachin-sinha/BangDB/raw/master/agent/all/bangdb-agent-centos9.tar.gz
+centos8=https://github.com/sachin-sinha/BangDB/raw/master/agent/all/bangdb-agent-centos8.tar.gz
+centos7=https://github.com/sachin-sinha/BangDB/raw/master/agent/all/bangdb-agent-centos7.tar.gz
 
 
 # install key and certificate
