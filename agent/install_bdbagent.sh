@@ -163,7 +163,6 @@ install_agentcmd() {
 	sudo mkdir /opt/bangdb-agent
 	sudo mkdir /opt/bangdb-agent/bin
 	sudo mkdir /opt/bangdb-agent/cli
-	sudo chown -R $USER:bangdb /opt/bangdb-agent
 	sudo mv bangdb-agent-ssl /opt/bangdb-agent/
 	sudo mv bin/bangdb-agent_s-2.0 /opt/bangdb-agent/bin/
 	sudo cp cli/bdbagent-2.0 /opt/bangdb-agent/cli/
@@ -188,6 +187,7 @@ install_agentcmd() {
 	fi
 	cd ..
 	rm -rf bangdb-agent-* bangdb-agent-*.tar.gz
+	sudo chown -R $USER:bangdb /opt/bangdb-agent
 }
 
 #get the agent now
