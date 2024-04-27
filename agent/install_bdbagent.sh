@@ -109,7 +109,7 @@ else
 	then
 		echo "$lib is not installed, installing ... "
 		sudo yum -y install $lib
-		sudo yum -y install net-snmp-devl
+		sudo yum -y install net-snmp-devel
 	else
 		echo "$lib is installed"
 	fi
