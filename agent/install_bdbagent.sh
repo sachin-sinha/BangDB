@@ -129,6 +129,7 @@ ubuntu16=https://github.com/sachin-sinha/BangDB/raw/master/agent/all/bangdb-agen
 ubuntu18=https://github.com/sachin-sinha/BangDB/raw/master/agent/all/bangdb-agent-ubuntu18.tar.gz
 ubuntu20=https://github.com/sachin-sinha/BangDB/raw/master/agent/all/bangdb-agent-ubuntu20.tar.gz
 ubuntu22=https://github.com/sachin-sinha/BangDB/raw/master/agent/all/bangdb-agent-ubuntu22.tar.gz
+ubuntu23=https://github.com/sachin-sinha/BangDB/raw/master/agent/all/bangdb-agent-ubuntu23.tar.gz
 rhel9=https://github.com/sachin-sinha/BangDB/raw/master/agent/all/bangdb-agent-rhel9.tar.gz
 rhel8=https://github.com/sachin-sinha/BangDB/raw/master/agent/all/bangdb-agent-rhel8.tar.gz
 rhel7=https://github.com/sachin-sinha/BangDB/raw/master/agent/all/bangdb-agent-rhel7.tar.gz
@@ -227,6 +228,15 @@ then
 		wget --no-check-certificate $ubuntu22
 		tar -xzvf bangdb-agent-ubuntu22.tar.gz
 		cd bangdb-agent-ubuntu22
+		ssl_configure
+		install_agentcmd
+		#bangdb-agent-ssl start
+	fi
+	if [ $v = '"23.10"' ]; then
+		echo "installing for ubuntu 23 ..."
+		wget --no-check-certificate $ubuntu23
+		tar -xzvf bangdb-agent-ubuntu23.tar.gz
+		cd bangdb-agent-ubuntu23
 		ssl_configure
 		install_agentcmd
 		#bangdb-agent-ssl start
