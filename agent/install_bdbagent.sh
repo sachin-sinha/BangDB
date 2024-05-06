@@ -151,6 +151,21 @@ ssl_configure() {
 	rm example.crt example.csr example.key
 }
 
+rsyslog_configure() {
+	usermod -aG adm,root  bangdb
+	cp /etc/rsyslog.conf /etc/rsyslog.conf.bk
+
+
+	if grep -q '^$ActionFileDefaultTemplate' /etc/rsyslog.conf
+	then
+    		#echo "line is in the file"
+    		sed -i '/$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat/a $template precise,"%syslogpriority-text% %syslogfacility-text% %TIMESTAMP:1:10:date-rfc3339%T%TIMESTAMP:19:12:date-rfc3339% %HOSTNAME% %syslogtag% %msg%\\n" \n$ActionFileDefaultTemplate precise' /etc/rsyslog.conf
+	else
+    		#echo "line is not present"
+    		sed -i '/$RepeatedMsgReduction on/a $template precise,"%syslogpriority-text% %syslogfacility-text% %TIMESTAMP:1:10:date-rfc3339%T%TIMESTAMP:19:12:date-rfc3339% %HOSTNAME% %syslogtag% %msg%\\n" \n$ActionFileDefaultTemplate precise' /etc/rsyslog.conf
+	fi
+}
+
 install_agentcmd() {
 	grp=bangdb
 	if [ $(getent group $grp) ]; then
@@ -189,6 +204,8 @@ install_agentcmd() {
 	cd ..
 	rm -rf bangdb-agent-* bangdb-agent-*.tar.gz
 	sudo chown -R $USER:bangdb /opt/bangdb-agent
+
+	rsyslog_configure
 }
 
 #get the agent now
