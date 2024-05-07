@@ -152,8 +152,8 @@ ssl_configure() {
 }
 
 rsyslog_configure() {
-	usermod -aG adm,root  bangdb
-	cp /etc/rsyslog.conf /etc/rsyslog.conf.bk
+	sudo usermod -aG adm,root  bangdb
+	sudo cp /etc/rsyslog.conf /etc/rsyslog.conf.bk
 
 
 	if grep -q '^$ActionFileDefaultTemplate' /etc/rsyslog.conf
