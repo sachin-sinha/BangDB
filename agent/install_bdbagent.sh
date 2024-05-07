@@ -164,6 +164,8 @@ rsyslog_configure() {
     		#echo "line is not present"
     		sed -i '/$RepeatedMsgReduction on/a $template precise,"%syslogpriority-text% %syslogfacility-text% %TIMESTAMP:1:10:date-rfc3339%T%TIMESTAMP:19:12:date-rfc3339% %HOSTNAME% %syslogtag% %msg%\\n" \n$ActionFileDefaultTemplate precise' /etc/rsyslog.conf
 	fi
+
+	sudo service rsyslog restart
 }
 
 install_agentcmd() {
