@@ -159,10 +159,10 @@ rsyslog_configure() {
 	if grep -q '^$ActionFileDefaultTemplate' /etc/rsyslog.conf
 	then
     		#echo "line is in the file"
-    		sed -i '/$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat/a $template precise,"%syslogpriority-text% %syslogfacility-text% %TIMESTAMP:1:10:date-rfc3339%T%TIMESTAMP:19:12:date-rfc3339% %HOSTNAME% %syslogtag% %msg%\\n" \n$ActionFileDefaultTemplate precise' /etc/rsyslog.conf
+    	sudo sed -i '/$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat/a $template precise,"%syslogpriority-text% %syslogfacility-text% %TIMESTAMP:1:10:date-rfc3339%T%TIMESTAMP:19:12:date-rfc3339% %HOSTNAME% %syslogtag% %msg%\\n" \n$ActionFileDefaultTemplate precise' /etc/rsyslog.conf
 	else
     		#echo "line is not present"
-    		sed -i '/$RepeatedMsgReduction on/a $template precise,"%syslogpriority-text% %syslogfacility-text% %TIMESTAMP:1:10:date-rfc3339%T%TIMESTAMP:19:12:date-rfc3339% %HOSTNAME% %syslogtag% %msg%\\n" \n$ActionFileDefaultTemplate precise' /etc/rsyslog.conf
+    	sudo sed -i '/$RepeatedMsgReduction on/a $template precise,"%syslogpriority-text% %syslogfacility-text% %TIMESTAMP:1:10:date-rfc3339%T%TIMESTAMP:19:12:date-rfc3339% %HOSTNAME% %syslogtag% %msg%\\n" \n$ActionFileDefaultTemplate precise' /etc/rsyslog.conf
 	fi
 
 	sudo service rsyslog restart
