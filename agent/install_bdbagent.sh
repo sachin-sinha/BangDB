@@ -180,9 +180,11 @@ install_agentcmd() {
 
 	sudo mkdir /opt/bangdb-agent
 	sudo mkdir /opt/bangdb-agent/bin
+	sudo mkdir /opt/bangdb-agent/bin/script
 	sudo mkdir /opt/bangdb-agent/cli
 	sudo mv bangdb-agent-ssl /opt/bangdb-agent/
 	sudo mv bin/bangdb-agent_s-2.0 /opt/bangdb-agent/bin/
+	sudo mv bin/script/*.sh /opt/bangdb-agent/bin/script/
 	sudo cp cli/bdbagent-2.0 /opt/bangdb-agent/cli/
 	sudo ln -sf /opt/bangdb-agent/cli/bdbagent-2.0 /usr/local/bin/bdbagent
 	certdir=/opt/bangdb-agent/bin/certificate
