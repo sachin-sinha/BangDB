@@ -267,7 +267,7 @@ then
 		echo "installing for ubuntu 24 ..."
 		wget --no-check-certificate $ubuntu24
 		tar -xzvf bangdb-agent-ubuntu24.tar.gz
-		cd bangdb-agent-ubuntu23
+		cd bangdb-agent-ubuntu24
 		ssl_configure
 		install_agentcmd
 		#bangdb-agent-ssl start
