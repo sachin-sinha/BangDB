@@ -140,7 +140,7 @@ centos7=https://github.com/sachin-sinha/BangDB/raw/master/agent/all/bangdb-agent
 
 
 # install key and certificate
-#ssl_configure() {
+ssl_configure() {
 	openssl req -nodes -newkey rsa:2048 -keyout example.key -out example.csr -subj "/C=IN/ST=Bangalore/L=Bangalore/O=Global Security/OU=BangDB/CN=bangdb.com"
 	openssl x509 -req -in example.csr -signkey example.key -out example.crt
 	openssl rsa -in example.key -text > key.pem
