@@ -140,7 +140,7 @@ centos7=https://github.com/sachin-sinha/BangDB/raw/master/agent/all/bangdb-agent
 
 
 # install key and certificate
-ssl_configure() {
+#ssl_configure() {
 	openssl req -nodes -newkey rsa:2048 -keyout example.key -out example.csr -subj "/C=IN/ST=Bangalore/L=Bangalore/O=Global Security/OU=BangDB/CN=bangdb.com"
 	openssl x509 -req -in example.csr -signkey example.key -out example.crt
 	openssl rsa -in example.key -text > key.pem
@@ -223,7 +223,7 @@ then
 		wget --no-check-certificate $ubuntu16
 		tar -xzvf bangdb-agent-ubuntu16.tar.gz
 		cd bangdb-agent-ubuntu16
-		ssl_configure
+		#ssl_configure
 		install_agentcmd
 		#bangdb-agent-ssl start
 	fi
@@ -232,7 +232,7 @@ then
 		wget --no-check-certificate $ubuntu18
 		tar -xzvf bangdb-agent-ubuntu18.tar.gz
 		cd bangdb-agent-ubuntu18
-		ssl_configure
+		#ssl_configure
 		install_agentcmd
 		#bangdb-agent-ssl start
 	fi
@@ -241,7 +241,7 @@ then
 		wget --no-check-certificate $ubuntu20
 		tar -xzvf bangdb-agent-ubuntu20.tar.gz
 		cd bangdb-agent-ubuntu20
-		ssl_configure
+		#ssl_configure
 		install_agentcmd
 		#bangdb-agent-ssl start
 	fi
@@ -250,7 +250,7 @@ then
 		wget --no-check-certificate $ubuntu22
 		tar -xzvf bangdb-agent-ubuntu22.tar.gz
 		cd bangdb-agent-ubuntu22
-		ssl_configure
+		#ssl_configure
 		install_agentcmd
 		#bangdb-agent-ssl start
 	fi
@@ -259,7 +259,7 @@ then
 		wget --no-check-certificate $ubuntu23
 		tar -xzvf bangdb-agent-ubuntu23.tar.gz
 		cd bangdb-agent-ubuntu23
-		ssl_configure
+		#ssl_configure
 		install_agentcmd
 		#bangdb-agent-ssl start
 	fi
@@ -268,7 +268,7 @@ then
 		wget --no-check-certificate $ubuntu24
 		tar -xzvf bangdb-agent-ubuntu24.tar.gz
 		cd bangdb-agent-ubuntu24
-		ssl_configure
+		#ssl_configure
 		install_agentcmd
 		#bangdb-agent-ssl start
 	fi
@@ -280,7 +280,7 @@ then
 		wget --no-check-certificate $rhel9
 		tar -xzvf bangdb-agent-rhel9.tar.gz
 		cd bangdb-agent-rhel9
-		ssl_configure
+		#ssl_configure
 		install_agentcmd
 		#bangdb-agent-ssl start
 	fi
@@ -289,7 +289,7 @@ then
 		wget --no-check-certificate $rhel8
 		tar -xzvf bangdb-agent-rhel8.tar.gz
 		cd bangdb-agent-rhel8
-		ssl_configure
+		#ssl_configure
 		install_agentcmd
 		#bangdb-agent-ssl start
 	fi
@@ -298,7 +298,7 @@ then
 		wget --no-check-certificate $rhel7
 		tar -xzvf bangdb-agent-rhel7.tar.gz
 		cd bangdb-agent-rhel7
-		ssl_configure
+		#ssl_configure
 		install_agentcmd
 		#bangdb-agent-ssl start
 	fi
@@ -310,7 +310,7 @@ then
 		wget --no-check-certificate $centos9
 		tar -xzvf bangdb-agent-centos9.tar.gz
 		cd bangdb-agent-rhel9
-		ssl_configure
+		#ssl_configure
 		install_agentcmd
 		#bangdb-agent-ssl start
 	fi
@@ -319,7 +319,7 @@ then
 		wget --no-check-certificate $centos8
 		tar -xzvf bangdb-agent-centos8.tar.gz
 		cd bangdb-agent-centos8
-		ssl_configure
+		#ssl_configure
 		install_agentcmd
 		#bangdb-agent-ssl start
 	fi
@@ -328,7 +328,7 @@ then
 		wget --no-check-certificate $centos7
 		tar -xzvf bangdb-agent-centos7.tar.gz
 		cd bangdb-agent-centos7
-		ssl_configure
+		#ssl_configure
 		install_agentcmd
 		#bangdb-agent-ssl start
 	fi
