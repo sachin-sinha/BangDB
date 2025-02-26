@@ -28,17 +28,6 @@ echo 'LANGUAGE="en_US.utf8"' | sudo tee -a /etc/environment &> /dev/null
 
 alias brc='source ~/.bashrc'
 
-## add user in the group
-grp=bangdb
-if [ $(getent group $grp) ]; then
-	echo "group $grp exists."
-else
-	echo "group $grp does not exist, creating"
-	sudo useradd $grp
-	sudo usermod -aG $USER $grp
-fi
-
-
 #### installing necessary packages and libs
 if [ $osv -eq 2 ]
 then
@@ -273,39 +262,34 @@ fi
 
 
 # copy cmd line for cli
-sudo cp cli/bdbc_s-2.0 /usr/local/bin/
-sudo cp cli/bdbc-2.0 /usr/local/bin/
-sudo cp cli/bdbagent-2.0 /usr/local/bin
-sudo ln -sf /usr/local/bin/bdbc_s-2.0 /usr/local/bin/bdbc
-sudo ln -sf /usr/local/bin/bdbc-2.0 /usr/local/bin/bdbcns
-sudo ln -sf /usr/local/bin/bdbagent-2.0 /usr/local/bin/bdbagent
-###
-#sudo cp cli/bdbc-2.0 /usr/bin/
-#sudo cp cli/bdbcns-2.0 /usr/bin/
-#sudo ln -sf /usr/bin/bdbc-2.0 /usr/bin/bdbc
-#sudo ln -sf /usr/bin/bdbcns-2.0 /usr/bin/bdbcns
-###
+#sudo cp cli/bdbc_s /usr/local/bin/
+#sudo cp cli/bdbc /usr/local/bin/
 
 # common
-sudo pip3 install SPARQLWrapper
+#sudo pip3 install SPARQLWrapper
 sudo pip3 install urllib3
-sudo pip3 install wikipedia
+#sudo pip3 install wikipedia
 sudo pip3 install HtmlParser
 sudo pip3 install html2text
+pip3 install langchain-community
+pip3 install tiktoken
+pip3 install docx2txt
+pip3 install pypdf
 
 ###### installing bangdb libs now
 
 USR_LIB_LOC=/usr/local/lib
 USR_INC_LOC=/usr/local/include
-USR_LIB64=/usr/lib64
-USR_INC64=/usr/include
+USR_BIN_LOC=/usr/local/bin
+#USR_LIB64=/usr/lib64
+#USR_INC64=/usr/include
 
-if [ -d "/usr/lib64" ]
-then
-	USR_LIB64=/usr/lib64
-else
-	USR_LIB64=/usr/lib
-fi
+#if [ -d "/usr/lib64" ]
+#then
+#	USR_LIB64=/usr/lib64
+#else
+#	USR_LIB64=/usr/lib
+#fi
 
 sudo cp $PWD/libs/libbangdb-client-cpp.so.2.0 $USR_LIB_LOC/
 sudo cp $PWD/libs/libbangdb-client-cpp_s.so.2.0 $USR_LIB_LOC/
@@ -318,6 +302,8 @@ sudo cp $PWD/libs/libbangdb-embd-java.so.2.0 $USR_LIB_LOC/
 sudo cp $PWD/libs/libbangdb-embd.so.2.0 $USR_LIB_LOC/
 sudo cp $PWD/libs/libdlib.so $USR_LIB_LOC/
 sudo cp $PWD/libs/libmitie.so $USR_LIB_LOC/
+sudo cp $PWD/cli/bangdb-cli_s-2.0 $USR_BIN_LOC/
+sudo cp $PWD/cli/bdbc $USR_BIN_LOC/
 
 
 sudo ln -sf $USR_LIB_LOC/libbangdb-client-cpp.so.2.0 $USR_LIB_LOC/libbangdb-client-cpp.so
@@ -330,21 +316,23 @@ sudo ln -sf $USR_LIB_LOC/libbangdb-embd-cpp_s.so.2.0 $USR_LIB_LOC/libbangdb-embd
 sudo ln -sf $USR_LIB_LOC/libbangdb-embd-java.so.2.0 $USR_LIB_LOC/libbangdb-embd-java.so
 sudo ln -sf $USR_LIB_LOC/libbangdb-embd.so.2.0 $USR_LIB_LOC/libbangdb-embd.so
 
-
-sudo ln -sf $USR_LIB_LOC/libbangdb-client-cpp.so.2.0 $USR_LIB64/libbangdb-client-cpp.so
-sudo ln -sf $USR_LIB_LOC/libbangdb-client-cpp_s.so.2.0 $USR_LIB64/libbangdb-client-cpp_s.so
-sudo ln -sf $USR_LIB_LOC/libbangdb-client-java.so.2.0 $USR_LIB64/libbangdb-client-java.so
-sudo ln -sf $USR_LIB_LOC/libbangdb-client.so.2.0 $USR_LIB64/libbangdb-client.so
-sudo ln -sf $USR_LIB_LOC/libbangdb-client_s.so.2.0 $USR_LIB64/libbangdb-client_s.so
-sudo ln -sf $USR_LIB_LOC/libbangdb-embd-cpp.so.2.0 $USR_LIB64/libbangdb-embd-cpp.so
-sudo ln -sf $USR_LIB_LOC/libbangdb-embd-cpp_s.so.2.0 $USR_LIB64/libbangdb-embd-cpp_s.so
-sudo ln -sf $USR_LIB_LOC/libbangdb-embd-java.so.2.0 $USR_LIB64/libbangdb-embd-java.so
-sudo ln -sf $USR_LIB_LOC/libbangdb-embd.so.2.0 $USR_LIB64/libbangdb-embd.so
-
-sudo ln -sf $USR_LIB_LOC/libdlib.so $USR_LIB64/libdlib.so
-sudo ln -sf $USR_LIB_LOC/libmitie.so $USR_LIB64/libmitie.so
+sudo ln -sf $USR_BIN_LOC/bangdb-cli_s-2.0 $USR_BIN_LOC/bangdb-cli
 
 
+#sudo ln -sf $USR_LIB_LOC/libbangdb-client-cpp.so.2.0 $USR_LIB64/libbangdb-client-cpp.so
+#sudo ln -sf $USR_LIB_LOC/libbangdb-client-cpp_s.so.2.0 $USR_LIB64/libbangdb-client-cpp_s.so
+#sudo ln -sf $USR_LIB_LOC/libbangdb-client-java.so.2.0 $USR_LIB64/libbangdb-client-java.so
+#sudo ln -sf $USR_LIB_LOC/libbangdb-client.so.2.0 $USR_LIB64/libbangdb-client.so
+#sudo ln -sf $USR_LIB_LOC/libbangdb-client_s.so.2.0 $USR_LIB64/libbangdb-client_s.so
+#sudo ln -sf $USR_LIB_LOC/libbangdb-embd-cpp.so.2.0 $USR_LIB64/libbangdb-embd-cpp.so
+#sudo ln -sf $USR_LIB_LOC/libbangdb-embd-cpp_s.so.2.0 $USR_LIB64/libbangdb-embd-cpp_s.so
+#sudo ln -sf $USR_LIB_LOC/libbangdb-embd-java.so.2.0 $USR_LIB64/libbangdb-embd-java.so
+#sudo ln -sf $USR_LIB_LOC/libbangdb-embd.so.2.0 $USR_LIB64/libbangdb-embd.so
+
+#sudo ln -sf $USR_LIB_LOC/libdlib.so $USR_LIB64/libdlib.so
+#sudo ln -sf $USR_LIB_LOC/libmitie.so $USR_LIB64/libmitie.so
+
+<<NO_JAVA
 jv=$(echo $JAVA_HOME)
 if [ -z "$jv" ]
 then
@@ -368,6 +356,7 @@ else
 	sudo ln -sf $JAVA_HOME/jre/lib/amd64/server/libjvm.so $USR_LIB64/libjvm.so
 	sudo ln -sf $JAVA_HOME/jre/lib/amd64/server/libjvm.so $USR_LIB_LOC/libjvm.so
 fi
+NO_JAVA
 
 sudo ldconfig
 
@@ -377,9 +366,9 @@ sudo cp -r bangdb_udf $USR_INC_LOC/
 sudo cp -r include/bangdb-embd $USR_INC_LOC/
 sudo cp -r include/bangdb-client $USR_INC_LOC/
 
-sudo ln -sf $USR_INC_LOC/bangdb_udf $USR_INC64/bangdb_udf
-sudo ln -sf $USR_INC_LOC/bangdb-embd $USR_INC64/bangdb-embd
-sudo ln -sf $USR_INC_LOC/bangdb-client $USR_INC64/bangdb-client
+#sudo ln -sf $USR_INC_LOC/bangdb_udf $USR_INC64/bangdb_udf
+#sudo ln -sf $USR_INC_LOC/bangdb-embd $USR_INC64/bangdb-embd
+#sudo ln -sf $USR_INC_LOC/bangdb-client $USR_INC64/bangdb-client
 
 echo "copied the include folders for bangdb"
 
@@ -395,32 +384,10 @@ echo "copied the include folders for bangdb"
 	fi	
 #fi
 
-mvn install:install-file -Dfile=jars/bangdb-client-java.jar -DgroupId=com.bangdb -DartifactId=bangdb-client-java -Dversion=2.0.0 -Dpackaging=jar -DgeneratePom=true
-mvn install:install-file -Dfile=jars/bangdb-embd-java.jar -DgroupId=com.bangdb -DartifactId=bangdb-embd-java -Dversion=2.0.0 -Dpackaging=jar -DgeneratePom=true
-mvn install:install-file -Dfile=jars/gson-2.6.2.jar -DgroupId=com.google -DartifactId=gson-2.6.2 -Dversion=2.6.2 -Dpackaging=jar -DgeneratePom=true
-mvn install:install-file -Dfile=jars/bangdb-reverb.jar -DgroupId=com.bangdb -DartifactId=bangdb-reverb -Dversion=2.0.0 -Dpackaging=jar -DgeneratePom=true
-
-install_lapack_blas() {
-        wget http://www.netlib.org/blas/blas-3.10.0.tgz && tar -xvf blas-3.10.0.tgz && cd BLAS-3.10.0 \
-        && mkdir build \
-        && cd build \
-        && cmake -DBUILD_SHARED_LIBS=ON .. \
-        && sudo make install \
-        && sudo cp /usr/local/lib/libblas.so.3 /usr/lib64/
-        cd ../../
-	rm blas-3*.tgz*
-
-        wget https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.10.1.tar.gz && tar -xvf v3.10.1.tar.gz && cd lapack-3.10.1 \
-        && cp make.inc.example make.inc \
-        && mkdir build \
-        && cd build \
-        && cmake -DBUILD_SHARED_LIBS=ON .. \
-        && sudo make install \
-        && sudo cp /usr/local/lib64/liblapack.so.3.10.1 /usr/lib64/liblapack.so.3
-        cd ../../
-	rm v3.10.1*
-}
-
+#mvn install:install-file -Dfile=jars/bangdb-client-java.jar -DgroupId=com.bangdb -DartifactId=bangdb-client-java -Dversion=2.0.0 -Dpackaging=jar -DgeneratePom=true
+#mvn install:install-file -Dfile=jars/bangdb-embd-java.jar -DgroupId=com.bangdb -DartifactId=bangdb-embd-java -Dversion=2.0.0 -Dpackaging=jar -DgeneratePom=true
+#mvn install:install-file -Dfile=jars/gson-2.6.2.jar -DgroupId=com.google -DartifactId=gson-2.6.2 -Dversion=2.6.2 -Dpackaging=jar -DgeneratePom=true
+#mvn install:install-file -Dfile=jars/bangdb-reverb.jar -DgroupId=com.bangdb -DartifactId=bangdb-reverb -Dversion=2.0.0 -Dpackaging=jar -DgeneratePom=true
 
 if [ $osv -eq 3 ]
 then
@@ -451,8 +418,6 @@ then
 	sudo make install
 	cd ..
 	cd ..
-
-	install_lapack_blas
 fi
 <<NO_SSL_3
 opsv=$(openssl version -a | nawk '{print substr($2,1,1);exit}')
@@ -492,10 +457,39 @@ echo "* soft core unlimited" | sudo tee -a /etc/security/limits.conf &> /dev/nul
 echo "* hard core unlimited" | sudo tee -a /etc/security/limits.conf &> /dev/null
 echo "* soft nproc 100000" | sudo tee -a /etc/security/limits.conf &> /dev/null
 echo "* hard nproc 100000" | sudo tee -a /etc/security/limits.conf &> /dev/null
-echo "* soft nofile 200000" | sudo tee -a /etc/security/limits.conf &> /dev/null
-echo "* hard nofile 200000" | sudo tee -a /etc/security/limits.conf &> /dev/null
+echo "* soft nofile 900000" | sudo tee -a /etc/security/limits.conf &> /dev/null
+echo "root soft nofile 900000" | sudo tee -a /etc/security/limits.conf &> /dev/null
+echo "* hard nofile 900000" | sudo tee -a /etc/security/limits.conf &> /dev/null
+echo "root hard nofile 900000" | sudo tee -a /etc/security/limits.conf &> /dev/null
+
+ulimit -n 900000
+ulimit -Hn 900000
+
+
+sudo sed -i 's/#\?\(Port\s*\).*$/\1 22/' /etc/ssh/sshd_config
+sudo sed -i 's/#\?\(PermitRootLogin\s*\).*$/\1 yes/' /etc/ssh/sshd_config
+sudo sed -i 's/#\?\(PasswordAuthentication\s*\).*$/\1 yes/' /etc/ssh/sshd_config
+sudo sed -i 's/#\?\(TCPKeepAlive\s*\).*$/\1 no/' /etc/ssh/sshd_config
+sudo sed -i 's/#\?\(ClientAliveInterval\s*\).*$/\1 30/' /etc/ssh/sshd_config
+sudo sed -i 's/#\?\(ClientAliveCountMax\s*\).*$/\1 300/' /etc/ssh/sshd_config
+sudo service sshd restart
+
 echo "setting core path ..."
 echo "/var/crash/core.%e.%p.%h.%t" | sudo tee /proc/sys/kernel/core_pattern &> /dev/null
+
+BANGDB_CFG_FILE=etc/bangdb.config
+if [ -f "bin/bangdb.config" ]; then
+	BANGDB_CFG_FILE=bin/bangdb.config
+fi
+if [ $# -eq 1 ]; then
+	dns=$1
+	echo "setting dns in bangdb.config ..."
+	echo "SERVER_PUBLIC_IP = $1" | tee -a $BANGDB_CFG_FILE &> /dev/null
+	echo "MASTER_SERVER_ID = $1" | tee -a $BANGDB_CFG_FILE &> /dev/null
+fi
+
+echo "installing bdb agent"
+wget https://github.com/sachin-sinha/BangDB/raw/master/agent/install_bdbagent.sh && bash install_bdbagent.sh && rm install_bdbagent.sh
 
 echo "bangdb install done!"
 
