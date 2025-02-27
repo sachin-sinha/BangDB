@@ -143,9 +143,11 @@ validate_domain_ip() {
                 return
             fi
         done
+	DNS=$input
         echo "✅ Valid IPv4 address: $input"
 
     elif [[ $input =~ $domain_regex ]]; then
+	DNS=$input
         echo "✅ Valid domain name: $input"
 
     else
@@ -197,10 +199,11 @@ create_user() {
 create_user
 
 #now install bangdb finally
+echo "Getting BangDB binaries..."
 presentdir=source pwd
 cd /opt
 sudo wget https://bangdb.com/downloads/$binary.tar.gz
-sudo tar -xzvf $binary.tar.gz
+sudo tar -xzf $binary.tar.gz
 sudo chown -R bangdb:bangdb /opt/$binary
 cd $binary 
 bash install.sh $DNS
