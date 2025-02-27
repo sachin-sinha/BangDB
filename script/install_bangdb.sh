@@ -197,16 +197,18 @@ create_user() {
 create_user
 
 #now install bangdb finally
+presentdir=source pwd
 cd /opt
-sudo wget https://bangdb.com/downloads/$binary
+sudo wget https://bangdb.com/downloads/$binary.tar.gz
 sudo tar -xzvf $binary.tar.gz
 sudo chown -R bangdb:bangdb /opt/$binary
 cd $binary 
 bash install.sh $DNS
-sudo chown -R bangdb:bangdb /home/bangdb/$binary
+sudo chown -R bangdb:bangdb /opt/$binary
 ulimit -n 900000
 ulimit -Hn 900000
 ulimit -c unlimited
-ulimit -a
+#ulimit -a
 #sudo -Hu bangdb ./bangdb-server-ssl start
+pwd $presentdir
 echo "bangdb-agent install done! ✅ "
