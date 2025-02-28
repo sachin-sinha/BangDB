@@ -163,14 +163,10 @@ validate_domain_ip() {
 }
 
 
-validate_password
-validate_domain_ip
 
 create_user() {
 	sudo apt update
 	usr=bangdb
-	sudo useradd -s /bin/bash -m -p $(openssl passwd -1 $pawd) $usr
-	groups $usr
 	if [ $osv -eq 2 ]; then
 	        sudo apt update
         	sudo apt-get install -y libssl-dev
@@ -196,7 +192,15 @@ create_user() {
 }
 
 #create user bangdb
-create_user
+if grep -q bangdb /etc/passwd
+	echo "bangdb user already exists. Please ensure it has sudo access"
+else
+	echo "creating user bangdb..."
+	validate_password
+	create_user
+fi
+
+validate_domain_ip
 
 #now install bangdb finally
 echo "Getting BangDB binaries..."

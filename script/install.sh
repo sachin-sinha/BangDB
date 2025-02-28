@@ -483,14 +483,16 @@ if [ -f "bin/bangdb.config" ]; then
 fi
 if [ $# -eq 1 ]; then
 	dns=$1
-	echo "setting dns in bangdb.config ..."
+	echo "setting dns ($1) in bangdb.config ($BANGDB_CFG_FILE) ..."
 	echo "SERVER_PUBLIC_IP = $1" | tee -a $BANGDB_CFG_FILE &> /dev/null
 	echo "MASTER_SERVER_ID = $1" | tee -a $BANGDB_CFG_FILE &> /dev/null
 fi
 
 echo "installing bdb agent"
+presentdir=source pwd
+cd ~/
 wget https://github.com/sachin-sinha/BangDB/raw/master/agent/install_bdbagent.sh && bash install_bdbagent.sh && rm install_bdbagent.sh
-
+cd $presentdir
 echo "bangdb install done!"
 
 #exec bash
