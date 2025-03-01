@@ -303,7 +303,7 @@ sudo cp $PWD/libs/libbangdb-embd.so.2.0 $USR_LIB_LOC/
 sudo cp $PWD/libs/libdlib.so $USR_LIB_LOC/
 sudo cp $PWD/libs/libmitie.so $USR_LIB_LOC/
 sudo cp $PWD/cli/bangdb-cli_s-2.0 $USR_BIN_LOC/
-sudo cp $PWD/cli/bdbc $USR_BIN_LOC/
+sudo cp $PWD/cli/bdbc-2.0 $USR_BIN_LOC/
 
 
 sudo ln -sf $USR_LIB_LOC/libbangdb-client-cpp.so.2.0 $USR_LIB_LOC/libbangdb-client-cpp.so
@@ -484,8 +484,8 @@ fi
 if [ $# -eq 1 ]; then
 	dns=$1
 	echo "setting dns ($1) in bangdb.config ($BANGDB_CFG_FILE) ..."
-	echo "SERVER_PUBLIC_IP = $1" | tee -a $BANGDB_CFG_FILE &> /dev/null
-	echo "MASTER_SERVER_ID = $1" | tee -a $BANGDB_CFG_FILE &> /dev/null
+	echo "SERVER_PUBLIC_IP = $1" | sudo tee -a $BANGDB_CFG_FILE &> /dev/null
+	echo "MASTER_SERVER_ID = $1" | sudo tee -a $BANGDB_CFG_FILE &> /dev/null
 fi
 
 echo "installing bdb agent"
