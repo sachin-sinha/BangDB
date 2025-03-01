@@ -192,7 +192,7 @@ create_user() {
 }
 
 #create user bangdb
-if grep -q bangdb /etc/passwd
+if grep -q bangdb /etc/passwd; then
 	echo "bangdb user already exists. Please ensure it has sudo access"
 else
 	echo "creating user bangdb..."

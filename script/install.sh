@@ -52,7 +52,7 @@ then
 else
         echo "$lib is installed"
 fi
-lib=python3.6
+lib=python3
 v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
@@ -142,13 +142,13 @@ then
 else
         echo "$lib is installed"
 fi
-lib=python36
+lib=python3
 v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
         echo "$lib is not installed, installing ... "
         sudo yum -y install $lib
-	sudo ln -sf /usr/bin/python2.7 /usr/bin/python
+	#sudo ln -sf /usr/bin/python3 /usr/bin/python
 else
         echo "$lib is installed"
 fi
