@@ -240,5 +240,4 @@ sudo systemctl enable bangdb
 
 #ulimit -a
 #sudo -Hu bangdb ./bangdb-server-ssl start
-pwd $presentdir
 echo "bangdb-agent install done! ✅ "

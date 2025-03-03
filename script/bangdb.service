@@ -9,6 +9,9 @@ Group=bangdb
 ExecStartPre=/bin/bash -c 'if [ -e /var/run/bangdb/bangdb-server.pid ] && ! kill -0 $(cat /var/run/bangdb/bangdb-server.pid) 2>/dev/null; then rm -f /var/run/bangdb/bangdb-server.pid; fi'
 ExecStart=/opt/bangdb/bangdb-server start
 ExecStop=/opt/bangdb/bangdb-server stop
+ExecStopPost=/bin/sleep 5
+TimeoutStopSec=60
+RuntimeDirectory=bangdb
 PIDFile=/var/run/bangdb/bangdb-server.pid
 Restart=on-failure
 Type=forking
@@ -17,7 +20,7 @@ TimeoutStartSec=300
 #StartLimitInterval=180s
 #StartLimitBurst=2
 # may be switch on in prod setup
-LimitCORE=0
+#LimitCORE=0
 
 [Install]
 WantedBy=multi-user.target
