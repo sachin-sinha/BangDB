@@ -1,0 +1,19 @@
+[Unit]
+Description=BangDB Database Server
+After=network.target
+
+[Service]
+User=bangdb
+Group=bangdb
+ExecStart=/opt/bangdb/bangdb-server-ssl start
+ExecStop=/opt/bangdb/bangdb-server-ssl stop
+PIDFile=/opt/bangdb/var/bangdb.pid
+Restart=on-failure
+RestartSec=30s
+StartLimitInterval=180s
+StartLimitBurst=2
+# may be switch on in prod setup
+#LimitCORE=0
+
+[Install]
+WantedBy=multi-user.target

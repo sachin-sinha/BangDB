@@ -200,6 +200,15 @@ else
 	create_user
 fi
 
+grp=bangdb
+if [ $(getent group $grp) ]; then
+	echo "group $grp exists."
+else
+	echo "group $grp does not exist, creating"
+	sudo useradd $grp
+fi
+
+sudo usermod -aG $USER bangdb
 validate_domain_ip
 
 #now install bangdb finally
@@ -208,13 +217,19 @@ presentdir=source pwd
 cd /opt
 sudo wget https://bangdb.com/downloads/$binary.tar.gz
 sudo tar -xzf $binary.tar.gz
+sudo mv $binary bangdb
+binary=bangdb
 sudo chown -R bangdb:bangdb /opt/$binary
 cd $binary 
 bash install.sh $DNS
-sudo chown -R bangdb:bangdb /opt/$binary
 ulimit -n 900000
 ulimit -Hn 900000
 ulimit -c unlimited
+sudo cp bangdb.service /etc/systemd/system/bangdb.service
+sudo systemctl daemon-reload
+sudo systemctl enable bangdb
+#sudo systemctl start mongodb
+
 #ulimit -a
 #sudo -Hu bangdb ./bangdb-server-ssl start
 pwd $presentdir
