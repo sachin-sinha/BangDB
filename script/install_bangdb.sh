@@ -121,6 +121,7 @@ i=0
 # Function to validate either a domain name or an IP address
 validate_domain_ip() {
     local input
+    echo "Enter the name (DNS) of the server (ex; mydb.mydomain.com)"
     read -p "Enter a domain name or IPv4 address: " input
 
     # Regular expressions for validation
@@ -209,7 +210,11 @@ else
 fi
 
 sudo usermod -aG $USER bangdb
-validate_domain_ip
+if [ $# -eq 1 ]; then
+	DNS=$1
+else
+	validate_domain_ip
+fi
 
 #now install bangdb finally
 echo "Getting BangDB binaries..."
@@ -225,10 +230,13 @@ bash install.sh $DNS
 ulimit -n 900000
 ulimit -Hn 900000
 ulimit -c unlimited
+# setup the service for systemctl
 sudo cp bangdb.service /etc/systemd/system/bangdb.service
+sudo mkdir /var/run/bangdb
+sudo chown -R bangdb:bangdb /var/run/bangdb
 sudo systemctl daemon-reload
 sudo systemctl enable bangdb
-#sudo systemctl start mongodb
+#sudo systemctl start bangdb
 
 #ulimit -a
 #sudo -Hu bangdb ./bangdb-server-ssl start

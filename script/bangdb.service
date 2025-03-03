@@ -5,15 +5,19 @@ After=network.target
 [Service]
 User=bangdb
 Group=bangdb
-ExecStart=/opt/bangdb/bangdb-server-ssl start
-ExecStop=/opt/bangdb/bangdb-server-ssl stop
-PIDFile=/opt/bangdb/var/bangdb.pid
+# Only delete the PID file if the service is NOT running
+ExecStartPre=/bin/bash -c 'if [ -e /var/run/bangdb/bangdb-server.pid ] && ! kill -0 $(cat /var/run/bangdb/bangdb-server.pid) 2>/dev/null; then rm -f /var/run/bangdb/bangdb-server.pid; fi'
+ExecStart=/opt/bangdb/bangdb-server start
+ExecStop=/opt/bangdb/bangdb-server stop
+PIDFile=/var/run/bangdb/bangdb-server.pid
 Restart=on-failure
-RestartSec=30s
-StartLimitInterval=180s
-StartLimitBurst=2
+Type=forking
+TimeoutStartSec=300
+#RestartSec=30s
+#StartLimitInterval=180s
+#StartLimitBurst=2
 # may be switch on in prod setup
-#LimitCORE=0
+LimitCORE=0
 
 [Install]
 WantedBy=multi-user.target
