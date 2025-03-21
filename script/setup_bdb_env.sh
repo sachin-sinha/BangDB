@@ -1,6 +1,6 @@
 #!/bin/bash
 usr=bangdb
-pawd=bdbpwd123
+pawd=$1
 ## find os type
 osv=0
 x=$(awk -F= '/^ID/{print $2;exit}' /etc/os-release)
