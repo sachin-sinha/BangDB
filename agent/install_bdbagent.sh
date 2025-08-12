@@ -1,5 +1,9 @@
 #!/bin/bash
 ## find os type
+
+DNS=$1
+CLUSTER_ID=$2
+
 osv=0
 x=$(awk -F= '/^ID/{print $2;exit}' /etc/os-release)
 if [ "$x" = '"centos"' ]; then
@@ -201,10 +205,11 @@ install_agentcmd() {
 		echo "agent.conf file exists"
 	else
 		sudo cp bin/agent.conf /opt/bangdb-agent/bin/
-		if [ $# -eq 2 ]; then
-			cat agent.conf | sed -e "s/<HOST_ID>/$1/" > agent2.conf && mv agent2.conf agent.conf
-			cat agent.conf | sed -e "s/<CLUSTER_ID>/BangDB_$2/" > agent2.conf && mv agent2.conf agent.conf
-		fi
+		#if [ $# -eq 2 ]; then
+		        echo "Configuring the dns for agent as well ..."
+                        sudo sed -i "s/<HOST_ID>/$DNS/g" /opt/bangdb-agent/bin/agent.conf
+                        sudo sed -i "s/<CLUSTER_ID>/$CLUSTER_ID/g" /opt/bangdb-agent/bin/agent.conf
+		#fi
 	fi
 	
 	#bvectoragentfile=bvector_agent.conf
