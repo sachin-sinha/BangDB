@@ -145,8 +145,10 @@ ssl_configure() {
 	openssl x509 -req -in example.csr -signkey example.key -out example.crt
 	openssl rsa -in example.key -text > key.pem
 	openssl x509 -inform PEM -in example.crt > cert.pem
+	cat cert.pem key.pem example.crt > bundle.pem
+	mv example.crt myca.crt
 	mkdir certificate
-	mv key.pem cert.pem certificate
+	mv key.pem cert.pem myca.crt bundle.pem certificate
 	mv certificate bin	
 	# cleanup
 	rm example.crt example.csr example.key
@@ -199,7 +201,24 @@ install_agentcmd() {
 		echo "agent.conf file exists"
 	else
 		sudo cp bin/agent.conf /opt/bangdb-agent/bin/
+		if [ $# -eq 2 ]; then
+			cat agent.conf | sed -e "s/<HOST_ID>/$1/" > agent2.conf && mv agent2.conf agent.conf
+			cat agent.conf | sed -e "s/<CLUSTER_ID>/BangDB_$2/" > agent2.conf && mv agent2.conf agent.conf
+		fi
 	fi
+	
+	#bvectoragentfile=bvector_agent.conf
+	#if [ -f $bvectoragentfile ]; then
+	#	echo "bvector_agent.conf file exists"
+	#else
+	#	sudo cp bin/bvector_agent.conf /opt/bangdb-agent/bin/
+	#	if [ $# -eq 2 ]; then
+	#		cat bvector_agent.conf | sed -e "s/<HOST_ID>/$1/" > bvector_agent2.conf && mv bvector_agent2.conf bvector_agent.conf
+	#		cat bvector_agent.conf | sed -e "s/<CLUSTER_ID>/BangDB_$2/" > bvector_agent2.conf && mv bvector_agent2.conf bvector_agent.conf
+	#	fi
+	#fi
+
+	
 	bangdbcfg=bangdb.config
 	if [ -f $bangdbcfg ]; then
 		echo "bangdb.config file exists"
@@ -263,15 +282,15 @@ then
 		install_agentcmd
 		#bangdb-agent-ssl start
 	fi
-	if [ $v = '"24.04"' ]; then
-		echo "installing for ubuntu 24 ..."
-		wget --no-check-certificate $ubuntu24
-		tar -xzvf bangdb-agent-ubuntu24.tar.gz
-		cd bangdb-agent-ubuntu24
-		#ssl_configure
-		install_agentcmd
-		#bangdb-agent-ssl start
-	fi
+	        if [ $v = '"24.04"' ]; then
+                echo "installing for ubuntu 24 ..."
+                wget --no-check-certificate $ubuntu24
+                tar -xzvf bangdb-agent-ubuntu24.tar.gz
+                cd bangdb-agent-ubuntu24
+                #ssl_configure
+                install_agentcmd
+                #bangdb-agent-ssl start
+        fi
 fi
 if [ $osv -eq 3 ]
 then
