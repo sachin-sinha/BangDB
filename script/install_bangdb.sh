@@ -192,6 +192,36 @@ create_user() {
 	sudo service sshd restart
 }
 
+ISHYBRID="n"
+USERSERVICE="0.0.0.0"
+SETAI="n"
+setup_user_service() {
+	input_received=""
+	while [[ -z "$input_received" ]]; do
+	    read -p "Is it a hybrid server? [y/n]: " input_received
+	    if [[ -z "$input_received" ]]; then
+		echo "Input cannot be empty. Please try again."
+	    fi
+	done
+	if [[ "$input_received" == "y" ]]; then
+		echo "This is being configured for bangdb service in hybrid mode ..."
+		ISHYBRID="y"
+	else
+		echo "This is not a hybrid mode service"
+		ISHYBRID="n"
+		read -p "what's the user service?: " USERSERVICE
+		if [[ "$USERSERVICE" == "" ]]; then
+			USERSERVICE="0.0.0.0"
+		fi
+	fi
+
+	read -p "is this server for AI [y/n]?: " SETAI
+	if [[ "$SETAI" == "" ]]; then
+		SETAI="y"
+	fi
+	echo "configuring for user service = $USERSERVICE with AI setup = $SETAI "
+}
+
 #create user bangdb
 if grep -q bangdb /etc/passwd; then
 	echo "bangdb user already exists. Please ensure it has sudo access"
@@ -216,6 +246,9 @@ else
 	validate_domain_ip
 fi
 
+# setup user service now
+setup_user_service
+
 #now install bangdb finally
 echo "Getting BangDB binaries..."
 presentdir=source pwd
@@ -226,7 +259,7 @@ sudo mv $binary bangdb
 binary=bangdb
 sudo chown -R bangdb:bangdb /opt/$binary
 cd $binary 
-bash install.sh $DNS
+bash install.sh $DNS $USERSERVICE $ISHYBRID $SETAI
 ulimit -n 900000
 ulimit -Hn 900000
 ulimit -c unlimited
