@@ -253,7 +253,8 @@ setup_user_service
 echo "Getting BangDB binaries..."
 presentdir=source pwd
 cd /opt
-sudo wget https://bangdb.com/downloads/$binary.tar.gz
+#sudo wget https://bangdb.com/downloads/$binary.tar.gz
+sudo wget https://github.com/sachin-sinha/BangDB/releases/download/v2.0/$binary.tar.gz
 sudo tar -xzf $binary.tar.gz
 sudo mv $binary bangdb
 binary=bangdb
