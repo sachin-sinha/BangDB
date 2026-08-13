@@ -31,7 +31,11 @@ alias brc='source ~/.bashrc'
 #### installing necessary packages and libs
 if [ $osv -eq 2 ]
 then
+	sudo apt-get update
+	sudo apt-get upgrade
 	sudo apt-get install -y build-essential
+	sudo apt-get install -y nlohmann-json3-dev
+	sudo apt install -y libxxhash-dev
 
 lib=libopenssl
 v=$(ldconfig -p | grep $lib)
@@ -59,10 +63,13 @@ then
         echo "$lib is not installed, installing ... "
    	sudo apt-get install -y $lib
 	sudo apt install -y python3-pip
+
 else
         echo "$lib is installed"
 	sudo apt install -y python3-pip
 fi
+
+
 lib=liblapack-dev
 v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
@@ -72,7 +79,7 @@ then
 else
         echo "$lib is installed"
 fi
-lib=libblas-dev
+lib=libblas3
 v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
 then
@@ -124,6 +131,9 @@ fi
 else
 	sudo yum -y group install 'Development Tools'
 	sudo yum -y install curl-devel
+	sudo yum -y install nlohmann-json-devel
+	sudo yum -y install libxxhash-dev
+
 lib=openssl
 v=$(ldconfig -p | grep $lib)
 if [ -z "$v" ]
@@ -266,15 +276,17 @@ fi
 #sudo cp cli/bdbc /usr/local/bin/
 
 # common
-#sudo pip3 install SPARQLWrapper
-sudo pip3 install urllib3
-#sudo pip3 install wikipedia
-sudo pip3 install HtmlParser
-sudo pip3 install html2text
-pip3 install langchain-community
-pip3 install tiktoken
-pip3 install docx2txt
-pip3 install pypdf
+#pip3 install pypdf
+INSTALL_AI_PY="n"
+if [ $# -ge 4 ]; then
+	INSTALL_AI_PY=$4
+	echo "Install AI is $INSTALL_AI_PY"
+fi
+
+if [[ "$INSTALL_AI_PY" == "y" ]]; then
+	echo "INSTALLING BANGDB FOR AI..."
+	source ./setup_bangdb_env.sh
+fi
 
 ###### installing bangdb libs now
 
@@ -365,6 +377,7 @@ echo "created env vars, soft links for the libs for bangdb"
 sudo cp -r bangdb_udf $USR_INC_LOC/
 sudo cp -r include/bangdb-embd $USR_INC_LOC/
 sudo cp -r include/bangdb-client $USR_INC_LOC/
+sudo cp -r helpers $USR_INC_LOC/
 
 #sudo ln -sf $USR_INC_LOC/bangdb_udf $USR_INC64/bangdb_udf
 #sudo ln -sf $USR_INC_LOC/bangdb-embd $USR_INC64/bangdb-embd
@@ -481,18 +494,58 @@ BANGDB_CFG_FILE=etc/bangdb.config
 if [ -f "bin/bangdb.config" ]; then
 	BANGDB_CFG_FILE=bin/bangdb.config
 fi
-if [ $# -eq 1 ]; then
+if [ $# -ge 1 ]; then
 	dns=$1
 	echo "setting dns ($1) in bangdb.config ($BANGDB_CFG_FILE) ..."
 	echo "SERVER_PUBLIC_IP = $1" | sudo tee -a $BANGDB_CFG_FILE &> /dev/null
 	echo "MASTER_SERVER_ID = $1" | sudo tee -a $BANGDB_CFG_FILE &> /dev/null
 fi
 
+#set up the user service, hybrid mode etc ...
+if [ $# -ge 2 ]; then
+	dns=$2
+	ISHYBRID="n"
+	if [ $# -ge 3 ]; then
+		ISHYBRID=$3
+	fi
+	echo "is hybrid = $ISHYBRID"
+	echo "setting user service ($2) with hybrid mode ($isus) in bangdb.config ($BANGDB_CFG_FILE) ..."
+	if [[ "$ISHYBRID" == "n" ]]; then
+		if [[ "$1" == "$2" || $2 == "0.0.0.0" ]]; then
+			echo "1 = $1 and 2 = $2"
+			echo "setting up as user service mode = 1"
+			echo "BANGDB_USER_SERVICE_MODE = 1" | sudo tee -a $BANGDB_CFG_FILE &> /dev/null
+		else
+			echo "seeting up as user service mode = 0, with user service ip = $2"
+			echo "BANGDB_USER_SERVICE_IP = $2" | sudo tee -a $BANGDB_CFG_FILE &> /dev/null
+			echo "BANGDB_USER_SERVICE_MODE = 0" | sudo tee -a $BANGDB_CFG_FILE &> /dev/null
+		fi
+	fi
+fi
+
+if [[ "$INSTALL_AI_PY" == "y" ]]; then
+	echo "setting bangdb for AI"
+	echo "BANGDB_AI_FUNC = 1" | sudo tee -a $BANGDB_CFG_FILE &> /dev/null
+else
+	echo "BANGDB_AI_FUNC = 0" | sudo tee -a $BANGDB_CFG_FILE &> /dev/null
+fi
+
+
 echo "installing bdb agent"
 presentdir=source pwd
 cd ~/
-wget https://github.com/sachin-sinha/BangDB/raw/master/agent/install_bdbagent.sh && bash install_bdbagent.sh && rm install_bdbagent.sh
+CLUSTER_ID=bangdb
+wget https://github.com/sachin-sinha/BangDB/raw/master/agent/install_bdbagent.sh && bash install_bdbagent.sh $1 $CLUSTER_ID  && rm install_bdbagent.sh
 cd $presentdir
 echo "bangdb install done!"
+#create swapfile
+create_swapfile() {
+	sudo swapoff -a
+	sudo dd if=/dev/zero of=/swapfile bs=1M count=8192
+	sudo chmod 0600 /swapfile
+	sudo mkswap /swapfile
+	sudo swapon /swapfile
+	echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab  &> /dev/null
+}
 
 #exec bash

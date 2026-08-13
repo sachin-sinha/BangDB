@@ -161,6 +161,9 @@ validate_domain_ip() {
         echo "❌ Invalid input. Please enter a valid domain or IPv4 address."
         validate_domain_ip  # Retry
     fi
+    
+    # change the hostname
+    sudo hostnamectl set-hostname $DNS
 }
 
 
@@ -192,42 +195,13 @@ create_user() {
 	sudo service sshd restart
 }
 
-ISHYBRID="n"
-USERSERVICE="0.0.0.0"
-SETAI="n"
-setup_user_service() {
-	input_received=""
-	while [[ -z "$input_received" ]]; do
-	    read -p "Is it a hybrid server? [y/n]: " input_received
-	    if [[ -z "$input_received" ]]; then
-		echo "Input cannot be empty. Please try again."
-	    fi
-	done
-	if [[ "$input_received" == "y" ]]; then
-		echo "This is being configured for bangdb service in hybrid mode ..."
-		ISHYBRID="y"
-	else
-		echo "This is not a hybrid mode service"
-		ISHYBRID="n"
-		read -p "what's the user service?: " USERSERVICE
-		if [[ "$USERSERVICE" == "" ]]; then
-			USERSERVICE="0.0.0.0"
-		fi
-	fi
-
-	read -p "is this server for AI [y/n]?: " SETAI
-	if [[ "$SETAI" == "" ]]; then
-		SETAI="y"
-	fi
-	echo "configuring for user service = $USERSERVICE with AI setup = $SETAI "
-}
-
 #create user bangdb
 if grep -q bangdb /etc/passwd; then
 	echo "bangdb user already exists. Please ensure it has sudo access"
 else
 	echo "creating user bangdb..."
-	validate_password
+	#validate_password
+	pawd="bangdb@777"
 	create_user
 fi
 
@@ -242,25 +216,26 @@ fi
 sudo usermod -aG $USER bangdb
 if [ $# -eq 1 ]; then
 	DNS=$1
+	sudo hostnamectl set-hostname $DNS
 else
 	validate_domain_ip
 fi
-
-# setup user service now
-setup_user_service
 
 #now install bangdb finally
 echo "Getting BangDB binaries..."
 presentdir=source pwd
 cd /opt
-#sudo wget https://bangdb.com/downloads/$binary.tar.gz
-sudo wget https://github.com/sachin-sinha/BangDB/releases/download/v2.0/$binary.tar.gz
+sudo wget https://bangdb.com/downloads/$binary.tar.gz
 sudo tar -xzf $binary.tar.gz
 sudo mv $binary bangdb
 binary=bangdb
 sudo chown -R bangdb:bangdb /opt/$binary
 cd $binary 
-bash install.sh $DNS $USERSERVICE $ISHYBRID $SETAI
+bash install.sh $DNS
+
+#setup db backup cron job
+sudo bash setup_backup.sh
+
 ulimit -n 900000
 ulimit -Hn 900000
 ulimit -c unlimited
@@ -270,6 +245,9 @@ sudo mkdir /var/run/bangdb
 sudo chown -R bangdb:bangdb /var/run/bangdb
 sudo systemctl daemon-reload
 sudo systemctl enable bangdb
+sudo -Hu bangdb systemctl start bangdb
+
+
 #sudo systemctl start bangdb
 
 #ulimit -a
