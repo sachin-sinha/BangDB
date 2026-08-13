@@ -222,6 +222,7 @@ elif [ $# -eq 4 ]; then
 	US=$2
 	ISHYB=$3
 	ISAI=$4
+	sudo hostnamectl set-hostname $DNS
 else
 	validate_domain_ip
 fi
