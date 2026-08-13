@@ -31,8 +31,8 @@ alias brc='source ~/.bashrc'
 #### installing necessary packages and libs
 if [ $osv -eq 2 ]
 then
-	sudo apt-get update
-	sudo apt-get upgrade
+	sudo apt-get update -y
+	sudo apt-get upgrade -y
 	sudo apt-get install -y build-essential
 	sudo apt-get install -y nlohmann-json3-dev
 	sudo apt install -y libxxhash-dev
@@ -531,21 +531,22 @@ else
 fi
 
 
-echo "installing bdb agent"
+#echo "installing bdb agent"
 presentdir=source pwd
 cd ~/
-CLUSTER_ID=bangdb
-wget https://github.com/sachin-sinha/BangDB/raw/master/agent/install_bdbagent.sh && bash install_bdbagent.sh $1 $CLUSTER_ID  && rm install_bdbagent.sh
+#CLUSTER_ID=bangdb
+#wget https://github.com/sachin-sinha/BangDB/raw/master/agent/install_bdbagent.sh && bash install_bdbagent.sh $1 $CLUSTER_ID  && rm install_bdbagent.sh
 cd $presentdir
 echo "bangdb install done!"
 #create swapfile
 create_swapfile() {
-	sudo swapoff -a
-	sudo dd if=/dev/zero of=/swapfile bs=1M count=8192
-	sudo chmod 0600 /swapfile
+	sudo fallocate -l 4G /swapfile
+	sudo dd if=/dev/zero of=/swapfile bs=1M count=4096
+	sudo chmod 600 /swapfile
 	sudo mkswap /swapfile
 	sudo swapon /swapfile
 	echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab  &> /dev/null
 }
+create swapfile
 
 #exec bash

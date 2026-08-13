@@ -251,7 +251,7 @@ sudo mkdir /var/run/bangdb
 sudo chown -R bangdb:bangdb /var/run/bangdb
 sudo systemctl daemon-reload
 sudo systemctl enable bangdb
-sudo -Hu bangdb systemctl start bangdb
+sudo systemctl start bangdb
 
 
 #sudo systemctl start bangdb
