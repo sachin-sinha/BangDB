@@ -217,6 +217,11 @@ sudo usermod -aG $USER bangdb
 if [ $# -eq 1 ]; then
 	DNS=$1
 	sudo hostnamectl set-hostname $DNS
+elif [ $# -eq 4 ]; then
+	DNS=$1
+	US=$2
+	ISHYB=$3
+	ISAI=$4
 else
 	validate_domain_ip
 fi
@@ -231,7 +236,7 @@ sudo mv $binary bangdb
 binary=bangdb
 sudo chown -R bangdb:bangdb /opt/$binary
 cd $binary 
-bash install.sh $DNS $2 $3  $4
+bash install.sh $DNS $US $ISHYB $ISAI
 
 #setup db backup cron job
 sudo bash setup_backup.sh
