@@ -231,7 +231,7 @@ sudo mv $binary bangdb
 binary=bangdb
 sudo chown -R bangdb:bangdb /opt/$binary
 cd $binary 
-bash install.sh $DNS
+bash install.sh $DNS $2 $3  $4
 
 #setup db backup cron job
 sudo bash setup_backup.sh
