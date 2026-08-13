@@ -230,7 +230,8 @@ fi
 echo "Getting BangDB binaries..."
 presentdir=source pwd
 cd /opt
-sudo wget https://bangdb.com/downloads/$binary.tar.gz
+#sudo wget https://bangdb.com/downloads/$binary.tar.gz
+sudo wget https://github.com/sachin-sinha/BangDB/releases/download/v2.0/$binary.tar.gz
 sudo tar -xzf $binary.tar.gz
 sudo mv $binary bangdb
 binary=bangdb
@@ -241,9 +242,9 @@ bash install.sh $DNS $US $ISHYB $ISAI
 #setup db backup cron job
 sudo bash setup_backup.sh
 
-ulimit -n 900000
-ulimit -Hn 900000
-ulimit -c unlimited
+#ulimit -n 900000
+#ulimit -Hn 900000
+#ulimit -c unlimited
 # setup the service for systemctl
 sudo cp bangdb.service /etc/systemd/system/bangdb.service
 sudo mkdir /var/run/bangdb
