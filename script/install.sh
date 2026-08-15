@@ -538,7 +538,7 @@ cd ~/
 #wget https://github.com/sachin-sinha/BangDB/raw/master/agent/install_bdbagent.sh && bash install_bdbagent.sh $1 $CLUSTER_ID  && rm install_bdbagent.sh
 cd $presentdir
 echo "bangdb install done!"
-#create swapfile
+create swapfile
 create_swapfile() {
 	sudo fallocate -l 4G /swapfile
 	sudo dd if=/dev/zero of=/swapfile bs=1M count=4096
@@ -547,6 +547,5 @@ create_swapfile() {
 	sudo swapon /swapfile
 	echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab  &> /dev/null
 }
-create swapfile
 
 #exec bash
